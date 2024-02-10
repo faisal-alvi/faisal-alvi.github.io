@@ -11235,6 +11235,10 @@ p {
   width: 100%;
 }
 
+.portfolio-card-caption p {
+  padding: 40px;
+}
+
 .portfolio-card:hover .portfolio-card-overlay {
   opacity: 1;
   visibility: visible;
