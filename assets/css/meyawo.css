@@ -12152,6 +12152,7 @@ pre .code {
 @media (max-width: 991.98px) {
   .header {
     background-size: cover;
+    padding-top: 400px;
   }
 }
 
