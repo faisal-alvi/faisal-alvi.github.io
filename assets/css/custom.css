@@ -110,12 +110,16 @@
         margin-bottom: 2rem;
     }
 
-#about {
-    margin-top: 240px;
-}
+    #about {
+        margin-top: 240px;
+    }
     
     .header-image {
         padding-left: 0;
+    }
+
+    .section#portfolio {
+        padding-top: 350px;
     }
     
     .header-title {
@@ -147,11 +151,11 @@
 
     .trust-card:nth-child(2) {
         right: 40px;
-        bottom: 30px;
+        bottom: 10px;
     }
 
     .trust-card:first-child {
-        left: 50px;
+        left: 30px;
         top: 10px;
     }
     
@@ -165,6 +169,10 @@
 }
 
 @media (max-width: 768px) {
+    .section#portfolio{
+        padding-top: 460px;
+    }
+
     .header-title {
         font-size: 35px !important;
     }

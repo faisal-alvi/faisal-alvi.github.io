@@ -12087,6 +12087,7 @@ pre .code {
   -ms-flex-positive: 1;
   flex-grow: 1;
   max-width: 1240px;
+  padding-top: 100px;
 }
 
 .header .header-content .header-title .up {
