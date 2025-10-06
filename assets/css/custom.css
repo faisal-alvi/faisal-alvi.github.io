@@ -201,9 +201,10 @@
         width: 100%;
     }
 
-.section#portfolio {
-    padding-top: 620px;
-}
+    .section#portfolio {
+        padding-top: 620px;
+    }
+
     .header-title {
         font-size: 28px !important;
         margin-bottom: 30px;
