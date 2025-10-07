@@ -246,6 +246,10 @@
         flex-direction: column;
         gap: 10px;
     }
+
+    .header {
+        padding-top: 620px;
+    }
     
     .trust-card {
         min-width: 80px;
