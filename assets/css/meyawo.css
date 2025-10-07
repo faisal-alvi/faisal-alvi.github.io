@@ -11940,7 +11940,12 @@ pre .code {
   .custom-navbar .nav .item .link {
     padding: 7px 12px;
     display: block;
-    color: #6c757d;
+    text-align: left;
+    display: inline-block;
+  }
+
+  .custom-navbar .nav .item.ml-md-3 .link {
+      color: #FFF;
   }
 }
 
@@ -12154,6 +12159,7 @@ pre .code {
   .header {
     background-size: cover;
     padding-top: 400px;
+    height: auto;
   }
 }
 

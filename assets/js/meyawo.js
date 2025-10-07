@@ -29,6 +29,14 @@ $(document).ready(function(){
             });
         } 
     });
+
+    // auto-close mobile menu on link click
+    $('ul.nav .link').on('click', function(){
+        if ($('ul.nav').hasClass('show')) {
+            $('ul.nav').removeClass('show');
+            $('#nav-toggle').removeClass('is-active');
+        }
+    });
 });
 
 // navbar toggle
