@@ -481,3 +481,27 @@
 .service-card:nth-child(6) {
     animation-delay: 0.5s;
 }
+
+/* Navbar responsive behavior */
+@media (min-width: 992px) {
+    #nav-toggle { display: none !important; }
+    .custom-navbar ul.nav {
+        display: flex !important;
+        align-items: center;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .custom-navbar ul.nav { display: none; }
+    .custom-navbar ul.nav.show { display: block; }
+}
+
+/* Fix desktop nav visibility (override vendor animation) */
+@media (min-width: 992px) {
+    .custom-navbar .nav .item {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        -webkit-transform: none !important;
+    }
+}
