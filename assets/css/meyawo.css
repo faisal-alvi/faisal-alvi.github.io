@@ -11726,6 +11726,10 @@ pre .code {
   color: #6c757d;
 }
 
+.custom-navbar.affix .nav .item.ml-md-3 .link {
+    color: #ffffff;
+}
+
 .custom-navbar.affix .hamburger-inner, .custom-navbar.affix .hamburger-inner::before, .custom-navbar.affix .hamburger-inner::after {
   background: #6c757d;
 }
