@@ -1,27 +1,42 @@
 # Site settings
-title: Your Site Title
-description: A description of your site
-url: https://yourusername.github.io # the base hostname & protocol for your site
-baseurl: "" # the subpath of your site, e.g. /blog/
-theme: jekyll-theme-minimal # the theme you want to use for your site
+title: "Faisal Alvi | WordPress & WooCommerce Solutions Architect"
+description: "Building high-performing WordPress & WooCommerce solutions | Open-source contributor | 12+ years shaping enterprise-grade digital experiences"
+author: "Faisal Alvi"
+email: "faisal@example.com"
+url: "https://faisal-alvi.github.io"
+baseurl: ""
 
 # Build settings
-plugins:
-  - jekyll-feed # generates an Atom feed of your posts
-  - jekyll-seo-tag # generates SEO meta tags for your site
-  - jekyll-sitemap # generates a sitemap for your site
-markdown: kramdown # the markdown engine you want to use
-
-
-
-
-lsi: false
-safe: true
-source: [your repo's top level directory]
-incremental: false
+markdown: kramdown
 highlighter: rouge
-gist:
-  noscript: false
-kramdown:
-  math_engine: mathjax
-  syntax_highlighter: rouge
+permalink: /:year/:month/:day/:title/
+timezone: UTC
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Faisal Alvi"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ page.excerpt | default: site.description }}">
+    <meta name="author" content="{{ page.author | default: site.author }}">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/imgs/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/imgs/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/imgs/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/imgs/favicon/favicon-16x16.png">
+    
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Meyawo main styles -->
+    <link rel="stylesheet" href="assets/css/meyawo.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JH7HHRTV6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-7JH7HHRTV6');
+    </script>
+    
+    <!-- SEO -->
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.excerpt | default: site.description }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta name="twitter:card" content="summary_large_image">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- Page Navbar -->
+    <nav class="custom-navbar" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="logo" href="/"><img src="assets/imgs/logo.png" alt="Faisal Alvi" class="img-fluid"></a>         
+            <ul class="nav">
+                <li class="item">
+                    <a class="link" href="/">Home</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="/#services">Services</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="/blog">Blog</a>
+                </li>
+                <li class="item ml-md-3">
+                    <a class="link btn btn-primary" href="/#contact">Contact</a>
+                </li>
+            </ul>
+            <div id="nav-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Content -->
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="blog-post">
+                        <div class="post-header text-center mb-5">
+                            <h1 class="post-title">{{ page.title }}</h1>
+                            <div class="post-meta">
+                                <span class="post-date">
+                                    <i class="ti-calendar mr-2"></i>{{ page.date | date: "%B %d, %Y" }}
+                                </span>
+                                <span class="post-author ml-3">
+                                    <i class="ti-user mr-2"></i>{{ page.author | default: site.author }}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="post-content">
+                            {{ content }}
+                        </div>
+                        
+                        <div class="post-footer mt-5 pt-4 border-top">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="/blog" class="btn btn-outline-primary">
+                                        <i class="ti-arrow-left mr-2"></i>Back to Blog
+                                    </a>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <a href="/#contact" class="btn btn-primary">
+                                        <i class="ti-email mr-2"></i>Get in Touch
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; {{ 'now' | date: "%Y" }} Faisal Alvi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p>Building high-performing WordPress & WooCommerce solutions</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.min.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <script src="assets/js/meyawo.js"></script>
+
+</body>
+</html>
