@@ -508,16 +508,58 @@
 
 /* Mobile nav link colors on white dropdown */
 @media (max-width: 991.98px) {
+    .custom-navbar .nav {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        margin-top: 0.5rem;
+    }
+    
+    .custom-navbar .nav .item {
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+    
+    .custom-navbar .nav .item:last-child {
+        margin-bottom: 0;
+    }
+    
     .custom-navbar .nav .item .link {
         color: #333 !important;
+        display: block;
+        padding: 12px 20px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        background-color: #f8f9fa;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        min-height: 48px; /* Touch-friendly size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
+    
     .custom-navbar .nav .item .link:hover,
     .custom-navbar .nav .item .link.active {
-        color: #6c5ce7 !important;
+        color: white !important;
+        background-color: #6c5ce7 !important;
+        border-color: #6c5ce7 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
     }
-    /* Keep button-styled Contact white on purple */
+    
+    /* Contact button styling */
     .custom-navbar .nav .item .link.btn {
-        color: #fff !important;
+        background-color: #6c5ce7 !important;
+        color: white !important;
+        border-color: #6c5ce7 !important;
+    }
+    
+    .custom-navbar .nav .item .link.btn:hover {
+        background-color: #5a4fcf !important;
+        border-color: #5a4fcf !important;
     }
 }
 
