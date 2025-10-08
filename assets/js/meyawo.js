@@ -21,10 +21,11 @@ $(document).ready(function(){
             event.preventDefault();
 
             var hash = this.hash;
+            var targetOffset = $(hash).offset().top - 80; // Account for fixed navbar height
 
             $('html, body').animate({
-                scrollTop: $(hash).offset().top
-            }, 700, function(){
+                scrollTop: targetOffset
+            }, 1200, 'swing', function(){
                 window.location.hash = hash;
             });
         } 

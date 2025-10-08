@@ -563,6 +563,11 @@
     }
 }
 
+/* Smooth scroll easing */
+html {
+    scroll-behavior: smooth;
+}
+
 /* Contact form styles */
 .contact-form {
     text-align: left;
