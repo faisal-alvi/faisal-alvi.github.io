@@ -2105,7 +2105,9 @@ pre code {
 
 @media (max-width: 575.98px) {
   .img-fluid{
-    width: 100px;
+    width: 120px;
+    bottom: -2px;
+    position: relative;
   }
   .table-responsive-sm {
     display: block;
