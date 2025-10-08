@@ -230,12 +230,24 @@
                         <p class="mb-4">
                             With 12+ years of experience building high-performing WordPress solutions, I'm here to help you create fast, scalable, and secure websites that grow with your business. Whether you need custom development, performance optimization, or ongoing maintenance.
                         </p>
-                        <a href="mailto:faisalalvi33@gmail.com" class="btn btn-primary btn-lg mr-3">
-                            <i class="ti-email mr-2"></i>Start a Conversation
-                        </a>
-                        <a href="https://github.com/faisal-alvi" target="_blank" class="btn btn-outline-primary btn-lg">
-                            <i class="ti-github mr-2"></i>View My Work
-                        </a>
+                        <form id="contactForm" class="contact-form" action="https://formspree.io/f/meorlpqb" method="POST">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactEmail">Your email</label>
+                                    <input id="contactEmail" type="email" name="email" placeholder="your@email.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactMessage">Your message</label>
+                                    <textarea id="contactMessage" name="message" rows="4" placeholder="What's on your mind?" required></textarea>
+                                </div>
+                                <button id="contactSubmit" type="submit" class="btn btn-light btn-lg">
+                                    <i class="ti-email mr-2"></i>Send Message
+                                </button>
+                            </div>
+                        </form>
+                        <div id="contactThanks" class="contact-thanks" aria-live="polite" style="display:none;">
+                            Thanks! Your message has been sent. I'll get back to you within 24 hours.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -295,5 +307,48 @@
     <!-- Meyawo js -->
     <script src="assets/js/meyawo.js"></script>
 
+    <!-- Contact AJAX handler -->
+    <script>
+    (function(){
+        var form = document.getElementById('contactForm');
+        if (!form) return;
+        form.addEventListener('submit', async function(e){
+            e.preventDefault();
+            var submitBtn = document.getElementById('contactSubmit');
+            var thanks = document.getElementById('contactThanks');
+            var card = form.closest('.contact-card');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            try {
+                var formData = new FormData(form);
+                var res = await fetch(form.action, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: formData
+                });
+                if (res.ok) {
+                    form.reset();
+                    // Hide all siblings/content in the card except the thanks note
+                    if (card) {
+                        Array.prototype.forEach.call(card.children, function(child){
+                            if (child !== thanks) { child.style.display = 'none'; }
+                        });
+                    }
+                    if (thanks) { thanks.style.display = 'block'; }
+                } else {
+                    console.warn('Form submit failed', await res.text());
+                    alert('Sorry, something went wrong. Please try again.');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Network error. Please try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
+        });
+    })();
+    </script>
 </body>
 </html>
