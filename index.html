@@ -12,9 +12,9 @@
     </script>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Faisal Alvi - Building high-performing WordPress & WooCommerce solutions | Open-source contributor | 12+ years shaping enterprise-grade digital experiences.">
+    <meta name="description" content="Senior WordPress and WooCommerce developer with 12+ years of experience building high-performance, scalable, and secure sites for agencies, startups, and growing brands. Available for custom development, WooCommerce solutions, and performance optimization." />
     <meta name="author" content="Faisal Alvi">
-    <title>Faisal Alvi | WordPress & WooCommerce Solutions Architect</title>
+    <title>Faisal Alvi | Senior WordPress & WooCommerce Developer for High-Performance Sites</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/imgs/favicon/favicon.ico">
@@ -28,7 +28,50 @@
 	<link rel="stylesheet" href="assets/css/meyawo.css">
     <!-- Custom styles -->
     <link rel="stylesheet" href="assets/css/custom.css">
+
+	<link rel="canonical" href="https://faisalalvi.com/" />
+
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Faisal Alvi | Senior WordPress & WooCommerce Developer">
+	<meta property="og:description" content="Senior WordPress and WooCommerce developer with 12+ years of experience building high-performance, scalable, and secure sites for agencies, startups, and growing brands." />
+	<meta property="og:url" content="https://faisalalvi.com/">
+	<meta property="og:image" content="https://faisalalvi.com/assets/imgs/me-amsterdam.jpg">
+	<meta property="og:site_name" content="Faisal Alvi">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Faisal Alvi | Senior WordPress & WooCommerce Developer">
+	<meta name="twitter:description" content="High-performance WordPress & WooCommerce solutions, custom plugins, and performance consulting.">
+	<meta name="twitter:image" content="https://faisalalvi.com/assets/imgs/me-amsterdam.jpg">
+	<meta name="twitter:site" content="@_the_faisal">
+
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "Person",
+	  "name": "Faisal Alvi",
+	  "jobTitle": "Senior WordPress & WooCommerce Developer",
+	  "url": "https://faisalalvi.com/",
+	  "image": "https://faisalalvi.com/assets/imgs/me-amsterdam.jpg",
+	  "sameAs": [
+	    "https://www.linkedin.com/in/alvifaisal/",
+	    "https://github.com/faisal-alvi",
+	    "https://profiles.wordpress.org/faisal03/",
+	    "https://twitter.com/_the_faisal"
+	  ],
+	  "worksFor": {
+	    "@type": "Organization",
+	    "name": "Freelance / Consulting"
+	  },
+	  "address": {
+	    "@type": "PostalAddress",
+	    "addressCountry": "IN",
+	    "addressLocality": "Ahmedabad",
+	    "addressRegion": "Gujarat"
+	  }
+	}
+	</script>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
@@ -66,14 +109,14 @@
         <div class="header-content container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <div class="header-text">
-                        <h1 class="header-title">
+					<div class="header-text">
+                        <h2 class="header-title">
                             <span class="up">HI!</span>
                             <span class="down">I am Faisal Alvi</span>
-                        </h1>
-                        <p class="header-subtitle">Senior Web Engineer | WordPress Solutions Expert</p>
+                        </h2>
+                        <h1 class="header-subtitle">Senior WordPress &amp; WooCommerce Developer Building High-Performance Sites</h1>
                         <p class="header-description">
-                            Building high-performing WordPress & WooCommerce solutions. Open-source contributor with 12+ years shaping enterprise-grade digital experiences for agencies, startups, and growing brands.
+                            Building high-performing WordPress &amp; WooCommerce solutions. Open-source contributor with 12+ years shaping enterprise-grade digital experiences for agencies, startups, and growing brands.
                         </p>
                         <p class="header-description">
                             Need WordPress solutions that load fast, scale with your traffic, and support your business goals? I help businesses transform their online presence through custom plugins, themes, and enterprise-level optimizations.
@@ -87,7 +130,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="header-image">
-                        <img src="assets/imgs/me-amsterdam.jpg" alt="Faisal Alvi" class="img-fluid rounded-circle header-photo">
+                        <img src="assets/imgs/me-amsterdam.jpg" alt="Senior WordPress and WooCommerce developer Faisal Alvi" class="img-fluid rounded-circle header-photo">
                         <div class="trust-indicators">
                             <div class="trust-card">
                                 <div class="trust-number">12+</div>
@@ -350,6 +393,10 @@
                     body: formData
                 });
                 if (res.ok) {
+					gtag('event', 'contact_form_submitted', {
+					    'event_category': 'engagement',
+					    'event_label': 'Contact Form'
+					});
                     form.reset();
                     // Hide all siblings/content in the card except the thanks note
                     if (card) {
