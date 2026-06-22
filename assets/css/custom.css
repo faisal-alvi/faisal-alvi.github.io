@@ -1,5 +1,12 @@
 /* Custom styles for Faisal Alvi's personal website */
 
+/* Override full-viewport hero height */
+.header {
+    height: auto !important;
+    min-height: 600px;
+    padding: 120px 0 60px;
+}
+
 /* Header section improvements */
 .header-title {
     font-size: 75px !important;
@@ -595,12 +602,10 @@ html {
     width: auto;
     max-width: 100%;
     object-fit: contain;
-    filter: grayscale(100%) opacity(0.5);
-    transition: filter 0.3s ease, transform 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
 .client-item:hover .client-logo {
-    filter: grayscale(0%) opacity(1);
     transform: scale(1.06);
 }
 
