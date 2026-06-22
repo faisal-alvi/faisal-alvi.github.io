@@ -960,12 +960,25 @@
                 gap: 0.75rem;
             }
 
+            /* ── All buttons full width ── */
             .v2-btn-primary,
-            .v2-btn-outline {
+            .v2-btn-outline,
+            .v2-btn-white {
                 display: block;
                 text-align: center;
                 width: 100%;
-                max-width: 320px;
+                box-sizing: border-box;
+            }
+
+            /* Contact form submit full width */
+            #v2ContactForm button[type="submit"] {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* Reduce Bootstrap mb-5 gap on mobile */
+            .mb-5 {
+                margin-bottom: 1.5rem !important;
             }
 
             .v2-stat-row {
