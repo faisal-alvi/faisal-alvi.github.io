@@ -155,7 +155,7 @@
 
         /* ── Sections ── */
         .v2-hero {
-            background: #fff;
+            background: linear-gradient(160deg, #eef0ff 0%, #ffffff 55%, #f4f6ff 100%);
             padding: 100px 0 80px;
         }
 
@@ -171,7 +171,7 @@
 
         .v2-section-dark {
             padding: 80px 0;
-            background: #0d1117;
+            background: #1a2235;
             color: #fff;
         }
 
@@ -277,9 +277,9 @@
 
         .v2-photo {
             width: 100%;
-            max-width: 420px;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 24px 60px rgba(108, 92, 231, 0.15);
             display: block;
         }
 
@@ -287,56 +287,102 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
+            position: relative;
         }
 
-        /* ── Archetype cards (Who I Work With) ── */
-        .v2-archetype-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
+        .v2-hero-img-frame {
+            position: relative;
+            display: inline-block;
         }
 
-        .v2-archetype-card {
-            border-left: 3px solid #6c5ce7;
-            padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+        .v2-float-chip {
+            position: absolute;
             background: #fff;
-            border-radius: 0 10px 10px 0;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            padding: 0.5rem 0.9rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+            color: #0d1117;
+            z-index: 2;
+        }
+
+        .v2-float-chip .chip-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #6c5ce7;
+            flex-shrink: 0;
+        }
+
+        .v2-float-chip-wp {
+            top: 24px;
+            right: -24px;
+        }
+
+        .v2-float-chip-codeable {
+            bottom: 80px;
+            left: -24px;
+        }
+
+        .v2-float-chip-projects {
+            bottom: 28px;
+            right: -16px;
+        }
+
+        /* ── "What You Get" cards ── */
+        .v2-why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .v2-why-card {
+            background: #fff;
+            border: 1px solid #e8eaf6;
+            border-radius: 14px;
+            padding: 1.75rem 1.75rem 1.75rem 1.75rem;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
             transition: box-shadow 0.2s, transform 0.2s;
         }
 
-        .v2-archetype-card:hover {
-            box-shadow: 0 6px 24px rgba(108,92,231,0.1);
+        .v2-why-card:hover {
+            box-shadow: 0 8px 28px rgba(108,92,231,0.1);
             transform: translateY(-2px);
         }
 
-        .v2-archetype-icon {
-            font-size: 1.75rem;
-            margin-bottom: 0.75rem;
-            display: block;
+        .v2-why-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: #f0eeff;
+            color: #6c5ce7;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .v2-archetype-title {
+        .v2-why-title {
             font-weight: 700;
             color: #0d1117;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
         }
 
-        .v2-archetype-desc {
+        .v2-why-desc {
             font-size: 0.88rem;
             color: #555;
             line-height: 1.6;
             margin: 0;
-        }
-
-        .v2-who-intro {
-            font-size: 1.05rem;
-            color: #555;
-            line-height: 1.7;
-            max-width: 520px;
-            margin-top: 0.75rem;
         }
 
         /* ── Approach section ── */
@@ -377,7 +423,7 @@
         }
 
         .v2-approach-section {
-            background: #0d1117;
+            background: #1a2235;
             padding: 80px 0;
         }
 
@@ -425,7 +471,7 @@
 
         /* ── Problem cards ── */
         .v2-problem-card {
-            background: #161b22;
+            background: #243050;
             border-left: 3px solid #6c5ce7;
             border-radius: 8px;
             padding: 1.5rem;
@@ -753,7 +799,7 @@
 
         /* ── Footer ── */
         .v2-footer {
-            background: #0d1117;
+            background: #111827;
             color: #aaa;
             padding: 2rem 0;
         }
@@ -832,8 +878,12 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
-            .v2-archetype-grid {
+            .v2-why-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .v2-float-chip {
+                display: none;
             }
         }
 
@@ -926,8 +976,8 @@
                     <h1 class="v2-hero-title">WordPress &amp; WooCommerce Engineering for Teams That Can't Afford Downtime</h1>
                     <p class="v2-hero-sub">I help agencies, startups, and enterprise teams build fast, scalable WordPress and WooCommerce solutions &mdash; custom plugins, performance optimization, and architecture that holds up under real traffic.</p>
                     <div class="v2-hero-btns">
-                        <a href="#contact" class="v2-btn-primary">Get a Free Consultation</a>
-                        <a href="#services" class="v2-btn-outline">See My Work</a>
+                        <a href="https://calendly.com/faisalalvi33" target="_blank" rel="noopener" class="v2-btn-primary">Book a Free Call</a>
+                        <a href="#services" class="v2-btn-outline">View Services</a>
                     </div>
                     <div class="v2-stat-row">
                         <div class="v2-stat">
@@ -946,38 +996,90 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="v2-hero-img-wrap">
-                        <img src="assets/imgs/me-amsterdam.jpg" alt="Senior WordPress and WooCommerce developer Faisal Alvi" class="v2-photo">
+                        <div class="v2-hero-img-frame">
+                            <img src="assets/imgs/me-amsterdam.jpg" alt="Senior WordPress and WooCommerce developer Faisal Alvi" class="v2-photo">
+                            <div class="v2-float-chip v2-float-chip-wp">
+                                <span class="chip-dot"></span>
+                                WP Core · 5.1–7.0+
+                            </div>
+                            <div class="v2-float-chip v2-float-chip-codeable">
+                                <span class="chip-dot"></span>
+                                Codeable Expert
+                            </div>
+                            <div class="v2-float-chip v2-float-chip-projects">
+                                <span class="chip-dot"></span>
+                                1000+ Projects
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ── Who I Work With ── -->
-    <section class="v2-section-gray">
-        <div class="container">
-            <div class="row align-items-end mb-4">
-                <div class="col-lg-5">
-                    <span class="v2-section-label">Who I work with</span>
-                    <h2 class="v2-section-title" style="margin-bottom: 0.5rem;">Teams that run<br>WordPress seriously.</h2>
-                    <p class="v2-who-intro">Not everyone needs a senior specialist. Here's who I work best with — and why it matters.</p>
-                </div>
+    <!-- ── Clients / Worked With (moved above fold) ── -->
+    <section class="v2-section-gray" id="clients">
+        <div class="container text-center">
+            <p class="v2-trusted-label">Trusted Companies &amp; Collaborations</p>
+            <div class="v2-clients-grid">
+                <a href="https://10up.com" class="v2-client-item" target="_blank" rel="noopener">
+                    <img src="assets/imgs/logos/10up.png" alt="10up" class="v2-client-logo">
+                </a>
+                <a href="https://fueled.com" class="v2-client-item" target="_blank" rel="noopener">
+                    <img src="assets/imgs/logos/fueled.webp" alt="Fueled" class="v2-client-logo">
+                </a>
+                <a href="https://www.multidots.com" class="v2-client-item" target="_blank" rel="noopener">
+                    <img src="assets/imgs/logos/multidots.svg" alt="Multidots" class="v2-client-logo">
+                </a>
+                <a href="https://newscorp.com" class="v2-client-item" target="_blank" rel="noopener">
+                    <img src="assets/imgs/logos/newscorp.png" alt="News Corp" class="v2-client-logo">
+                </a>
+                <a href="https://awesomemotive.com" class="v2-client-item" target="_blank" rel="noopener">
+                    <img src="assets/imgs/logos/awesomemotive.png" alt="AwesomeMotive" class="v2-client-logo">
+                </a>
             </div>
-            <div class="v2-archetype-grid">
-                <div class="v2-archetype-card">
-                    <span class="v2-archetype-icon">&#x1F3E2;</span>
-                    <div class="v2-archetype-title">Agencies &amp; Studios</div>
-                    <p class="v2-archetype-desc">You have clients with complex WordPress or WooCommerce builds and need a specialist who can own technical delivery without hand-holding.</p>
+            <div class="v2-codeable-wrap">
+                <img src="assets/imgs/logos/codeable-expert.png" alt="Codeable Certified Expert" style="height: 130px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- ── What You Actually Get ── -->
+    <section class="v2-section">
+        <div class="container">
+            <div class="text-center mb-2">
+                <span class="v2-section-label">Why it matters</span>
+                <h2 class="v2-section-title">What Working With Me Looks Like</h2>
+                <p class="v2-section-intro" style="margin: 0 auto;">Senior-level isn't just a title. Here's what it means in practice.</p>
+            </div>
+            <div class="v2-why-grid">
+                <div class="v2-why-card">
+                    <div class="v2-why-icon"><i class="ti-user"></i></div>
+                    <div>
+                        <div class="v2-why-title">You talk directly to the engineer</div>
+                        <p class="v2-why-desc">No account managers, no handoffs. I scope, build, and deliver. You get direct access to me throughout the project.</p>
+                    </div>
                 </div>
-                <div class="v2-archetype-card">
-                    <span class="v2-archetype-icon">&#x1F680;</span>
-                    <div class="v2-archetype-title">In-House Product Teams</div>
-                    <p class="v2-archetype-desc">Your WordPress codebase has grown beyond what a generalist can manage cleanly. You need someone who knows the internals — hooks, filters, query optimization.</p>
+                <div class="v2-why-card">
+                    <div class="v2-why-icon"><i class="ti-shield"></i></div>
+                    <div>
+                        <div class="v2-why-title">12 years of seeing what breaks WordPress</div>
+                        <p class="v2-why-desc">I've built and fixed hundreds of WP and WooCommerce sites. I know the failure patterns before they happen.</p>
+                    </div>
                 </div>
-                <div class="v2-archetype-card">
-                    <span class="v2-archetype-icon">&#x1F4B0;</span>
-                    <div class="v2-archetype-title">eCommerce Operators</div>
-                    <p class="v2-archetype-desc">Your WooCommerce store is generating real revenue and you can't afford downtime, checkout failures, or slowdowns under load.</p>
+                <div class="v2-why-card">
+                    <div class="v2-why-icon"><i class="ti-write"></i></div>
+                    <div>
+                        <div class="v2-why-title">Code your team can maintain</div>
+                        <p class="v2-why-desc">Standards-compliant, documented, and tested. Your next developer won't need three months to understand it.</p>
+                    </div>
+                </div>
+                <div class="v2-why-card">
+                    <div class="v2-why-icon"><i class="ti-check-box"></i></div>
+                    <div>
+                        <div class="v2-why-title">Scopes based on evidence, not guesses</div>
+                        <p class="v2-why-desc">I audit your codebase before estimating. What I quote is grounded in what I actually see — not assumptions.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1019,68 +1121,41 @@
         </div>
     </section>
 
-    <!-- ── Clients / Worked With ── -->
-    <section class="v2-section-gray" id="clients">
-        <div class="container text-center">
-            <p class="v2-trusted-label">Trusted Companies &amp; Collaborations</p>
-            <div class="v2-clients-grid">
-                <a href="https://10up.com" class="v2-client-item" target="_blank" rel="noopener">
-                    <img src="assets/imgs/logos/10up.png" alt="10up" class="v2-client-logo">
-                </a>
-                <a href="https://fueled.com" class="v2-client-item" target="_blank" rel="noopener">
-                    <img src="assets/imgs/logos/fueled.webp" alt="Fueled" class="v2-client-logo">
-                </a>
-                <a href="https://www.multidots.com" class="v2-client-item" target="_blank" rel="noopener">
-                    <img src="assets/imgs/logos/multidots.svg" alt="Multidots" class="v2-client-logo">
-                </a>
-                <a href="https://newscorp.com" class="v2-client-item" target="_blank" rel="noopener">
-                    <img src="assets/imgs/logos/newscorp.png" alt="News Corp" class="v2-client-logo">
-                </a>
-                <a href="https://awesomemotive.com" class="v2-client-item" target="_blank" rel="noopener">
-                    <img src="assets/imgs/logos/awesomemotive.png" alt="AwesomeMotive" class="v2-client-logo">
-                </a>
-            </div>
-            <div class="v2-codeable-wrap">
-                <img src="assets/imgs/logos/codeable-expert.png" alt="Codeable Certified Expert" style="height: 130px;">
-            </div>
-        </div>
-    </section>
-
     <!-- ── Problems I Solve ── -->
     <section class="v2-section-dark">
         <div class="container">
             <div class="text-center mb-5">
-                <span class="v2-section-label" style="color: #a78bfa;">WordPress Expertise</span>
-                <h2 class="v2-section-title-white">WordPress Problems I Solve</h2>
-                <p class="v2-section-intro" style="color: #aab8c2; margin: 0 auto;">I'm usually brought in when surface-level fixes stop working.</p>
+                <span class="v2-section-label" style="color: #a78bfa;">What I fix &amp; build</span>
+                <h2 class="v2-section-title-white">Work I Do on WordPress Sites</h2>
+                <p class="v2-section-intro" style="color: #aab8c2; margin: 0 auto;">From quick fixes to ground-up builds — here's where I spend my time.</p>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="v2-problem-card">
-                        <div class="v2-problem-title">Performance That Collapses Under Load</div>
-                        <p class="v2-problem-desc">Slow queries, missing caching strategy, uncached runtime logic causing degradation as traffic grows.</p>
-                        <div class="v2-risk"><strong>Risk:</strong> Lost rankings, reduced conversions, revenue drop.</div>
+                        <div class="v2-problem-title">Fixing Broken or Misbehaving Sites</div>
+                        <p class="v2-problem-desc">Plugin conflicts, theme breakage, layout issues, broken functionality after updates — I diagnose and fix existing sites without blowing up what's already working.</p>
+                        <div class="v2-risk"><strong>Covers:</strong> Plugin &amp; theme conflicts, JS errors, WooCommerce bugs, layout fixes.</div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="v2-problem-card">
-                        <div class="v2-problem-title">WooCommerce That Breaks at Scale</div>
-                        <p class="v2-problem-desc">Checkout failures, payment gateway sync issues, order data corruption under high volume.</p>
-                        <div class="v2-risk"><strong>Risk:</strong> Lost transactions, chargebacks, customer trust destroyed.</div>
+                        <div class="v2-problem-title">Custom Functionality Development</div>
+                        <p class="v2-problem-desc">When plugins don't exist or don't do exactly what you need — I build custom WordPress plugins, WooCommerce extensions, REST API integrations, and Gutenberg blocks.</p>
+                        <div class="v2-risk"><strong>Covers:</strong> Custom plugins, WooCommerce extensions, third-party API integrations.</div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="v2-problem-card" style="margin-bottom: 0;">
-                        <div class="v2-problem-title">Fragile Plugin Architecture</div>
-                        <p class="v2-problem-desc">Too many plugins papering over architectural gaps, creating a house of cards that collapses without warning.</p>
-                        <div class="v2-risk"><strong>Risk:</strong> Escalating hosting costs, site downtime, impossible to debug.</div>
+                        <div class="v2-problem-title">Performance &amp; Site Optimization</div>
+                        <p class="v2-problem-desc">Slow load times, bad Core Web Vitals, database bloat, or a store that chokes under traffic — I find the actual bottleneck and fix it, not just install a caching plugin.</p>
+                        <div class="v2-risk"><strong>Covers:</strong> Query optimization, caching strategy, CDN, image optimization, WooCommerce scaling.</div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="v2-problem-card" style="margin-bottom: 0;">
-                        <div class="v2-problem-title">Migration &amp; Upgrade Risk</div>
-                        <p class="v2-problem-desc">Breaking changes during major WordPress updates or platform moves that nobody planned for.</p>
-                        <div class="v2-risk"><strong>Risk:</strong> SEO loss, broken flows, emergency rollbacks.</div>
+                        <div class="v2-problem-title">Full Site Builds from Scratch</div>
+                        <p class="v2-problem-desc">End-to-end WordPress or WooCommerce builds — architecture, theme, plugins, integrations, and launch-readiness. Built clean from day one so it scales.</p>
+                        <div class="v2-risk"><strong>Covers:</strong> Custom themes, WooCommerce stores, membership sites, enterprise WordPress.</div>
                     </div>
                 </div>
             </div>
@@ -1228,7 +1303,7 @@
         <div class="container">
             <h2 style="color: #fff; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700; margin-bottom: 1rem;">Ready to Build Something That Actually Scales?</h2>
             <p style="color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 560px; margin: 0 auto 2rem; line-height: 1.7;">Let's talk about your WordPress challenges. No sales pitch &mdash; just an honest conversation about what your site needs.</p>
-            <a href="#contact" class="v2-btn-white">Book a Free Consultation</a>
+            <a href="https://calendly.com/faisalalvi33" target="_blank" rel="noopener" class="v2-btn-white">Book a Free Call</a>
         </div>
     </section>
 
