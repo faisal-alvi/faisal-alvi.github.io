@@ -1007,15 +1007,20 @@
             .v2-section,
             .v2-section-gray,
             .v2-section-offwhite {
-                padding: 36px 0;
+                padding: 28px 0;
             }
 
             .v2-section-dark {
-                padding: 36px 0;
+                padding: 28px 0;
             }
 
             .v2-approach-section {
-                padding: 36px 0;
+                padding: 28px 0;
+            }
+
+            /* Kill trailing card margin so it doesn't stack on section padding */
+            .row > [class*="col-"]:last-child {
+                margin-bottom: 0 !important;
             }
 
             /* ── Hero ── */
