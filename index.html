@@ -152,6 +152,9 @@
         /* ── Reset / Base ── */
         *, *::before, *::after { box-sizing: border-box; }
 
+        /* Override legacy custom.css rule that adds 240px margin-top to #about on mobile */
+        #about { margin-top: 0 !important; }
+
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: #333;
