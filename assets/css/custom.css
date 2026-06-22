@@ -598,10 +598,11 @@ html {
 }
 
 .client-logo {
-    height: 40px;
+    height: 60px;
     width: auto;
     max-width: 100%;
     object-fit: contain;
+    filter: none !important;
     transition: transform 0.2s ease;
 }
 
@@ -615,14 +616,12 @@ html {
 }
 
 .codeable-logo {
-    height: 110px;
+    height: 180px;
     width: auto;
-    opacity: 0.8;
-    transition: opacity 0.3s ease, transform 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
 .codeable-logo:hover {
-    opacity: 1;
     transform: scale(1.05);
 }
 
