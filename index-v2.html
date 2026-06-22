@@ -289,86 +289,96 @@
             align-items: flex-start;
         }
 
-        /* ── Pain cards ── */
-        .v2-pain-card {
+        /* ── Archetype cards (Who I Work With) ── */
+        .v2-archetype-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .v2-archetype-card {
+            border-left: 3px solid #6c5ce7;
+            padding: 1.5rem 1.5rem 1.5rem 1.75rem;
             background: #fff;
-            border: 1px solid #e8e8e8;
-            border-radius: 12px;
-            padding: 1.5rem 1rem;
-            text-align: center;
-            transition: transform 0.2s, border-color 0.2s;
-            height: 100%;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            transition: box-shadow 0.2s, transform 0.2s;
         }
 
-        .v2-pain-card:hover {
-            transform: translateY(-3px);
-            border-color: #6c5ce7;
+        .v2-archetype-card:hover {
+            box-shadow: 0 6px 24px rgba(108,92,231,0.1);
+            transform: translateY(-2px);
         }
 
-        .v2-pain-icon {
-            font-size: 2rem;
+        .v2-archetype-icon {
+            font-size: 1.75rem;
             margin-bottom: 0.75rem;
             display: block;
         }
 
-        .v2-pain-text {
-            font-size: 0.9rem;
-            color: #444;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        /* ── Steps ── */
-        .v2-step-row {
-            display: flex;
-            gap: 0;
-            position: relative;
-        }
-
-        .v2-step-row::before {
-            content: '';
-            position: absolute;
-            top: 24px;
-            left: calc(16.666% + 24px);
-            right: calc(16.666% + 24px);
-            height: 2px;
-            background: #e8e8e8;
-            z-index: 0;
-        }
-
-        .v2-step {
-            flex: 1;
-            text-align: center;
-            padding: 2rem 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .v2-step-num {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #6c5ce7;
-            color: #fff;
+        .v2-archetype-title {
             font-weight: 700;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-        }
-
-        .v2-step-title {
-            font-weight: 600;
             color: #0d1117;
+            font-size: 1rem;
             margin-bottom: 0.5rem;
-            font-size: 1.05rem;
         }
 
-        .v2-step-desc {
-            font-size: 0.9rem;
-            color: #666;
+        .v2-archetype-desc {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.6;
             margin: 0;
+        }
+
+        .v2-who-intro {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.7;
+            max-width: 520px;
+            margin-top: 0.75rem;
+        }
+
+        /* ── Approach section ── */
+        .v2-approach-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #2a3040;
+        }
+
+        .v2-approach-item:last-child {
+            border-bottom: none;
+        }
+
+        .v2-approach-num {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #6c5ce7;
+            line-height: 1;
+            flex-shrink: 0;
+            width: 40px;
+            padding-top: 3px;
+        }
+
+        .v2-approach-body strong {
+            display: block;
+            font-size: 1.05rem;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .v2-approach-body p {
+            font-size: 0.9rem;
+            color: #aab8c2;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .v2-approach-section {
+            background: #0d1117;
+            padding: 80px 0;
         }
 
         /* ── Clients ── */
@@ -822,13 +832,8 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
-            .v2-step-row::before {
-                display: none;
-            }
-
-            .v2-step-row {
-                flex-direction: column;
-                gap: 1.5rem;
+            .v2-archetype-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -917,7 +922,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7">
-                    <span class="v2-badge">WordPress Core Contributor &middot; 5.1 &ndash; 6.8</span>
+                    <span class="v2-badge">WordPress Core Contributor &middot; 5.1 &ndash; 7.0+</span>
                     <h1 class="v2-hero-title">WordPress &amp; WooCommerce Engineering for Teams That Can't Afford Downtime</h1>
                     <p class="v2-hero-sub">I help agencies, startups, and enterprise teams build fast, scalable WordPress and WooCommerce solutions &mdash; custom plugins, performance optimization, and architecture that holds up under real traffic.</p>
                     <div class="v2-hero-btns">
@@ -934,7 +939,7 @@
                             <span>Projects Delivered</span>
                         </div>
                         <div class="v2-stat">
-                            <strong>WP 5.1&ndash;6.8</strong>
+                            <strong>WP 5.1&ndash;7.0+</strong>
                             <span>Core Contributor</span>
                         </div>
                     </div>
@@ -948,69 +953,67 @@
         </div>
     </section>
 
-    <!-- ── You Are Probably Here Because ── -->
+    <!-- ── Who I Work With ── -->
     <section class="v2-section-gray">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="v2-section-title">You Are Probably Here Because&hellip;</h2>
+            <div class="row align-items-end mb-4">
+                <div class="col-lg-5">
+                    <span class="v2-section-label">Who I work with</span>
+                    <h2 class="v2-section-title" style="margin-bottom: 0.5rem;">Teams that run<br>WordPress seriously.</h2>
+                    <p class="v2-who-intro">Not everyone needs a senior specialist. Here's who I work best with — and why it matters.</p>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-lg col-md-4 col-sm-6 mb-4">
-                    <div class="v2-pain-card">
-                        <span class="v2-pain-icon">&#x1F50C;</span>
-                        <p class="v2-pain-text">Your WordPress site slows down under real traffic</p>
-                    </div>
+            <div class="v2-archetype-grid">
+                <div class="v2-archetype-card">
+                    <span class="v2-archetype-icon">&#x1F3E2;</span>
+                    <div class="v2-archetype-title">Agencies &amp; Studios</div>
+                    <p class="v2-archetype-desc">You have clients with complex WordPress or WooCommerce builds and need a specialist who can own technical delivery without hand-holding.</p>
                 </div>
-                <div class="col-lg col-md-4 col-sm-6 mb-4">
-                    <div class="v2-pain-card">
-                        <span class="v2-pain-icon">&#x1F527;</span>
-                        <p class="v2-pain-text">You need a custom plugin built to exact specs</p>
-                    </div>
+                <div class="v2-archetype-card">
+                    <span class="v2-archetype-icon">&#x1F680;</span>
+                    <div class="v2-archetype-title">In-House Product Teams</div>
+                    <p class="v2-archetype-desc">Your WordPress codebase has grown beyond what a generalist can manage cleanly. You need someone who knows the internals — hooks, filters, query optimization.</p>
                 </div>
-                <div class="col-lg col-md-4 col-sm-6 mb-4">
-                    <div class="v2-pain-card">
-                        <span class="v2-pain-icon">&#x1F6D2;</span>
-                        <p class="v2-pain-text">Your WooCommerce store isn't scaling reliably</p>
-                    </div>
-                </div>
-                <div class="col-lg col-md-4 col-sm-6 mb-4">
-                    <div class="v2-pain-card">
-                        <span class="v2-pain-icon">&#x1F3D7;&#xFE0F;</span>
-                        <p class="v2-pain-text">A migration or redesign feels too risky to attempt</p>
-                    </div>
-                </div>
-                <div class="col-lg col-md-4 col-sm-6 mb-4">
-                    <div class="v2-pain-card">
-                        <span class="v2-pain-icon">&#x1F9E9;</span>
-                        <p class="v2-pain-text">Your team needs a senior WordPress expert, fast</p>
-                    </div>
+                <div class="v2-archetype-card">
+                    <span class="v2-archetype-icon">&#x1F4B0;</span>
+                    <div class="v2-archetype-title">eCommerce Operators</div>
+                    <p class="v2-archetype-desc">Your WooCommerce store is generating real revenue and you can't afford downtime, checkout failures, or slowdowns under load.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ── How I Work ── -->
-    <section class="v2-section">
+    <!-- ── My Approach ── -->
+    <section class="v2-approach-section">
         <div class="container">
-            <div class="text-center mb-5">
-                <span class="v2-section-label">The Process</span>
-                <h2 class="v2-section-title">How Engagements Start</h2>
-            </div>
-            <div class="v2-step-row">
-                <div class="v2-step">
-                    <div class="v2-step-num">1</div>
-                    <div class="v2-step-title">Discovery</div>
-                    <p class="v2-step-desc">Understand your architecture, goals, and constraints.</p>
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <span class="v2-section-label" style="color: #a78bfa;">How I work</span>
+                    <h2 class="v2-section-title-white" style="margin-bottom: 1rem;">No vague estimates.<br>No surprises.</h2>
+                    <p style="color: #aab8c2; font-size: 0.95rem; line-height: 1.7;">Every project starts with reading your codebase — not just your brief. I scope from evidence, not assumptions.</p>
                 </div>
-                <div class="v2-step">
-                    <div class="v2-step-num">2</div>
-                    <div class="v2-step-title">Assessment</div>
-                    <p class="v2-step-desc">Identify bottlenecks, risks, and highest-impact improvements.</p>
-                </div>
-                <div class="v2-step">
-                    <div class="v2-step-num">3</div>
-                    <div class="v2-step-title">Execution</div>
-                    <p class="v2-step-desc">Implement targeted changes that hold up as you scale.</p>
+                <div class="col-lg-8">
+                    <div class="v2-approach-item">
+                        <span class="v2-approach-num">01</span>
+                        <div class="v2-approach-body">
+                            <strong>I audit before I estimate</strong>
+                            <p>Before quoting timelines or costs, I review your existing code, hosting setup, and plugin stack. That's the only way to give a scope that holds.</p>
+                        </div>
+                    </div>
+                    <div class="v2-approach-item">
+                        <span class="v2-approach-num">02</span>
+                        <div class="v2-approach-body">
+                            <strong>You get a written scope</strong>
+                            <p>A clear proposal: what I'll build, what I'll fix, what I won't touch — and why. No ambiguous delivery.</p>
+                        </div>
+                    </div>
+                    <div class="v2-approach-item">
+                        <span class="v2-approach-num">03</span>
+                        <div class="v2-approach-body">
+                            <strong>Tested, documented, handed off clean</strong>
+                            <p>Code with inline documentation and handoff notes so your next developer isn't starting from zero.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1038,7 +1041,7 @@
                 </a>
             </div>
             <div class="v2-codeable-wrap">
-                <img src="assets/imgs/logos/codeable-expert.png" alt="Codeable Certified Expert" style="height: 90px;">
+                <img src="assets/imgs/logos/codeable-expert.png" alt="Codeable Certified Expert" style="height: 130px;">
             </div>
         </div>
     </section>
@@ -1149,7 +1152,7 @@
                             <i class="ti-wordpress"></i>
                         </div>
                         <div class="v2-credential-title">WordPress Core Contributor</div>
-                        <p class="v2-credential-desc">Recognized in WordPress release credits from 5.1 through 6.8. Sustained contributions across Core, WooCommerce extensions (Square, Bookings, Box Office, Xero), and ecosystem projects.</p>
+                        <p class="v2-credential-desc">Recognized in WordPress release credits from 5.1 through 7.0+. Sustained contributions across Core, WooCommerce extensions (Square, Bookings, Box Office, Xero), and ecosystem projects.</p>
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -1161,7 +1164,7 @@
             </div>
             <div class="v2-os-stat-row">
                 <div class="v2-os-stat">
-                    <strong>WP 5.1 &ndash; 6.8</strong>
+                    <strong>WP 5.1 &ndash; 7.0+</strong>
                     <span>Core Contributor</span>
                 </div>
                 <div class="v2-os-stat">
