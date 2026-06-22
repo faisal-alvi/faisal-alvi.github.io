@@ -583,24 +583,24 @@ html {
     margin: 1.5rem 0;
 }
 
-.client-wordmark {
-    display: inline-block;
-    font-weight: 700;
-    font-size: 1rem;
-    color: #bbb;
-    text-decoration: none;
-    padding: 0.5rem 1.2rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    letter-spacing: 0.3px;
-    transition: color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+.client-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.client-wordmark:hover {
-    color: #6c5ce7;
-    border-color: #6c5ce7;
-    transform: translateY(-2px);
-    text-decoration: none;
+.client-logo {
+    height: 44px;
+    width: auto;
+    max-width: 150px;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.5);
+    transition: filter 0.3s ease, transform 0.2s ease;
+}
+
+.client-item:hover .client-logo {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.06);
 }
 
 .codeable-badge {
@@ -635,9 +635,9 @@ html {
         gap: 0.8rem;
     }
 
-    .client-wordmark {
-        font-size: 0.9rem;
-        padding: 0.4rem 1rem;
+    .client-logo {
+        height: 34px;
+        max-width: 110px;
     }
 
     .codeable-badge {
