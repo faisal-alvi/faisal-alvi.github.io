@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /index-v1.html
+
+Sitemap: https://faisalalvi.com/sitemap.xml
