@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- SEO: title, description, canonical, OG, Twitter, JSON-LD (jekyll-seo-tag) -->
+    {% seo %}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ '/assets/imgs/favicon/favicon.ico' | relative_url }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/imgs/favicon/apple-touch-icon.png' | relative_url }}">
+
+    <!-- Fonts (match homepage) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JH7HHRTV6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7JH7HHRTV6');
+    </script>
+</head>
+<body>
+
+    <!-- ── Nav ── -->
+    <nav class="blog-nav">
+        <div class="blog-nav-inner">
+            <a class="blog-nav-logo" href="{{ '/' | relative_url }}">
+                <img src="{{ '/assets/imgs/logo.png' | relative_url }}" alt="Faisal Alvi">
+            </a>
+            <div class="blog-nav-links">
+                <a href="{{ '/' | relative_url }}">Home</a>
+                <a href="{{ '/blog/' | relative_url }}">Blog</a>
+                <a href="https://calendly.com/faisalalvi33" target="_blank" rel="noopener" class="blog-nav-btn">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    {{ content }}
+
+    <!-- ── Footer ── -->
+    <footer class="blog-footer">
+        <div class="blog-container">
+            &copy; {{ 'now' | date: "%Y" }} Faisal Alvi &middot;
+            <a href="{{ '/' | relative_url }}">Home</a> &middot;
+            <a href="{{ '/blog/' | relative_url }}">Blog</a> &middot;
+            <a href="https://www.linkedin.com/in/alvifaisal/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+---
+layout: default
+title: "Blog: WordPress & WooCommerce Engineering Notes"
+description: "Real problems from real WordPress and WooCommerce projects: how they broke, how I traced them, and how to fix them. Written by WordPress Core Contributor Faisal Alvi."
+permalink: /blog/
+---
+
+<header class="blog-header">
+    <div class="blog-container">
+        <h1>Engineering Notes</h1>
+        <p>Real problems from real WordPress &amp; WooCommerce projects: how they broke, how I traced them, and how to fix them.</p>
+    </div>
+</header>
+
+<section class="blog-list">
+    <div class="blog-container">
+        {% if site.posts.size == 0 %}
+            <p style="text-align:center; color:#999;">First post coming soon.</p>
+        {% endif %}
+        {% for post in site.posts %}
+        <a class="blog-card" href="{{ post.url | relative_url }}">
+            <div class="blog-card-meta">
+                {{ post.date | date: "%B %-d, %Y" }}
+                {% if post.read_time %} &middot; {{ post.read_time }}{% endif %}
+            </div>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.excerpt_text | default: post.excerpt | strip_html | truncate: 160 }}</p>
+            <span class="blog-card-more">Read more &rarr;</span>
+        </a>
+        {% endfor %}
+    </div>
+</section>

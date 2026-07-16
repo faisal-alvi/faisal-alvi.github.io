@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<article>
+    <header class="post-header">
+        <div class="blog-container">
+            <a href="{{ '/blog/' | relative_url }}" class="post-back">&larr; All posts</a>
+            <div class="post-meta">
+                {{ page.date | date: "%B %-d, %Y" }}
+                {% if page.read_time %} &middot; {{ page.read_time }}{% endif %}
+            </div>
+            <h1 class="post-title">{{ page.title }}</h1>
+        </div>
+    </header>
+
+    <div class="blog-container">
+        <div class="post-body">
+            {{ content }}
+        </div>
+
+        <div class="post-cta">
+            <h3>Stuck on a WordPress or WooCommerce problem like this?</h3>
+            <p>I build and debug custom WordPress &amp; WooCommerce functionality for agencies and product teams. Get a free 20-minute code audit.</p>
+            <a href="https://calendly.com/faisalalvi33" target="_blank" rel="noopener" class="post-cta-btn">Book a Free Call</a>
+        </div>
+    </div>
+</article>
