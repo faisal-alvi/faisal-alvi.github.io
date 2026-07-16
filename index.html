@@ -12,9 +12,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <meta name="description" content="Faisal Alvi — Senior WordPress &amp; WooCommerce developer with 12+ years experience. WordPress Core Contributor, Codeable Expert. Custom plugins, WooCommerce engineering &amp; performance.">
+    <meta name="description" content="Custom WordPress &amp; WooCommerce plugin development by a WordPress Core Contributor with 12+ years' experience. Standards-compliant code agencies and product teams rely on. Book a free code audit.">
     <meta name="author" content="Faisal Alvi">
-    <title>Faisal Alvi – WordPress &amp; WooCommerce Developer | Core Contributor</title>
+    <title>Custom WordPress &amp; WooCommerce Plugin Developer | Faisal Alvi</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/imgs/favicon/favicon.ico">
@@ -30,6 +30,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Preload LCP hero image -->
+    <link rel="preload" as="image" href="assets/imgs/me-amsterdam-800.webp" type="image/webp" fetchpriority="high">
 
     <!-- font icons -->
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
@@ -40,19 +42,20 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Faisal Alvi – WordPress &amp; WooCommerce Developer | Core Contributor">
-    <meta property="og:description" content="12+ years building high-performance WordPress &amp; WooCommerce solutions. WordPress Core Contributor (5.1–7.0+), Codeable Certified Expert. Custom plugins, payment gateways, performance engineering.">
+    <meta property="og:title" content="Custom WordPress &amp; WooCommerce Plugin Developer | Faisal Alvi">
+    <meta property="og:description" content="Custom WordPress &amp; WooCommerce plugin development by a Core Contributor with 12+ years' experience. Standards-compliant code agencies and product teams rely on.">
     <meta property="og:url" content="https://faisalalvi.com/">
     <meta property="og:image" content="https://faisalalvi.com/assets/imgs/me-amsterdam.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image:width" content="1553">
+    <meta property="og:image:height" content="1553">
+    <meta property="og:image:alt" content="Faisal Alvi, WordPress and WooCommerce plugin developer">
     <meta property="og:site_name" content="Faisal Alvi">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Faisal Alvi – WordPress &amp; WooCommerce Developer | Core Contributor">
-    <meta name="twitter:description" content="12+ years | WordPress Core Contributor | Codeable Expert | Custom plugins, WooCommerce engineering &amp; performance optimization.">
+    <meta name="twitter:title" content="Custom WordPress &amp; WooCommerce Plugin Developer | Faisal Alvi">
+    <meta name="twitter:description" content="Custom plugin development by a WordPress Core Contributor with 12+ years' experience. Book a free code audit for your project.">
     <meta name="twitter:image" content="https://faisalalvi.com/assets/imgs/me-amsterdam.jpg">
     <meta name="twitter:site" content="@_the_faisal">
     <meta name="twitter:creator" content="@_the_faisal">
@@ -362,6 +365,25 @@
             gap: 1rem;
             flex-wrap: wrap;
             margin-bottom: 0;
+        }
+
+        .v2-hero-reassure {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.82rem;
+            color: #6b7280;
+            margin: 1rem 0 0;
+        }
+
+        .v2-hero-reassure i {
+            color: #22c55e;
+            font-size: 0.9rem;
+        }
+
+        /* Sticky mobile CTA — hidden on desktop, shown on mobile */
+        .v2-sticky-cta {
+            display: none;
         }
 
         .v2-btn-primary {
@@ -1266,6 +1288,38 @@
                 gap: 0.75rem;
             }
 
+            /* ── Sticky mobile CTA bar ── */
+            .v2-sticky-cta {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 1050;
+                background: #6c5ce7;
+                color: #fff;
+                text-decoration: none;
+                font-weight: 700;
+                font-size: 1rem;
+                padding: 0.95rem 1rem;
+                box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+            }
+
+            .v2-sticky-cta:hover,
+            .v2-sticky-cta:focus {
+                background: #5a4fcf;
+                color: #fff;
+                text-decoration: none;
+            }
+
+            /* Keep the sticky bar from covering the footer's last line */
+            .v2-footer {
+                padding-bottom: 5rem;
+            }
+
             /* ── All buttons full width ── */
             .v2-btn-primary,
             .v2-btn-outline,
@@ -1291,8 +1345,23 @@
             }
 
             .v2-stat-row {
-                gap: 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
                 margin-top: 1.5rem;
+            }
+
+            .v2-stat {
+                width: 100%;
+                flex-direction: row;
+                align-items: baseline;
+                gap: 0.5rem;
+                padding-bottom: 0.85rem;
+                border-bottom: 1px solid #e8eaf6;
+            }
+
+            .v2-stat:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
             }
 
             .v2-hero-img-wrap {
@@ -1416,14 +1485,15 @@
                         <a href="https://calendly.com/faisalalvi33" target="_blank" rel="noopener" class="v2-btn-primary">Book a Free Call</a>
                         <a href="#services" class="v2-btn-outline">View Services</a>
                     </div>
+                    <p class="v2-hero-reassure"><i class="ti-check"></i> Free 20-min code audit &nbsp;·&nbsp; No obligation &nbsp;·&nbsp; Reply within 24 hours</p>
                     <div class="v2-stat-row">
                         <div class="v2-stat">
                             <strong>12+</strong>
                             <span>Years Experience</span>
                         </div>
                         <div class="v2-stat">
-                            <strong>50+</strong>
-                            <span>Custom Plugins Shipped</span>
+                            <strong>300+</strong>
+                            <span>WordPress Projects</span>
                         </div>
                         <div class="v2-stat">
                             <strong>WP 5.1&ndash;7.0+</strong>
@@ -1434,7 +1504,10 @@
                 <div class="col-lg-5">
                     <div class="v2-hero-img-wrap">
                         <div class="v2-hero-img-frame">
-                            <img src="assets/imgs/me-amsterdam.jpg" alt="Senior WordPress and WooCommerce developer Faisal Alvi" class="v2-photo">
+                            <picture>
+                                <source srcset="assets/imgs/me-amsterdam-800.webp" type="image/webp">
+                                <img src="assets/imgs/me-amsterdam-800.jpg" alt="Faisal Alvi, senior WordPress and WooCommerce plugin developer and Core Contributor" class="v2-photo" width="400" height="400" fetchpriority="high" decoding="async">
+                            </picture>
                             <div class="v2-float-chip v2-float-chip-wp">
                                 <span class="chip-dot"></span>
                                 WP Core · 5.1–7.0+
@@ -1445,7 +1518,7 @@
                             </div>
                             <div class="v2-float-chip v2-float-chip-projects">
                                 <span class="chip-dot"></span>
-                                50+ Custom Plugins
+                                300+ Projects
                             </div>
                         </div>
                     </div>
@@ -1460,19 +1533,19 @@
             <p class="v2-trusted-label">Companies I've Worked With</p>
             <div class="v2-clients-grid">
                 <a href="https://10up.com" class="v2-client-item" target="_blank" rel="noopener">
-                    <img src="assets/imgs/logos/10up.png" alt="10up" class="v2-client-logo">
+                    <img src="assets/imgs/logos/10up.png" alt="10up" class="v2-client-logo" loading="lazy" decoding="async">
                 </a>
                 <a href="https://fueled.com" class="v2-client-item" target="_blank" rel="noopener">
-                    <img src="assets/imgs/logos/fueled.webp" alt="Fueled" class="v2-client-logo">
+                    <img src="assets/imgs/logos/fueled.webp" alt="Fueled" class="v2-client-logo" loading="lazy" decoding="async">
                 </a>
                 <a href="https://www.multidots.com" class="v2-client-item" target="_blank" rel="noopener">
-                    <img src="assets/imgs/logos/multidots.svg" alt="Multidots" class="v2-client-logo">
+                    <img src="assets/imgs/logos/multidots.svg" alt="Multidots" class="v2-client-logo" loading="lazy" decoding="async">
                 </a>
                 <a href="https://newscorp.com" class="v2-client-item" target="_blank" rel="noopener">
-                    <img src="assets/imgs/logos/newscorp.png" alt="News Corp" class="v2-client-logo">
+                    <img src="assets/imgs/logos/newscorp.png" alt="News Corp" class="v2-client-logo" loading="lazy" decoding="async">
                 </a>
                 <a href="https://awesomemotive.com" class="v2-client-item" target="_blank" rel="noopener">
-                    <img src="assets/imgs/logos/awesomemotive.png" alt="AwesomeMotive" class="v2-client-logo">
+                    <img src="assets/imgs/logos/awesomemotive.png" alt="AwesomeMotive" class="v2-client-logo" loading="lazy" decoding="async">
                 </a>
             </div>
         </div>
@@ -1664,7 +1737,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="v2-credential-box text-center">
                         <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Vetted and certified on Codeable — the curated platform for trusted WordPress experts.</p>
-                        <img src="assets/imgs/logos/codeable-expert.png" alt="Codeable Certified Expert" style="height: 140px; object-fit: contain;">
+                        <img src="assets/imgs/logos/codeable-expert.png" alt="Codeable Certified Expert" loading="lazy" decoding="async" style="height: 140px; object-fit: contain;">
                     </div>
                 </div>
             </div>
@@ -1682,8 +1755,8 @@
                     <span>In WordPress</span>
                 </div>
                 <div class="v2-os-stat">
-                    <strong>50+</strong>
-                    <span>Custom Plugins</span>
+                    <strong>300+</strong>
+                    <span>Projects</span>
                 </div>
                 <div class="v2-os-stat">
                     <strong>Codeable</strong>
@@ -1855,9 +1928,10 @@
         </div>
     </footer>
 
-    <!-- core -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <!-- Sticky mobile CTA (mobile only) -->
+    <a href="https://calendly.com/faisalalvi33" target="_blank" rel="noopener" class="v2-sticky-cta">
+        <i class="ti-calendar"></i> Book a Free Call
+    </a>
 
     <!-- Mobile nav toggle -->
     <script>
