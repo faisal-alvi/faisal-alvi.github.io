@@ -47,9 +47,15 @@ plugins:
   - jekyll-seo-tag
 
 # Exclude from processing
+# index-v1.html, index-v2.html, components.html are archived drafts:
+# excluded from the build entirely so they are not reachable at any
+# URL, not just noindexed. Only index.html (the live homepage) is served.
 exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
   - node_modules
   - vendor
+  - index-v1.html
+  - index-v2.html
+  - components.html
