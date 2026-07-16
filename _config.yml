@@ -6,6 +6,14 @@ email: "faisalalvi33@gmail.com"
 url: "https://faisalalvi.com"
 baseurl: ""
 
+twitter:
+  username: _the_faisal
+  card: summary_large_image
+
+# Default social-share image for pages/posts that don't set their
+# own `image:` in front matter (see defaults block below).
+logo: /assets/imgs/me-amsterdam.jpg
+
 # Build settings
 markdown: kramdown
 highlighter: rouge
@@ -16,7 +24,7 @@ timezone: UTC
 collections:
   posts:
     output: true
-    permalink: /:year/:month/:day/:title/
+    permalink: /blog/:title/
 
 # Defaults
 defaults:
@@ -26,6 +34,11 @@ defaults:
     values:
       layout: "post"
       author: "Faisal Alvi"
+      image: "/assets/imgs/me-amsterdam.jpg"
+  - scope:
+      path: "blog/index.html"
+    values:
+      image: "/assets/imgs/me-amsterdam.jpg"
 
 # Plugins
 plugins:
