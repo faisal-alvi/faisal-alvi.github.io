@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 170" role="img" aria-label="Faisal Alvi">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@800;700&amp;display=swap');
+    .mark { font-family: 'Sora', -apple-system, sans-serif; font-weight: 800; }
+    .name { font-family: 'Sora', -apple-system, sans-serif; font-weight: 700; }
+  </style>
+  <text x="150" y="82" class="mark" font-size="70" letter-spacing="-3" fill="#0d1117" text-anchor="middle">fa</text>
+  <rect x="110" y="103" width="80" height="4" rx="2" fill="#4338ca"/>
+  <text x="150" y="135" class="name" font-size="19" letter-spacing="3" fill="#0d1117" text-anchor="middle">FAISAL ALVI</text>
+</svg>
