@@ -1,6 +1,6 @@
 ---
 title: "Why WooCommerce Shows 'No Shipping Options' (and $0 Tax on Every Order)"
-description: "A WooCommerce store was charging $0 tax on every order and telling international customers there were no shipping options at all. Three conflicting plugins, a dead API key, and missing product data, here's how each piece was found and fixed."
+description: "A WooCommerce store charged $0 tax on every order and showed no shipping options at all. Three conflicting plugins and a dead API key, found and fixed."
 read_time: "8 min read"
 excerpt_text: "A store was charging $0 tax on every single order and couldn't ship internationally at all. Neither problem was a WooCommerce bug. Here's the actual checklist that found both."
 tags: [woocommerce, shipping, tax, debugging]

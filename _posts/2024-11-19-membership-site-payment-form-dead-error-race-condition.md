@@ -1,6 +1,6 @@
 ---
 title: "The Silent Card-Update Bug Hiding in Membership Sites (a Timing Race, Not a Plugin Bug)"
-description: "Customers on a membership site hit a dead error page when trying to update their card on file, intermittently, with no pattern anyone could reproduce on demand. The cause was a timing race between the membership plugin and an external payment script. Here's how it was traced and fixed."
+description: "Customers hit a dead error page updating their card, intermittently, with no reproducible pattern. The cause was a timing race with an external payment script."
 read_time: "7 min read"
 excerpt_text: "Customers updating their card on a membership site would sometimes hit a dead error page, but only sometimes, with no obvious pattern. That inconsistency was the clue."
 tags: [woocommerce, wordpress, payments, debugging]

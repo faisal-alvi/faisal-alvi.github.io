@@ -1,6 +1,6 @@
 ---
 title: "The WordPress Customizer CSS Trap: Why Menus and Buttons Vanish on Hover"
-description: "A client's header menu and My Account link were invisible on hover, a bug hiding in Customizer custom CSS. Here's the general pattern behind invisible-state bugs, how to find them fast, and how to stop them from shipping again."
+description: "A client's menu and account link were invisible on hover, hiding in Customizer CSS. The general pattern behind invisible-state bugs, and how to fix them fast."
 read_time: "9 min read"
 excerpt_text: "A header menu and an account link were going invisible on hover. The cause wasn't a plugin conflict or a broken theme. It was three lines of custom CSS, and it's a pattern that shows up constantly."
 tags: [wordpress, css, debugging, theming]

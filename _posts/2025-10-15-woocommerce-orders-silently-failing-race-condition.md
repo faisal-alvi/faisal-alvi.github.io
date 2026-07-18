@@ -1,6 +1,6 @@
 ---
 title: "Why WooCommerce Orders Fail Silently, and How to Trace a Payment Race Condition"
-description: "A WooCommerce store was silently losing ~12% of orders. Three developers missed it. Here's how I traced it to a race condition between the payment gateway and a custom order status, and how you can debug the same class of bug."
+description: "A WooCommerce store was silently losing about 12% of its orders, traced to a race condition between the payment gateway and a custom order status."
 read_time: "7 min read"
 excerpt_text: "A WooCommerce store was silently losing ~12% of orders. Here's how I traced it to a race condition between the payment gateway and a custom order status."
 tags: [woocommerce, debugging, payments]
