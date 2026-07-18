@@ -1,7 +1,7 @@
 /* ============================================================
    Blog styles — matches homepage v2 design tokens
    Fonts: Plus Jakarta Sans (headings) + Inter (body)
-   Primary: #6c5ce7
+   Primary: #4338ca
    ============================================================ */
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #0d1117;
 }
 
-a { color: #6c5ce7; }
+a { color: #4338ca; }
 
 .blog-container {
     max-width: 760px;
@@ -47,7 +47,13 @@ a { color: #6c5ce7; }
     justify-content: space-between;
 }
 
-.blog-nav-logo img { height: 40px; }
+.blog-nav-logo svg {
+    height: 46px;
+    width: auto;
+    display: block;
+}
+
+.blog-logo-mark { font-family: 'Sora', -apple-system, sans-serif; }
 
 .blog-nav-links a {
     color: #333;
@@ -58,17 +64,17 @@ a { color: #6c5ce7; }
     transition: color 0.2s;
 }
 
-.blog-nav-links a:hover { color: #6c5ce7; }
+.blog-nav-links a:hover { color: #4338ca; }
 
 .blog-nav-btn {
-    background: #6c5ce7;
+    background: #4338ca;
     color: #fff !important;
     padding: 0.5rem 1.25rem;
     border-radius: 6px;
     font-weight: 600;
 }
 
-.blog-nav-btn:hover { background: #5a4fcf; }
+.blog-nav-btn:hover { background: #3730a3; }
 
 @media (max-width: 640px) {
     .blog-nav-links a:not(.blog-nav-btn) { display: none; }
@@ -137,7 +143,7 @@ a { color: #6c5ce7; }
 .blog-card-more {
     display: inline-block;
     margin-top: 1rem;
-    color: #6c5ce7;
+    color: #4338ca;
     font-weight: 600;
     font-size: 0.9rem;
 }
@@ -186,7 +192,7 @@ a { color: #6c5ce7; }
 .post-body a { text-decoration: underline; }
 
 .post-body blockquote {
-    border-left: 3px solid #6c5ce7;
+    border-left: 3px solid #4338ca;
     background: #f7f8fc;
     margin: 1.5rem 0;
     padding: 1rem 1.25rem;
@@ -212,7 +218,7 @@ a { color: #6c5ce7; }
 
 .post-body :not(pre) > code {
     background: #f0eeff;
-    color: #5a4fcf;
+    color: #3730a3;
     padding: 0.1rem 0.4rem;
     border-radius: 4px;
 }
@@ -221,7 +227,7 @@ a { color: #6c5ce7; }
 
 /* ── Post CTA ── */
 .post-cta {
-    background: linear-gradient(135deg, #6c5ce7, #5a4fcf);
+    background: linear-gradient(135deg, #4338ca, #3730a3);
     border-radius: 16px;
     padding: 2.25rem;
     text-align: center;
@@ -233,7 +239,7 @@ a { color: #6c5ce7; }
 
 .post-cta-btn {
     background: #fff;
-    color: #6c5ce7;
+    color: #4338ca;
     padding: 0.8rem 1.75rem;
     border-radius: 6px;
     font-weight: 700;
@@ -247,7 +253,7 @@ a { color: #6c5ce7; }
 .post-back {
     display: inline-block;
     margin-bottom: 1.5rem;
-    color: #6c5ce7;
+    color: #4338ca;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 600;

@@ -15,7 +15,7 @@
     <!-- Fonts (match homepage) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Sora:wght@700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
 
@@ -33,8 +33,12 @@
     <!-- ── Nav ── -->
     <nav class="blog-nav">
         <div class="blog-nav-inner">
-            <a class="blog-nav-logo" href="{{ '/' | relative_url }}">
-                <img src="{{ '/assets/imgs/logo.png' | relative_url }}" alt="Faisal Alvi">
+            <a class="blog-nav-logo" href="{{ '/' | relative_url }}" aria-label="Faisal Alvi">
+                <svg viewBox="0 0 235 48" class="blog-logo-mark" role="img" aria-label="Faisal Alvi">
+                    <text x="0" y="38" font-weight="800" letter-spacing="-1.5" font-size="38" fill="#0d1117">fa</text>
+                    <rect x="48" y="11" width="3" height="26" rx="1.5" fill="#4338ca"/>
+                    <text x="65" y="31" font-weight="700" letter-spacing="2" font-size="17" fill="#0d1117">FAISAL ALVI</text>
+                </svg>
             </a>
             <div class="blog-nav-links">
                 <a href="{{ '/' | relative_url }}">Home</a>
