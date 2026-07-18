@@ -4,6 +4,11 @@ description: "A WooCommerce store charged $0 tax on every order and showed no sh
 read_time: "8 min read"
 excerpt_text: "A store was charging $0 tax on every single order and couldn't ship internationally at all. Neither problem was a WooCommerce bug. Here's the actual checklist that found both."
 tags: [woocommerce, shipping, tax, debugging]
+image:
+  path: /assets/imgs/blog/og-woocommerce-no-shipping-options-zero-tax-bug.png
+  width: 1200
+  height: 630
+  alt: "Why WooCommerce Shows 'No Shipping Options' (and $0 Tax on Every Order)"
 ---
 
 Two symptoms, one store: every order was being taxed at exactly $0, and international customers hit a checkout page with no shipping method available at all, just an empty space where rates should be. Neither one looked related to the other. Both were.

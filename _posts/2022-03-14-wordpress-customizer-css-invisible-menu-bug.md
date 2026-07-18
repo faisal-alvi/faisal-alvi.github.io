@@ -4,6 +4,11 @@ description: "A client's menu and account link were invisible on hover, hiding i
 read_time: "9 min read"
 excerpt_text: "A header menu and an account link were going invisible on hover. The cause wasn't a plugin conflict or a broken theme. It was three lines of custom CSS, and it's a pattern that shows up constantly."
 tags: [wordpress, css, debugging, theming]
+image:
+  path: /assets/imgs/blog/og-wordpress-customizer-css-invisible-menu-bug.png
+  width: 1200
+  height: 630
+  alt: "The WordPress Customizer CSS Trap: Why Menus and Buttons Vanish on Hover"
 ---
 
 A client reached out with a simple complaint: hovering over the header menu made the menu items disappear. Not glitch, not flicker, just gone. Move the mouse away and they'd reappear. The My Account link had the same problem on a separate page.

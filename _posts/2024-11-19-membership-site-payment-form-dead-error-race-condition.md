@@ -4,6 +4,11 @@ description: "Customers hit a dead error page updating their card, intermittentl
 read_time: "7 min read"
 excerpt_text: "Customers updating their card on a membership site would sometimes hit a dead error page, but only sometimes, with no obvious pattern. That inconsistency was the clue."
 tags: [woocommerce, wordpress, payments, debugging]
+image:
+  path: /assets/imgs/blog/og-membership-site-payment-form-dead-error-race-condition.png
+  width: 1200
+  height: 630
+  alt: "The Silent Card-Update Bug Hiding in Membership Sites"
 ---
 
 A membership site running on Restrict Content Pro started getting sporadic complaints: customers trying to update the card on file for their subscription would occasionally land on a dead error page instead of a working form. Not every time. Not for every customer. No obvious pattern connecting the reports.
