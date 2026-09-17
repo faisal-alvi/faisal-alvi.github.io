@@ -749,14 +749,8 @@
         /* ── Care Plan teaser ── */
         .v2-offers-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
-        }
-
-        @media (max-width: 991px) {
-            .v2-offers-grid {
-                grid-template-columns: 1fr 1fr;
-            }
         }
 
         @media (max-width: 640px) {
@@ -773,6 +767,15 @@
             text-align: center;
             display: flex;
             flex-direction: column;
+        }
+
+        .v2-care-teaser-plain {
+            background: transparent;
+            border: 1px dashed #d6d9e8;
+        }
+
+        .v2-care-teaser-plain .v2-btn-outline {
+            margin-top: auto;
         }
 
         .v2-care-teaser-price {
@@ -1518,6 +1521,7 @@
             <div class="v2-nav-links" id="v2-nav-links">
                 <a href="#home">Home</a>
                 <a href="#services">Services</a>
+                <a href="#care">Pricing</a>
                 <a href="#work">Work</a>
                 <a href="#about">About</a>
                 <a href="/blog/">Blog</a>
@@ -1732,6 +1736,11 @@
     <!-- ── Care Plan + Audit teasers ── -->
     <section class="v2-section" id="care">
         <div class="container">
+            <div class="text-center mb-5">
+                <span class="v2-section-label">Pricing</span>
+                <h2 class="v2-section-title">Pick What Fits</h2>
+                <p class="v2-section-intro" style="margin: 0 auto;">Ongoing care, a one-time diagnosis, an active hack, or something that doesn't fit a neat box. Here's where to start.</p>
+            </div>
             <div class="v2-offers-grid">
                 <div class="v2-care-teaser">
                     <span class="v2-section-label">Ongoing Support</span>
@@ -1753,6 +1762,12 @@
                     <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">Site hacked, flagged by Google, or suspended by your host? A bounded diagnostic finds the actual entry point first.</p>
                     <div class="v2-care-teaser-price">$199 flat &middot; 24-48 hour report</div>
                     <a href="/hack-recovery/" class="v2-btn-outline">See Recovery Details</a>
+                </div>
+                <div class="v2-care-teaser v2-care-teaser-plain">
+                    <span class="v2-section-label">Not Sure?</span>
+                    <h2 class="v2-section-title" style="font-size: 1.5rem;">Something Else</h2>
+                    <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">Custom project, a question about scope, or none of the above quite fits. Tell me what's going on and I'll point you the right direction, even if that's somewhere else.</p>
+                    <a href="#contact" class="v2-btn-outline">Get in Touch</a>
                 </div>
             </div>
         </div>
