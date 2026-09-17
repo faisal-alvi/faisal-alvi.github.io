@@ -398,6 +398,8 @@ a { color: #4338ca; }
     border-radius: 16px;
     padding: 2rem;
     margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .care-price {
@@ -470,6 +472,7 @@ a { color: #4338ca; }
     border: 2px solid transparent;
     border-radius: 8px;
     box-sizing: border-box;
+    margin-top: auto;
     transition: background 0.2s;
 }
 
