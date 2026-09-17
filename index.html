@@ -749,11 +749,17 @@
         /* ── Care Plan teaser ── */
         .v2-offers-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 1.5rem;
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 991px) {
+            .v2-offers-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
             .v2-offers-grid {
                 grid-template-columns: 1fr;
             }
@@ -1719,7 +1725,7 @@
                     </div>
                 </div>
             </div>
-            <p style="text-align: center; color: #aab8c2; font-size: 0.95rem; margin: 2.5rem 0 0;">Want ongoing care, or a one-time diagnosis first? <a href="#care" style="color: #a78bfa; font-weight: 600;">See both options below &darr;</a></p>
+            <p style="text-align: center; color: #aab8c2; font-size: 0.95rem; margin: 2.5rem 0 0;">Want ongoing care, a one-time diagnosis, or your site's hacked right now? <a href="#care" style="color: #a78bfa; font-weight: 600;">See all options below &darr;</a></p>
         </div>
     </section>
 
@@ -1740,6 +1746,13 @@
                     <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">A full written diagnosis before you spend a dollar fixing anything. Security, performance, checkout, shipping, and tax, all checked.</p>
                     <div class="v2-care-teaser-price">$249 flat &middot; 2-3 business days</div>
                     <a href="/woocommerce-audit/" class="v2-btn-outline">See Audit Details</a>
+                </div>
+                <div class="v2-care-teaser" id="hack-recovery">
+                    <span class="v2-section-label">Security</span>
+                    <h2 class="v2-section-title" style="font-size: 1.5rem;">WordPress Hack Recovery</h2>
+                    <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">Site hacked, flagged by Google, or suspended by your host? A bounded diagnostic finds the actual entry point first.</p>
+                    <div class="v2-care-teaser-price">$199 flat &middot; 24-48 hour report</div>
+                    <a href="/hack-recovery/" class="v2-btn-outline">See Recovery Details</a>
                 </div>
             </div>
         </div>
