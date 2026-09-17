@@ -747,12 +747,26 @@
         }
 
         /* ── Care Plan teaser ── */
+        .v2-offers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 767px) {
+            .v2-offers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .v2-care-teaser {
             background: #f7f8fc;
             border: 1px solid #e8eaf6;
             border-radius: 16px;
             padding: 2.5rem;
             text-align: center;
+            display: flex;
+            flex-direction: column;
         }
 
         .v2-care-teaser-price {
@@ -760,6 +774,7 @@
             font-size: 1.1rem;
             font-weight: 700;
             color: #4338ca;
+            margin-top: auto;
             margin-bottom: 0.5rem;
         }
 
@@ -1711,24 +1726,20 @@
     <!-- ── Care Plan + Audit teasers ── -->
     <section class="v2-section" id="care">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 mb-4 mb-md-0">
-                    <div class="v2-care-teaser">
-                        <span class="v2-section-label">Ongoing Support</span>
-                        <h2 class="v2-section-title" style="font-size: 1.5rem;">Managed WordPress &amp; WooCommerce Care</h2>
-                        <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">For sites that can't afford to break. Weekly updates, tested on staging first, with a transparent log every cycle.</p>
-                        <div class="v2-care-teaser-price">Plans from $240/month</div>
-                        <a href="/care-plan/" class="v2-btn-primary">See Care Plan Details</a>
-                    </div>
+            <div class="v2-offers-grid">
+                <div class="v2-care-teaser">
+                    <span class="v2-section-label">Ongoing Support</span>
+                    <h2 class="v2-section-title" style="font-size: 1.5rem;">Managed WordPress &amp; WooCommerce Care</h2>
+                    <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">For sites that can't afford to break. Weekly updates, tested on staging first, with a transparent log every cycle.</p>
+                    <div class="v2-care-teaser-price">Plans from $240/month</div>
+                    <a href="/care-plan/" class="v2-btn-primary">See Care Plan Details</a>
                 </div>
-                <div class="col-md-6" id="audit">
-                    <div class="v2-care-teaser">
-                        <span class="v2-section-label">One-Time Audit</span>
-                        <h2 class="v2-section-title" style="font-size: 1.5rem;">WooCommerce Store Audit</h2>
-                        <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">A full written diagnosis before you spend a dollar fixing anything. Security, performance, checkout, shipping, and tax, all checked.</p>
-                        <div class="v2-care-teaser-price">$249 flat &middot; 2-3 business days</div>
-                        <a href="/woocommerce-audit/" class="v2-btn-outline">See Audit Details</a>
-                    </div>
+                <div class="v2-care-teaser" id="audit">
+                    <span class="v2-section-label">One-Time Audit</span>
+                    <h2 class="v2-section-title" style="font-size: 1.5rem;">WooCommerce Store Audit</h2>
+                    <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">A full written diagnosis before you spend a dollar fixing anything. Security, performance, checkout, shipping, and tax, all checked.</p>
+                    <div class="v2-care-teaser-price">$249 flat &middot; 2-3 business days</div>
+                    <a href="/woocommerce-audit/" class="v2-btn-outline">See Audit Details</a>
                 </div>
             </div>
         </div>
