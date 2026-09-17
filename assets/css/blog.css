@@ -78,7 +78,8 @@ a { color: #4338ca; }
 
 @media (max-width: 640px) {
     .blog-nav-links a:not(.blog-nav-btn) { display: none; }
-    .blog-nav-links a.blog-nav-btn { margin-left: 0; }
+    .blog-nav-links a.blog-nav-btn { margin-left: 0; white-space: nowrap; padding: 0.5rem 0.9rem; font-size: 0.88rem; }
+    .blog-nav-logo svg { height: 34px; }
 }
 
 /* ── Blog listing ── */
@@ -316,6 +317,74 @@ a { color: #4338ca; }
 
 .care-body { padding: 20px 0 70px; }
 
+.care-wide { max-width: 900px; }
+
+.care-tiers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 680px) {
+    .care-tiers { grid-template-columns: 1fr; }
+}
+
+.care-tier-name {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #4338ca;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+}
+
+.care-tier-badge {
+    display: inline-block;
+    background: #4338ca;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+}
+
+.care-card-featured {
+    background: #fff;
+    border: 2px solid #4338ca;
+    box-shadow: 0 8px 24px rgba(67, 56, 202, 0.12);
+}
+
+.care-price-yearly {
+    color: #666;
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+}
+
+.care-save {
+    color: #16a34a;
+    font-weight: 600;
+}
+
+.care-price-note {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0 0 3rem;
+}
+
+.care-cta-outline {
+    background: transparent;
+    color: #4338ca;
+    border: 2px solid #4338ca;
+}
+
+.care-cta-outline:hover { background: #f0eeff; color: #4338ca; }
+
 .care-intro {
     color: #444;
     font-size: 1.02rem;
@@ -381,6 +450,14 @@ a { color: #4338ca; }
     font-weight: 700;
 }
 
+.care-list li.care-list-label {
+    padding-left: 0;
+    font-weight: 600;
+    color: #0d1117;
+}
+
+.care-list li.care-list-label::before { content: none; }
+
 .care-cta {
     display: block;
     text-align: center;
@@ -390,7 +467,9 @@ a { color: #4338ca; }
     font-weight: 700;
     font-size: 1rem;
     padding: 0.85rem 1.5rem;
+    border: 2px solid transparent;
     border-radius: 8px;
+    box-sizing: border-box;
     transition: background 0.2s;
 }
 
