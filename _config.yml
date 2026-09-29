@@ -25,6 +25,9 @@ collections:
   posts:
     output: true
     permalink: /blog/:title/
+  case_studies:
+    output: true
+    permalink: /case-studies/:title/
 
 # Defaults
 defaults:
@@ -36,7 +39,18 @@ defaults:
       author: "Faisal Alvi"
       image: "/assets/imgs/me-amsterdam.jpg"
   - scope:
+      path: ""
+      type: "case_studies"
+    values:
+      layout: "post"
+      author: "Faisal Alvi"
+      image: "/assets/imgs/me-amsterdam.jpg"
+  - scope:
       path: "blog/index.html"
+    values:
+      image: "/assets/imgs/me-amsterdam.jpg"
+  - scope:
+      path: "case-studies/index.html"
     values:
       image: "/assets/imgs/me-amsterdam.jpg"
 

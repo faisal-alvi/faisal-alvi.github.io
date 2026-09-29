@@ -1,26 +1,24 @@
 ---
 layout: default
-title: "Blog: WordPress & WooCommerce Engineering Notes"
-description: "Debugging patterns, investigation write-ups, and practical guides for keeping WordPress and WooCommerce sites fast, secure, and running."
-permalink: /blog/
+title: "Case Studies: Real WordPress & WooCommerce Fixes"
+description: "Real client problems, diagnosed and fixed: the bug, the trace, and the result. Anonymized, but every case is a delivered outcome."
+permalink: /case-studies/
 ---
 
 <header class="blog-header">
     <div class="blog-container">
-        <h1>Engineering Notes</h1>
-        <p>Debugging patterns, investigation write-ups, and practical guides for keeping WordPress &amp; WooCommerce sites fast, secure, and running. Looking for delivered client work? See <a href="{{ '/case-studies/' | relative_url }}">Case Studies</a>.</p>
-        <a class="blog-rss-link" href="{{ '/feed.xml' | relative_url }}" aria-label="Subscribe via RSS">
-            <i class="ti-rss"></i> Subscribe via RSS
-        </a>
+        <h1>Case Studies</h1>
+        <p>Real client problems, diagnosed and fixed. Anonymized for confidentiality, every case below is a delivered outcome, not a hypothetical.</p>
     </div>
 </header>
 
 <section class="blog-list">
     <div class="blog-container">
-        {% if site.posts.size == 0 %}
-            <p style="text-align:center; color:#999;">First post coming soon.</p>
+        {% assign case_studies = site.case_studies | sort: 'date' | reverse %}
+        {% if case_studies.size == 0 %}
+            <p style="text-align:center; color:#999;">First case study coming soon.</p>
         {% endif %}
-        {% for post in site.posts %}
+        {% for post in case_studies %}
         <a class="blog-card" href="{{ post.url | relative_url }}">
             <div class="blog-card-meta">
                 {{ post.date | date: "%B %-d, %Y" }}

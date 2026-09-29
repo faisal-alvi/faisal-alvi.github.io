@@ -1,4 +1,5 @@
 ---
+date: 2023-09-05
 title: "Why WooCommerce Shows 'No Shipping Options' (and $0 Tax on Every Order)"
 description: "A WooCommerce store charged $0 tax on every order and showed no shipping options at all. Three conflicting plugins and a dead API key, found and fixed."
 read_time: "8 min read"

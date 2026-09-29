@@ -1,4 +1,5 @@
 ---
+date: 2022-03-14
 title: "The WordPress Customizer CSS Trap: Why Menus and Buttons Vanish on Hover"
 description: "A client's menu and account link were invisible on hover, hiding in Customizer CSS. The general pattern behind invisible-state bugs, and how to fix them fast."
 read_time: "9 min read"

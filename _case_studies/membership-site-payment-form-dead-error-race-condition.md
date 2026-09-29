@@ -1,4 +1,5 @@
 ---
+date: 2024-11-19
 title: "The Silent Card-Update Bug Hiding in Membership Sites (a Timing Race, Not a Plugin Bug)"
 description: "Customers hit a dead error page updating their card, intermittently, with no reproducible pattern. The cause was a timing race with an external payment script."
 read_time: "7 min read"
