@@ -21,13 +21,37 @@ layout: default
   ]
 }
 </script>
+{% assign og_image = page.image.path | default: page.image %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | default: page.excerpt_text | jsonify }},
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "image": "{{ og_image | absolute_url }}",
+  "mainEntityOfPage": "{{ page.url | absolute_url }}",
+  "author": {
+    "@type": "Person",
+    "name": "Faisal Alvi",
+    "url": "{{ '/' | absolute_url }}",
+    "sameAs": [
+      "https://www.linkedin.com/in/alvifaisal/",
+      "https://github.com/faisal-alvi",
+      "https://profiles.wordpress.org/faisal03/"
+    ]
+  },
+  "publisher": { "@type": "Person", "name": "Faisal Alvi", "url": "{{ '/' | absolute_url }}" }
+}
+</script>
 <article>
     <header class="post-header">
         <div class="blog-container">
             <a href="{{ index_url | relative_url }}" class="post-back">{{ back_label }}</a>
             <div class="post-meta">
-                {{ page.date | date: "%B %-d, %Y" }}
-                {% if page.read_time %} &middot; {{ page.read_time }}{% endif %}
+                {% unless page.show_date == false %}{{ page.date | date: "%B %-d, %Y" }}{% endunless %}
+                {% if page.read_time %}{% unless page.show_date == false %} &middot; {% endunless %}{{ page.read_time }}{% endif %}
             </div>
             <h1 class="post-title">{{ page.title }}</h1>
         </div>
@@ -38,10 +62,48 @@ layout: default
             {{ content }}
         </div>
 
+        <aside class="author-box">
+            <img src="{{ '/assets/imgs/me-amsterdam-800.jpg' | relative_url }}" alt="Faisal Alvi" class="author-box-photo" width="72" height="72" loading="lazy" decoding="async">
+            <div>
+                <div class="author-box-name">Faisal Alvi</div>
+                <p class="author-box-bio">WordPress Core Contributor (credited in 13 releases) and WooCommerce developer. I worked on the official Square for WooCommerce and WooCommerce Bookings extensions at 10up / Fueled.</p>
+                <div class="author-box-links">
+                    <a href="{{ '/' | relative_url }}">About</a>
+                    <a href="https://profiles.wordpress.org/faisal03/" target="_blank" rel="noopener">WordPress.org</a>
+                    <a href="https://github.com/faisal-alvi" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://www.linkedin.com/in/alvifaisal/" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
+        </aside>
+
+        {% assign cta_url = page.cta_url | default: "https://calendly.com/faisalalvi33/new-meeting" %}
+        {% assign cta_external = true %}
+        {% assign cta_first = cta_url | slice: 0 %}
+        {% if cta_first == "/" %}{% assign cta_external = false %}{% endif %}
         <div class="post-cta">
-            <h3>Stuck on a WordPress or WooCommerce problem like this?</h3>
-            <p>I build and debug custom WordPress &amp; WooCommerce functionality for agencies and product teams. Get a free 20-minute code audit.</p>
-            <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="post-cta-btn">Book a Free Call</a>
+            <h3>{{ page.cta_title | default: "Stuck on a WordPress or WooCommerce problem like this?" }}</h3>
+            <p>{{ page.cta_text | default: "I build and debug custom WordPress &amp; WooCommerce functionality for agencies and product teams. Get a free 20-minute code audit." }}</p>
+            <a href="{{ cta_url }}"{% if cta_external %} target="_blank" rel="noopener"{% endif %} class="post-cta-btn">{{ page.cta_label | default: "Book a Free Call" }}</a>
         </div>
+
+        {% assign all_content = site.posts | concat: site.case_studies %}
+        {% assign related = "" | split: "" %}
+        {% for item in all_content %}
+            {% if item.url != page.url and related.size < 3 %}
+                {% assign shared = false %}
+                {% for t in item.tags %}{% if page.tags contains t %}{% assign shared = true %}{% endif %}{% endfor %}
+                {% if shared %}{% assign related = related | push: item %}{% endif %}
+            {% endif %}
+        {% endfor %}
+        {% if related.size > 0 %}
+        <section class="related-posts">
+            <h2>Related reading</h2>
+            <ul>
+                {% for item in related %}
+                <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
     </div>
 </article>
