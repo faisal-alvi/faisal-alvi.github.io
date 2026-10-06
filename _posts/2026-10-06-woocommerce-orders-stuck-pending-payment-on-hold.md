@@ -21,13 +21,13 @@ Do that check first, every time. Marking an order Processing by hand because the
 
 ## What the two statuses mean in WooCommerce
 
-The core status list includes "Pending payment" and "On hold" as separate statuses. In the WooCommerce source, a gateway finishes a successful payment by calling `payment_complete()` on the order, and that method moves the order to Processing, or to Completed if nothing needs shipping. It is the single point where "paid" gets recorded.
+The core status list includes "Pending payment" and "On hold" as separate statuses. In the [WooCommerce source](https://github.com/woocommerce/woocommerce/blob/trunk/plugins/woocommerce/includes/class-wc-order.php), a gateway finishes a successful payment by calling `payment_complete()` on the order, and that method moves the order to Processing, or to Completed if nothing needs shipping. It is the single point where "paid" gets recorded.
 
 So a pending order usually means one of two things: the customer never finished paying (abandoned, closed the tab, card declined), or they did pay and the message saying so never reached your site. The second case is the one that costs you. The first is normal.
 
 ## On hold is often expected
 
-The built-in offline gateways set On hold on purpose:
+The built-in offline gateways ([BACS](https://github.com/woocommerce/woocommerce/blob/trunk/plugins/woocommerce/includes/gateways/bacs/class-wc-gateway-bacs.php), check and cash on delivery) set On hold on purpose in most cases:
 
 - Direct bank transfer (BACS) puts a new order on hold with the note "Awaiting BACS payment."
 - Check payments do the same with "Awaiting check payment."
@@ -37,7 +37,7 @@ Each of those statuses can be changed by a filter (for example `woocommerce_bacs
 
 Card gateways are different. An order sitting on hold with a card or wallet method usually means the gateway plugin is waiting for a confirmation (a fraud review, an asynchronous method, a delayed notification) and has not received it. Read the order notes before anything else. Gateway plugins tend to write what they were waiting for.
 
-## Why a paid order stays pending
+## Why orders get stuck on pending payment after the customer paid
 
 For redirect and asynchronous payment methods, the final "paid" signal often arrives separately from the customer's browser, as a webhook or callback from the gateway to your site. If that request never lands, the order stays pending even though the card was charged. The general-purpose causes worth checking, in this order:
 
@@ -53,7 +53,7 @@ A detail that helps when you are deciding whether a late callback can still fix 
 
 WooCommerce can cancel unpaid pending orders on its own. The setting is at WooCommerce > Settings > Products > Inventory, labelled "Hold stock (minutes)", and its description says the pending order will be cancelled when the limit is reached. The default in the source is 60.
 
-Three conditions from the code are worth knowing:
+Three conditions from [the cancellation code](https://github.com/woocommerce/woocommerce/blob/trunk/plugins/woocommerce/includes/wc-order-functions.php) are worth knowing:
 
 - It only runs when stock management is enabled. With "Manage stock" off, the cleanup is not scheduled.
 - It only cancels orders created through the customer-facing checkout, not orders added by an admin, the REST API or a plugin (a filter, `woocommerce_cancel_unpaid_order`, can change that).
