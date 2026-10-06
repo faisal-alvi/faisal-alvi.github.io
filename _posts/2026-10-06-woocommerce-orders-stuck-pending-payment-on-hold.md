@@ -1,6 +1,6 @@
 ---
 title: "WooCommerce Orders Stuck on Pending Payment or On Hold: Causes"
-description: "WooCommerce orders stuck on pending payment or on hold? What each status really means, which gateways set on-hold by design, and how to find the missing callback."
+description: "WooCommerce orders stuck on pending payment or on hold? What each status means, which gateways set on-hold by design, and how to find the missing callback."
 read_time: "8 min read"
 excerpt_text: "Pending payment and on hold look similar in the order list but mean different things. Here is how to tell which problem you have and where to look first."
 tags: [woocommerce, checkout, debugging, maintenance]
