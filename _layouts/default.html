@@ -41,9 +41,10 @@
                 </svg>
             </a>
             <div class="blog-nav-links">
-                <a href="{{ '/' | relative_url }}">Home</a>
+                <a href="{{ '/' | relative_url }}" class="blog-nav-home">Home</a>
                 <a href="{{ '/case-studies/' | relative_url }}">Case Studies</a>
                 <a href="{{ '/blog/' | relative_url }}">Blog</a>
+                <a href="{{ '/woocommerce-ga4-audit/' | relative_url }}" class="blog-nav-free"{% if page.url == '/woocommerce-ga4-audit/' %} aria-current="page"{% endif %}>Free Audit</a>
                 <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="blog-nav-btn">Book a Call</a>
             </div>
         </div>

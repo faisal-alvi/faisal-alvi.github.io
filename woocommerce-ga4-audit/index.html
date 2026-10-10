@@ -1,0 +1,234 @@
+---
+layout: default
+title: "Free WooCommerce GA4 Tracking Audit"
+description: "Free WooCommerce GA4 tracking audit. I match your store orders against GA4 purchases by transaction ID to find missing sales, duplicates, and the causes."
+permalink: /woocommerce-ga4-audit/
+---
+
+<header class="blog-header">
+    <div class="blog-container">
+        <span class="care-eyebrow"><span class="free-tag">Free</span> Tracking Audit</span>
+        <h1>Is your WooCommerce store losing sales in GA4?</h1>
+        <p>If you run Google or Meta ads, those platforms decide where your budget goes based on the purchases they can see. When GA4 misses sales or counts them twice, your campaigns optimize on bad data. I'll check your real orders against GA4, order by order, and show you where the gaps are.</p>
+        <div class="care-hero-actions">
+            <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="care-cta">Book a Free Tracking Audit</a>
+            <a href="#checks" class="care-cta care-cta-outline">See What Gets Checked</a>
+        </div>
+    </div>
+</header>
+
+<section class="care-body">
+    <div class="blog-container care-wide">
+
+        <h2 class="care-h2">Why broken tracking costs you money</h2>
+        <p class="care-intro">Most stores never notice. Orders still arrive, money still lands, and GA4 shows a number that looks roughly right. The damage shows up in your ads. Google Ads and Meta use purchase data to decide who to target and which campaigns to scale. If a share of real sales never reaches them, campaigns that work look weak and get cut. If purchases are counted twice, campaigns that don't work look profitable and keep spending. Either way, the budget follows bad numbers, and the reports you send to your team or your clients stop matching the store.</p>
+
+        <h2 class="care-h2">Signs your tracking is broken</h2>
+        <ul class="care-list care-list-signs">
+            <li>GA4 purchase revenue is noticeably lower (or higher) than WooCommerce sales for the same dates</li>
+            <li>The same transaction ID shows up more than once in GA4</li>
+            <li>Orders paid with some payment methods barely appear in GA4, while others look fine</li>
+            <li>Conversions dropped after a plugin, theme, or WooCommerce update, but sales didn't</li>
+            <li>The numbers shifted after a cookie consent banner went live</li>
+            <li>Google Ads or Meta report a very different number of purchases than your store does</li>
+            <li>A tracking plugin, a GTM container, and a few hardcoded snippets are all sending ecommerce events, and nobody is sure which one is the real one</li>
+        </ul>
+
+        <h2 class="care-h2" id="checks">What the audit checks</h2>
+        <ul class="care-list">
+            <li><strong>Order-level reconciliation.</strong> Your WooCommerce orders matched against GA4 purchase events by transaction ID, for a recent period we agree on.</li>
+            <li><strong>Missing purchases.</strong> Orders in WooCommerce with no matching GA4 event, broken down by payment method, device, and order status where the data allows.</li>
+            <li><strong>Duplicate purchases.</strong> The same transaction recorded more than once, and where the extra hits come from.</li>
+            <li><strong>Revenue mismatch.</strong> Differences in totals between the store and GA4, including how tax, shipping, currency, and refunds are handled.</li>
+            <li><strong>Off-site payment redirects.</strong> Whether buyers who pay on a gateway's hosted page actually make it back to the thank-you page that fires the purchase event.</li>
+            <li><strong>Consent and blockers.</strong> Whether your consent banner, Consent Mode setup, or ad blockers are stopping the purchase tag from firing.</li>
+            <li><strong>Every tracking source.</strong> All the plugins, GTM containers, and hardcoded scripts sending ecommerce events, and where they overlap.</li>
+            <li><strong>Recent changes.</strong> Plugin, theme, and WooCommerce updates that line up with when the numbers went off.</li>
+        </ul>
+        <p class="care-price-note">Why an engineer and not just an analytics tool: I'm a senior WordPress and WooCommerce engineer. I set up GTM and GA4 on WooCommerce stores, and I work in payment gateway code, which is exactly where purchase tracking tends to break quietly. A dashboard can tell you the numbers don't match. Finding out why usually means reading how the checkout and the gateway actually behave.</p>
+
+        <div class="care-tiers care-tiers-single">
+            <div class="care-card care-card-featured">
+                <div class="care-tier-name">What you get</div>
+                <div class="care-price">
+                    <span class="care-price-amount">Free</span>
+                    <span class="care-price-period">no obligation</span>
+                </div>
+                <p class="care-price-sub">A short written report, usually within 3 to 5 business days of getting access. Fixing what it finds is separate, optional paid work.</p>
+                <ul class="care-list">
+                    <li>How many of your WooCommerce orders GA4 actually recorded for the period checked</li>
+                    <li>A list of missing and duplicated transactions, with the revenue gap in your own numbers</li>
+                    <li>The likely cause behind each gap, explained in plain English</li>
+                    <li>A prioritized list of fixes, most impactful first</li>
+                    <li>Enough detail that your own developer or agency can act on it, if you'd rather not hire me</li>
+                </ul>
+                <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="care-cta">Book a Free Tracking Audit</a>
+            </div>
+        </div>
+
+        <h2 class="care-h2">How it works</h2>
+        <ol class="care-steps">
+            <li><strong>Book a short call.</strong> We go over your store, your ad setup, and what looks off. If the audit isn't the right fit, I'll tell you on the call.</li>
+            <li><strong>Share read-only access.</strong> Viewer access to GA4, plus either a WooCommerce order export for the agreed period or a read-only REST API key. No admin logins needed.</li>
+            <li><strong>Get your report.</strong> I reconcile your orders against GA4, trace the causes, and send a written report with prioritized fixes. If you want help fixing them, I'll quote that separately.</li>
+        </ol>
+
+        <h2 class="care-h2">Who it's for</h2>
+        <div class="care-tiers">
+            <div class="care-card">
+                <h3 class="care-tier-name">Store owners running ads</h3>
+                <p class="care-card-text">You spend real money on Google Ads, Meta, or both for a WooCommerce store, and you want to know whether the conversions your campaigns optimize on are real before you spend more.</p>
+            </div>
+            <div class="care-card">
+                <h3 class="care-tier-name">PPC and marketing agencies</h3>
+                <p class="care-card-text">You manage ads for WooCommerce clients and keep running into reports that don't match the store. I handle the WooCommerce and tracking side so you can focus on the campaigns, under your brand if you prefer.</p>
+            </div>
+        </div>
+
+        <h2 class="care-h2" id="plans">Keep your tracking accurate every month</h2>
+        <p class="care-intro">The audit tells you what's broken today. Tracking rarely stays fixed on its own: a plugin update, a new consent banner, or a change to a payment gateway can break it again without anyone noticing. Here's how it usually goes:</p>
+        <ol class="care-steps care-funnel">
+            <li><strong>Free audit.</strong> Find out where GA4 and your store disagree, and why.</li>
+            <li><strong>Optional one-time fix.</strong> If you want me to fix what the audit found, I quote it as a fixed price based on the findings.</li>
+            <li><strong>Optional ongoing monitoring.</strong> A monthly plan that keeps checking your orders against your tracking, so problems get caught in days instead of months.</li>
+        </ol>
+
+        <div class="care-tiers care-tiers-three">
+            <div class="care-card">
+                <div class="care-tier-name">Tracking Watch</div>
+                <div class="care-price">
+                    <span class="care-price-amount">$149</span>
+                    <span class="care-price-period">/month</span>
+                </div>
+                <p class="care-price-sub">For a single store that wants its purchase data checked every month.</p>
+                <ul class="care-list">
+                    <li>Monthly reconciliation of WooCommerce orders against GA4 purchase events, by transaction ID</li>
+                    <li>A re-check after plugin, theme, or WooCommerce updates</li>
+                    <li>Small tracking fixes included, up to 1 hour a month</li>
+                    <li>A short monthly report: what matched, what didn't, and what was fixed</li>
+                </ul>
+                <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="care-cta care-cta-outline">Book a Call</a>
+            </div>
+
+            <div class="care-card care-card-featured">
+                <div><span class="care-tier-badge">Recommended</span></div>
+                <div class="care-tier-name">Tracking Watch Pro</div>
+                <div class="care-price">
+                    <span class="care-price-amount">$299</span>
+                    <span class="care-price-period">/month</span>
+                </div>
+                <p class="care-price-sub">For stores where ad spend depends on accurate conversions.</p>
+                <ul class="care-list">
+                    <li class="care-list-label">Everything in Tracking Watch, plus:</li>
+                    <li>Weekly checks instead of monthly</li>
+                    <li>Google Ads and Meta conversion checks, not just GA4</li>
+                    <li>Priority fixes when something breaks, up to 2 hours a month</li>
+                    <li>A monthly report covering all of it</li>
+                </ul>
+                <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="care-cta">Book a Call</a>
+            </div>
+
+            <div class="care-card">
+                <div class="care-tier-name">Agency</div>
+                <div class="care-price">
+                    <span class="care-price-amount">$499</span>
+                    <span class="care-price-period">/month</span>
+                </div>
+                <p class="care-price-sub">For agencies looking after tracking for several WooCommerce clients.</p>
+                <ul class="care-list">
+                    <li>Up to 5 client stores</li>
+                    <li>The same coverage as Tracking Watch Pro on every store</li>
+                    <li>White-label reports under your agency's brand</li>
+                </ul>
+                <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="care-cta care-cta-outline">Book a Call</a>
+            </div>
+        </div>
+
+        <p class="care-price-note">Plans start after the free audit, so monitoring begins from a known baseline. All plans are month to month, and you can cancel any time.</p>
+
+        <h2 class="care-h2">FAQ</h2>
+        <div class="care-faq">
+            <div class="care-faq-item">
+                <h3 class="care-faq-q">What access do you need?</h3>
+                <p class="care-faq-a">Read-only (Viewer) access to your GA4 property, plus either a WooCommerce order export (CSV) for the period we agree on or a read-only WooCommerce REST API key. If Google Tag Manager is involved, read access to the container helps too. I don't need a WordPress admin login for the audit.</p>
+            </div>
+            <div class="care-faq-item">
+                <h3 class="care-faq-q">Will you change anything on my store?</h3>
+                <p class="care-faq-a">No. The audit is read-only. Nothing gets installed, edited, or deleted on your site.</p>
+            </div>
+            <div class="care-faq-item">
+                <h3 class="care-faq-q">How long does it take?</h3>
+                <p class="care-faq-a">Usually 3 to 5 business days from the point access is in place. Very high order volumes, or several stores at once, can take a little longer, and I'll tell you upfront if that's the case.</p>
+            </div>
+            <div class="care-faq-item">
+                <h3 class="care-faq-q">Is it really free?</h3>
+                <p class="care-faq-a">Yes. No card, no invoice, and no obligation to hire me afterward. It's the quickest way for both of us to see whether there's a real problem worth fixing. If your numbers turn out to match, that's a good result, and the report will say so.</p>
+            </div>
+            <div class="care-faq-item">
+                <h3 class="care-faq-q">What happens after the audit?</h3>
+                <p class="care-faq-a">You keep the report either way. If you want the fixes done, I'll send a fixed quote based on what the audit found. If you'd rather have your own developer or agency handle it, the report is written so they can.</p>
+            </div>
+            <div class="care-faq-item">
+                <h3 class="care-faq-q">What counts as a "small fix" on a monitoring plan?</h3>
+                <p class="care-faq-a">A contained fix to the tracking itself, such as a tag that stopped firing after an update, a duplicate event source, or a consent setting blocking the purchase event. Tracking Watch includes up to 1 hour of fixes a month, and Pro and Agency include up to 2 hours a month per store. Larger work, like rebuilding a GTM setup or changing how a payment gateway returns buyers to your store, is quoted separately before anything starts.</p>
+            </div>
+            <div class="care-faq-item">
+                <h3 class="care-faq-q">Can I cancel a monitoring plan?</h3>
+                <p class="care-faq-a">Yes. Plans are month to month with no long-term contract, and you can cancel any time.</p>
+            </div>
+        </div>
+
+        <div class="post-cta">
+            <h2>Find out what GA4 is missing</h2>
+            <p>Book a short call, share read-only access, and get a written report comparing your real orders with what GA4 recorded.</p>
+            <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="post-cta-btn">Book a Free Tracking Audit</a>
+            <p class="post-cta-alt">Prefer email? <a href="mailto:hello@faisalalvi.com">hello@faisalalvi.com</a></p>
+        </div>
+
+        <p class="care-footer-note">Want a wider check of the store itself, covering security, speed, and checkout? See the <a href="/woocommerce-audit/">WooCommerce Store Audit</a>. Questions first? <a href="mailto:hello@faisalalvi.com">Email me directly</a>.</p>
+    </div>
+</section>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "What access do you need?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Read-only (Viewer) access to your GA4 property, plus either a WooCommerce order export (CSV) for the period we agree on or a read-only WooCommerce REST API key. If Google Tag Manager is involved, read access to the container helps too. I don't need a WordPress admin login for the audit." }
+        },
+        {
+            "@type": "Question",
+            "name": "Will you change anything on my store?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. The audit is read-only. Nothing gets installed, edited, or deleted on your site." }
+        },
+        {
+            "@type": "Question",
+            "name": "How long does it take?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Usually 3 to 5 business days from the point access is in place. Very high order volumes, or several stores at once, can take a little longer, and I'll tell you upfront if that's the case." }
+        },
+        {
+            "@type": "Question",
+            "name": "Is it really free?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. No card, no invoice, and no obligation to hire me afterward. It's the quickest way for both of us to see whether there's a real problem worth fixing. If your numbers turn out to match, that's a good result, and the report will say so." }
+        },
+        {
+            "@type": "Question",
+            "name": "What happens after the audit?",
+            "acceptedAnswer": { "@type": "Answer", "text": "You keep the report either way. If you want the fixes done, I'll send a fixed quote based on what the audit found. If you'd rather have your own developer or agency handle it, the report is written so they can." }
+        },
+        {
+            "@type": "Question",
+            "name": "What counts as a \"small fix\" on a monitoring plan?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A contained fix to the tracking itself, such as a tag that stopped firing after an update, a duplicate event source, or a consent setting blocking the purchase event. Tracking Watch includes up to 1 hour of fixes a month, and Pro and Agency include up to 2 hours a month per store. Larger work, like rebuilding a GTM setup or changing how a payment gateway returns buyers to your store, is quoted separately before anything starts." }
+        },
+        {
+            "@type": "Question",
+            "name": "Can I cancel a monitoring plan?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Plans are month to month with no long-term contract, and you can cancel any time." }
+        }
+    ]
+}
+</script>
