@@ -683,12 +683,12 @@ function gPush(date,task){
   gApi('PATCH',calPath()+'/'+encodeURIComponent(task.gid),{summary:task.t,start:{dateTime:st.toISOString()},end:{dateTime:en.toISOString()}})
     .then(function(){setStatus('Saved to Google Calendar')}).catch(function(e){toast(e.message)});
 }
-function gCreate(date,task){
-  if(VO)return;
+function gCreate(date,task,quiet){
+  if(VO)return Promise.resolve();
   var dd=pd(date),st=new Date(dd.getFullYear(),dd.getMonth(),dd.getDate(),0,task.lock),en=new Date(st.getTime()+task.d*60000);
-  gApi('POST',calPath(),{summary:task.t,start:{dateTime:st.toISOString()},end:{dateTime:en.toISOString()}})
-    .then(function(ev){task.gid=ev.id;task.gcal=true;persist();render();toast('Added to Google Calendar')})
-    .catch(function(e){toast(e.message)});
+  return gApi('POST',calPath(),{summary:task.t,start:{dateTime:st.toISOString()},end:{dateTime:en.toISOString()}})
+    .then(function(ev){task.gid=ev.id;task.gcal=true;if(!quiet){persist();render();toast('Added to Google Calendar')}return true})
+    .catch(function(e){if(!quiet)toast(e.message);else throw e});
 }
 function gDelete(task){
   gApi('DELETE',calPath()+'/'+encodeURIComponent(task.gid)).catch(function(e){toast(e.message)});
@@ -702,7 +702,7 @@ function gSync(wide){
     var q='?singleEvents=true&orderBy=startTime&maxResults=250&timeMin='+encodeURIComponent(pd(min).toISOString())+'&timeMax='+encodeURIComponent(pd(addDays(max,1)).toISOString())+(tok?'&pageToken='+encodeURIComponent(tok):'');
     return gApi('GET',calPath()+q).then(function(r){all=all.concat(r.items||[]);return r.nextPageToken?page(r.nextPageToken):null});
   }
-  page().then(function(){
+  return page().then(function(){
     var got={},n=0;
     all.forEach(function(ev){
       if(ev.status==='cancelled'||!ev.start||!ev.start.dateTime)return;
@@ -726,13 +726,29 @@ function gSync(wide){
   }).catch(function(e){setStatus('');toast(e.message)}).then(function(){btn.disabled=false});
 }
 
+function gPushAll(){
+  var jobs=[];
+  Object.keys(S.data.days).sort().forEach(function(dt){
+    if(dt<todayStr())return;
+    layout(dt).forEach(function(it){
+      var o=it.o;
+      if(it.kind!=='task'||o.gcal||o.tpl||o.done||o.gOff)return;
+      o.lock=it.s;jobs.push({dt:dt,o:o});
+    });
+  });
+  if(!jobs.length)return Promise.resolve();
+  var made=0,chain=Promise.resolve();
+  jobs.forEach(function(j){chain=chain.then(function(){return gCreate(j.dt,j.o,true).then(function(){made++})})});
+  return chain.then(function(){persist();render();toast('Created '+made+' event'+(made===1?'':'s')+' in Google Calendar.')},
+    function(e){persist();render();toast('Created '+made+' of '+jobs.length+'. '+e.message)});
+}
 function resyncAll(){
   if(!S.data)return;
   var b=$('rsa');b.disabled=true;setStatus('Re-syncing everything…');
   var first=S.dirty?new Promise(function(res){clearTimeout(saveTimer);flush();setTimeout(res,1500)}):Promise.resolve();
   first.then(function(){return pullRemote()}).then(function(x){return open(S.key,x)}).then(function(d){
     if(d.updated>S.data.updated){S.data=norm(d);S.base=snap();HIST.undo=[];HIST.redo=[];render()}
-  }).catch(function(){}).then(function(){b.disabled=false;gSync(true)});
+  }).catch(function(){}).then(function(){return gSync(true)}).then(function(){return gPushAll()}).catch(function(){}).then(function(){b.disabled=false});
 }
 
 /* ---------- sheets ---------- */
@@ -795,6 +811,7 @@ function taskSheet(date,task,startMin){
     if(wasG&&!gOn&&!confirm('Remove this event from Google Calendar too?'))return;
     task.t=title;task.d=Math.max(5,+m.querySelector('#du').value||30);
     task.lock=lockOn&&st.value?toMin(st.value):null;task.color=col;task.nobuf=nb;
+    if(gOn)delete task.gOff;else task.gOff=true;
     if(wasG&&!gOn){gDelete(task);task.gcal=false;delete task.gid}
     if(task.gcal)task.lock=toMin(st.value);else applyRepeat(date,task,rec);
     if(!wasG&&gOn&&rec==='none'&&!task.tpl){task.lock=toMin(st.value);gCreate(date,task)}
