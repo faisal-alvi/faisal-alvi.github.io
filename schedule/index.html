@@ -647,7 +647,14 @@ function settingsSheet(){
     '<label>Color of repeating tasks</label><div class="sws" id="rc"></div>'+
     '<label>Daily events</label><div id="evs"></div>'+
     '<button class="btn ghost" id="ae" style="width:100%;margin-top:10px">'+ic('plus')+' Add daily event</button>'+
+    '<label>Add another device</label><button class="btn ghost" id="sc" style="width:100%">Show device code</button><div id="scb"></div>'+
     '<div class="acts"><button class="btn" id="ok">Save</button></div>');
+  m.querySelector('#sc').onclick=function(){
+    var code=lsGet(K_CODE)||'',box=m.querySelector('#scb');
+    box.innerHTML='<div class="note">Paste this on the new device with the same password. Useless without the password.</div><div class="code" id="cdv" style="margin-top:8px"></div><button class="btn ghost" id="cpy" style="width:100%;margin-top:8px">Copy code</button>';
+    box.querySelector('#cdv').textContent=code;
+    box.querySelector('#cpy').onclick=function(){if(navigator.clipboard)navigator.clipboard.writeText(code);this.textContent='Copied'};
+  };
   m.querySelector('#s1').value=s.start;m.querySelector('#s4').value=s.end;stepper(m,'s2',s.dur);
   var rcol=s.recColor;(function(){var box=m.querySelector('#rc');function paint(){box.innerHTML='';COLORS.forEach(function(c){var b=el('<button class="sw c-'+c+(rcol===c?' on':'')+'" aria-label="'+c+'"></button>');b.onclick=function(){rcol=c;paint()};box.appendChild(b)})}paint()})();
   m.querySelector('#s3').value=s.buf;
