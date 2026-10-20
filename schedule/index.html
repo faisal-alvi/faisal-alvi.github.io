@@ -172,7 +172,7 @@ html.vo .blk,html.vo .blk.flow{cursor:default}
       <button data-v="2">2 days</button>
       <button data-v="3">3 days</button>
       <button data-v="7">Week</button>
-    </div><span class="sp"></span><button class="ib" id="undo" aria-label="Undo"></button><button class="ib" id="redo" aria-label="Redo"></button><button class="ib" id="fit" aria-label="Auto-fit"></button><button class="ib" id="gs" aria-label="Google Calendar sync"></button></div>
+    </div><span class="sp"></span><button class="ib" id="undo" aria-label="Undo"></button><button class="ib" id="redo" aria-label="Redo"></button><button class="ib" id="fit" aria-label="Auto-fit"></button><button class="ib" id="gs" aria-label="Google Calendar sync"></button><button class="ib" id="rsa" aria-label="Re-sync everything"></button></div>
     <div id="board"></div>
   </div>
 </div>
@@ -693,10 +693,10 @@ function gCreate(date,task){
 function gDelete(task){
   gApi('DELETE',calPath()+'/'+encodeURIComponent(task.gid)).catch(function(e){toast(e.message)});
 }
-function gSync(){
+function gSync(wide){
   var btn=$('gs');btn.disabled=true;setStatus('Syncing Google Calendar…');
-  var vis=visibleDates(),t=todayStr();
-  var min=vis[0]<addDays(t,-3)?vis[0]:addDays(t,-3),maxV=vis[vis.length-1],max=maxV>addDays(t,30)?maxV:addDays(t,30);
+  var vis=visibleDates(),t=todayStr(),back=wide===true?-30:-3,fwd=wide===true?90:30;
+  var min=vis[0]<addDays(t,back)?vis[0]:addDays(t,back),maxV=vis[vis.length-1],max=maxV>addDays(t,fwd)?maxV:addDays(t,fwd);
   var all=[];
   function page(tok){
     var q='?singleEvents=true&orderBy=startTime&maxResults=250&timeMin='+encodeURIComponent(pd(min).toISOString())+'&timeMax='+encodeURIComponent(pd(addDays(max,1)).toISOString())+(tok?'&pageToken='+encodeURIComponent(tok):'');
@@ -724,6 +724,15 @@ function gSync(){
     });
     persist();render();toast('Synced '+n+' event'+(n===1?'':'s')+' from Google Calendar.');
   }).catch(function(e){setStatus('');toast(e.message)}).then(function(){btn.disabled=false});
+}
+
+function resyncAll(){
+  if(!S.data)return;
+  var b=$('rsa');b.disabled=true;setStatus('Re-syncing everything…');
+  var first=S.dirty?new Promise(function(res){clearTimeout(saveTimer);flush();setTimeout(res,1500)}):Promise.resolve();
+  first.then(function(){return pullRemote()}).then(function(x){return open(S.key,x)}).then(function(d){
+    if(d.updated>S.data.updated){S.data=norm(d);S.base=snap();HIST.undo=[];HIST.redo=[];render()}
+  }).catch(function(){}).then(function(){b.disabled=false;gSync(true)});
 }
 
 /* ---------- sheets ---------- */
@@ -987,7 +996,7 @@ paintVO();
 $('vw').onclick=function(){VO=!VO;lsSet('sch.vo',VO?'1':'0');paintVO();toast(VO?'View only on. Editing is disabled.':'Editing enabled.')};
 $('reload').innerHTML=ic('reload');$('reload').onclick=function(){location.reload()};
 $('gear').onclick=settingsSheet;
-$('gs').innerHTML=ic('cal')+' Calendar sync';$('gs').onclick=gSync;
+$('gs').innerHTML=ic('cal')+' Calendar sync';$('gs').onclick=function(){gSync()};$('rsa').innerHTML=ic('reload')+' Re-sync all';$('rsa').onclick=resyncAll;
 $('undo').innerHTML=ic('undo')+' Undo';$('redo').innerHTML=ic('redo')+' Redo';$('fit').innerHTML=ic('fit')+' Auto-fit';$('undo').onclick=undo;$('redo').onclick=redo;$('fit').onclick=autoFit;
 document.addEventListener('keydown',function(e){
   if(VO||!(e.metaKey||e.ctrlKey)||!S.data||document.querySelector('.modal'))return;
