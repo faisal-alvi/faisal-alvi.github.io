@@ -683,6 +683,13 @@ function gPush(date,task){
   gApi('PATCH',calPath()+'/'+encodeURIComponent(task.gid),{summary:task.t,start:{dateTime:st.toISOString()},end:{dateTime:en.toISOString()}})
     .then(function(){setStatus('Saved to Google Calendar')}).catch(function(e){toast(e.message)});
 }
+function gCreate(date,task){
+  if(VO)return;
+  var dd=pd(date),st=new Date(dd.getFullYear(),dd.getMonth(),dd.getDate(),0,task.lock),en=new Date(st.getTime()+task.d*60000);
+  gApi('POST',calPath(),{summary:task.t,start:{dateTime:st.toISOString()},end:{dateTime:en.toISOString()}})
+    .then(function(ev){task.gid=ev.id;task.gcal=true;persist();render();toast('Added to Google Calendar')})
+    .catch(function(e){toast(e.message)});
+}
 function gDelete(task){
   gApi('DELETE',calPath()+'/'+encodeURIComponent(task.gid)).catch(function(e){toast(e.message)});
 }
@@ -741,6 +748,7 @@ function taskSheet(date,task,startMin){
     '<div class="note" style="margin-top:6px">Lock keeps this task at its time. Other tasks move around it.</div>'+
     stepHtml('du','Length')+
     '<label>Buffer after this task</label><div class="seg" id="bf"><button data-n="0">On</button><button data-n="1">Off</button></div>'+
+    '<label>Google Calendar</label><div class="seg" id="gg"><button data-g="1">On</button><button data-g="0">Off</button></div>'+
     '<div id="rpw"><label>Repeat</label><div class="seg" id="rp"><button data-r="none">Never</button><button data-r="daily">Daily</button><button data-r="weekly">Weekly</button></div></div>'+
     '<label>Color</label><div class="sws" id="cl"></div>'+
     '<div class="acts"><button class="btn ghost del" id="rm" aria-label="Delete">'+ic('trash')+'</button><button class="btn" id="sv">Save</button></div>');
@@ -757,6 +765,10 @@ function taskSheet(date,task,startMin){
   lk.onclick=function(){lockOn=!lockOn;paintLock()};
   st.onchange=function(){lockOn=true;paintLock()};
   function paintRec(){[].forEach.call(m.querySelectorAll('#rp button'),function(b){b.classList.toggle('on',b.dataset.r===rec)})}
+  var gOn=!!task.gcal;
+  function paintG(){[].forEach.call(m.querySelectorAll('#gg button'),function(b){b.classList.toggle('on',(b.dataset.g==='1')===gOn)})}
+  paintG();
+  m.querySelector('#gg').onclick=function(e){if(e.target.dataset.g!=null){gOn=e.target.dataset.g==='1';paintG()}};
   var nb=!!task.nobuf;
   function paintBuf(){[].forEach.call(m.querySelectorAll('#bf button'),function(b){b.classList.toggle('on',(b.dataset.n==='1')===nb)})}
   paintBuf();
@@ -770,10 +782,14 @@ function taskSheet(date,task,startMin){
   };
   m.querySelector('#sv').onclick=function(){
     var title=ti.value.trim();if(!title){ti.focus();return}
+    var wasG=!!task.gcal;
+    if(wasG&&!gOn&&!confirm('Remove this event from Google Calendar too?'))return;
     task.t=title;task.d=Math.max(5,+m.querySelector('#du').value||30);
     task.lock=lockOn&&st.value?toMin(st.value):null;task.color=col;task.nobuf=nb;
+    if(wasG&&!gOn){gDelete(task);task.gcal=false;delete task.gid}
     if(task.gcal)task.lock=toMin(st.value);else applyRepeat(date,task,rec);
-    if(task.gcal)gPush(date,task);
+    if(!wasG&&gOn&&rec==='none'&&!task.tpl){task.lock=toMin(st.value);gCreate(date,task)}
+    else if(task.gcal)gPush(date,task);
     m.remove();touch();render();
   };
   setTimeout(function(){ti.focus()},50);
