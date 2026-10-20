@@ -415,7 +415,7 @@ function startApp(key,salt,cfg,remember){
     norm(S.data);S.base=snap();
     wall.classList.add('hidden');app.classList.remove('hidden');
     render();setStatus('Synced');
-    if(gcfg())gLoad().catch(function(){});
+    gLoad().catch(function(){});
     seal(key,salt,S.data).then(function(x){lsSet(K_CACHE,x)});
   });
 }
@@ -648,7 +648,8 @@ function autoFit(){
 
 /* ---------- Google Calendar ---------- */
 var G={token:null,exp:0};
-function gcfg(){return S.data&&S.data.settings.gcal}
+var GCLIENT='160789140447-ki0oma4phnceon77pheapavhg2jn2ius.apps.googleusercontent.com';
+function gcfg(){var c=S.data&&S.data.settings.gcal;return {clientId:GCLIENT,calId:(c&&c.calId)||'primary'}}
 function gLoad(){
   return new Promise(function(res,rej){
     if(window.google&&google.accounts&&google.accounts.oauth2)return res();
@@ -657,7 +658,7 @@ function gLoad(){
 }
 function gToken(){
   if(G.token&&Date.now()<G.exp-60000)return Promise.resolve(G.token);
-  var cfg=gcfg();if(!cfg||!cfg.clientId)return Promise.reject(new Error('Add your Google Client ID in Settings'));
+  var cfg=gcfg();
   return gLoad().then(function(){return new Promise(function(res,rej){
     var tc=google.accounts.oauth2.initTokenClient({client_id:cfg.clientId,scope:'https://www.googleapis.com/auth/calendar.events',
       callback:function(r){if(r.error)return rej(new Error(r.error));G.token=r.access_token;G.exp=Date.now()+(+r.expires_in||3600)*1000;res(G.token)},
@@ -686,8 +687,6 @@ function gDelete(task){
   gApi('DELETE',calPath()+'/'+encodeURIComponent(task.gid)).catch(function(e){toast(e.message)});
 }
 function gSync(){
-  var cfg=gcfg();
-  if(!cfg||!cfg.clientId){toast('Add your Google Client ID in Settings first.');settingsSheet();return}
   var btn=$('gs');btn.disabled=true;setStatus('Syncing Google Calendar…');
   var vis=visibleDates(),t=todayStr();
   var min=vis[0]<addDays(t,-3)?vis[0]:addDays(t,-3),maxV=vis[vis.length-1],max=maxV>addDays(t,30)?maxV:addDays(t,30);
@@ -840,8 +839,8 @@ function settingsSheet(){
     '<label>Color of repeating tasks</label><div class="sws" id="rc"></div>'+
     '<label>Daily events</label><div id="evs"></div>'+
     '<button class="btn ghost" id="ae" style="width:100%;margin-top:10px">'+ic('plus')+' Add daily event</button>'+
-    '<label>Google Calendar</label><input type="text" id="gc1" placeholder="Client ID (…apps.googleusercontent.com)" autocomplete="off"><input type="text" id="gc2" placeholder="Calendar ID (blank = primary)" autocomplete="off" style="margin-top:8px">'+
-    '<div class="note">Create a Web OAuth client in Google Cloud, enable the Google Calendar API, and add this site as an authorized JavaScript origin. Then use Calendar sync.</div>'+
+    '<label>Google Calendar</label><input type="text" id="gc2" placeholder="Calendar ID (blank = your main calendar)" autocomplete="off">'+
+    '<div class="note">Use the Calendar sync button in the top bar to connect with Google.</div>'+
     '<label>Add another device</label><button class="btn ghost" id="sc" style="width:100%">Show device code</button><div id="scb"></div>'+
     '<div class="acts"><button class="btn" id="ok">Save</button></div>');
   m.querySelector('#sc').onclick=function(){
@@ -850,7 +849,7 @@ function settingsSheet(){
     box.querySelector('#cdv').textContent=code;
     box.querySelector('#cpy').onclick=function(){if(navigator.clipboard)navigator.clipboard.writeText(code);this.textContent='Copied'};
   };
-  var gcfg=s.gcal||{};m.querySelector('#gc1').value=gcfg.clientId||'';m.querySelector('#gc2').value=gcfg.calId||'';
+  var gc0=s.gcal||{};m.querySelector('#gc2').value=gc0.calId&&gc0.calId!=='primary'?gc0.calId:'';
   m.querySelector('#s1').value=s.start;m.querySelector('#s4').value=s.end;stepper(m,'s2',s.dur);
   var rcol=s.recColor;(function(){var box=m.querySelector('#rc');function paint(){box.innerHTML='';COLORS.forEach(function(c){var b=el('<button class="sw c-'+c+(rcol===c?' on':'')+'" aria-label="'+c+'"></button>');b.onclick=function(){rcol=c;paint()};box.appendChild(b)})}paint()})();
   m.querySelector('#s3').value=s.buf;
@@ -866,7 +865,7 @@ function settingsSheet(){
   m.querySelector('#ae').onclick=function(){m.remove();evSheet(null)};
   m.querySelector('#ok').onclick=function(){
     s.start=m.querySelector('#s1').value||s.start;s.end=m.querySelector('#s4').value||s.end;s.recColor=rcol;
-    var cid=m.querySelector('#gc1').value.trim();s.gcal=cid?{clientId:cid,calId:m.querySelector('#gc2').value.trim()||'primary'}:null;if(cid)gLoad().catch(function(){});
+    s.gcal={calId:m.querySelector('#gc2').value.trim()||'primary'};
     s.dur=Math.max(5,+m.querySelector('#s2').value||30);
     s.buf=Math.max(0,+m.querySelector('#s3').value||0);
     m.remove();touch();render();
