@@ -97,6 +97,8 @@ header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 0;pa
 .wrap.full{max-width:none}
 .grip{touch-action:none;cursor:grab;color:var(--mute);padding:4px 4px 4px 0;user-select:none;-webkit-user-select:none;display:none;align-items:center;align-self:stretch}
 @media(max-width:700px),(pointer:coarse){.grip{display:flex;min-width:26px}.blk.flow{cursor:pointer}}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#111827;color:#fff;border-radius:12px;padding:12px 18px;z-index:80;max-width:90vw;box-shadow:var(--shadow);font-size:14px}
 .ib:disabled{opacity:.35;cursor:default}
 .grip .i{width:18px}
 .chk{width:30px;height:30px;border-radius:50%;border:2px solid var(--accent);background:transparent;padding:0;flex:none;display:flex;align-items:center;justify-content:center;color:var(--accent-ink)}
@@ -155,18 +157,16 @@ header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 0;pa
       <span id="range"></span>
       <span class="sp"></span>
       <span id="status"></span>
-      <button class="ib" id="undo" aria-label="Undo"></button>
-      <button class="ib" id="redo" aria-label="Redo"></button>
       <button class="ib" id="theme" aria-label="Light or dark"></button>
       <button class="ib" id="gear" aria-label="Settings"></button>
       <button class="ib" id="lock" aria-label="Lock"></button>
     </header>
-    <div class="seg" id="views" style="margin-bottom:14px;width:max-content;max-width:100%">
+    <div class="bar"><div class="seg" id="views">
       <button data-v="1">Day</button>
       <button data-v="2">2 days</button>
       <button data-v="3">3 days</button>
       <button data-v="7">Week</button>
-    </div>
+    </div><span class="sp"></span><button class="ib" id="undo" aria-label="Undo"></button><button class="ib" id="redo" aria-label="Redo"></button><button class="ib" id="fit" aria-label="Auto-fit"></button></div>
     <div id="board"></div>
   </div>
 </div>
@@ -188,6 +188,7 @@ var P={
   plus:'<path d="M12 5v14M5 12h14"/>',
   check:'<path d="M5 12l5 5 9-10"/>',
   dots:'<circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/>',
+  fit:'<path d="M4 4h16M4 20h16M12 8v8M9 11l3-3 3 3M9 13l3 3 3-3"/>',
   undo:'<path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/>',
   redo:'<path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 0 0 0 12h3"/>',
   grip:'<circle cx="9" cy="6" r="1.3"/><circle cx="15" cy="6" r="1.3"/><circle cx="9" cy="12" r="1.3"/><circle cx="15" cy="12" r="1.3"/><circle cx="9" cy="18" r="1.3"/><circle cx="15" cy="18" r="1.3"/>'
@@ -594,6 +595,47 @@ function dayEl(dt){
   return wrap;
 }
 
+/* ---------- auto-fit: move tasks into earlier free gaps when they fit ---------- */
+function toast(msg){
+  var old=document.querySelector('.toast');if(old)old.remove();
+  var t=el('<div class="toast"></div>');t.textContent=msg;document.body.appendChild(t);
+  setTimeout(function(){t.remove()},3500);
+}
+function fitDay(date){
+  var d=day(date);if(!d||!d.tasks.length)return 0;
+  var set=S.data.settings,buf=set.buf,dow=pd(date).getDay();
+  var base=toMin(d.start);if(date===todayStr())base=Math.max(base,nowCeil());
+  var occ=[],keep=[],movers=[];
+  S.data.events.forEach(function(ev){if(!ev.days||ev.days.indexOf(dow)>=0)occ.push({s:toMin(ev.start),e:toMin(ev.start)+ev.d,nb:false})});
+  d.tasks.forEach(function(t){
+    if(t.lock!=null){occ.push({s:t.lock,e:t.lock+t.d,nb:!!t.nobuf});keep.push(t)}
+    else if(t.done)keep.push(t);
+    else movers.push(t);
+  });
+  layout(date).forEach(function(it){if(it.flow&&it.o.done)occ.push({s:it.s,e:it.e,nb:!!it.o.nobuf})});
+  var placed=[];
+  movers.forEach(function(t){
+    var b=t.nobuf?0:buf,x=base,g=0;
+    for(;g<200;g++){
+      var hit=null;
+      for(var i=0;i<occ.length;i++){var o=occ[i];if(x<o.e+(o.nb?0:buf)&&x+t.d+b>o.s){hit=o;break}}
+      if(!hit)break;
+      x=Math.max(x+1,hit.e+(hit.nb?0:buf));
+    }
+    occ.push({s:x,e:x+t.d,nb:!!t.nobuf});placed.push({t:t,s:x});
+  });
+  placed.sort(function(a,b){return a.s-b.s});
+  var oldIds=movers.map(function(t){return t.id}),newIds=placed.map(function(p){return p.t.id}),n=0;
+  for(var k=0;k<newIds.length;k++)if(newIds[k]!==oldIds[k])n++;
+  if(n)d.tasks=keep.concat(placed.map(function(p){return p.t}));
+  return n;
+}
+function autoFit(){
+  var n=0;visibleDates().forEach(function(dt){materialize(dt);n+=fitDay(dt)});
+  if(n){touch();render();toast('Moved '+n+' task'+(n>1?'s':'')+' into free time. Undo to revert.')}
+  else toast('Nothing to move. Your tasks already use the free time.');
+}
+
 /* ---------- sheets ---------- */
 function modal(html){
   var m=el('<div class="modal"><div class="sheet">'+html+'</div></div>');
@@ -828,7 +870,7 @@ $('next').onclick=function(){step(1)};
 $('tod').onclick=function(){S.anchor=todayStr();render()};
 $('lock').onclick=function(){idbDel('key').then(function(){location.reload()},function(){location.reload()})};
 $('gear').onclick=settingsSheet;
-$('undo').innerHTML=ic('undo');$('redo').innerHTML=ic('redo');$('undo').onclick=undo;$('redo').onclick=redo;
+$('undo').innerHTML=ic('undo')+' Undo';$('redo').innerHTML=ic('redo')+' Redo';$('fit').innerHTML=ic('fit')+' Auto-fit';$('undo').onclick=undo;$('redo').onclick=redo;$('fit').onclick=autoFit;
 document.addEventListener('keydown',function(e){
   if(!(e.metaKey||e.ctrlKey)||!S.data||document.querySelector('.modal'))return;
   var t=e.target&&e.target.tagName;if(t==='INPUT'||t==='TEXTAREA')return;
