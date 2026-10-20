@@ -455,9 +455,9 @@ function layout(date){
     if(isToday&&!t.done&&s<nc)s=nc;
     for(;;){
       var hit=null;
-      for(var i=0;i<pinned.length;i++){var p=pinned[i];if(s<p.e+buf&&s+t.d>p.s-(t.nobuf?0:buf)){hit=p;break}}
+      for(var i=0;i<pinned.length;i++){var p=pinned[i];if(s<p.e+(p.o.nobuf?0:buf)&&s+t.d>p.s-(t.nobuf?0:buf)){hit=p;break}}
       if(!hit||guard++>60)break;
-      s=Math.max(s+1,hit.e+buf);
+      s=Math.max(s+1,hit.e+(hit.o.nobuf?0:buf));
     }
     placed.push({kind:'task',o:t,s:s,e:s+t.d,flow:true});
     cur=s+t.d+(t.nobuf?0:buf);
