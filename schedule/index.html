@@ -765,7 +765,7 @@ function taskSheet(date,task,startMin){
   lk.onclick=function(){lockOn=!lockOn;paintLock()};
   st.onchange=function(){lockOn=true;paintLock()};
   function paintRec(){[].forEach.call(m.querySelectorAll('#rp button'),function(b){b.classList.toggle('on',b.dataset.r===rec)})}
-  var gOn=!!task.gcal;
+  var gOn=!!task.gcal||!task.tpl;
   function paintG(){[].forEach.call(m.querySelectorAll('#gg button'),function(b){b.classList.toggle('on',(b.dataset.g==='1')===gOn)})}
   paintG();
   m.querySelector('#gg').onclick=function(e){if(e.target.dataset.g!=null){gOn=e.target.dataset.g==='1';paintG()}};
