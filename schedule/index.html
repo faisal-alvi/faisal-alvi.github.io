@@ -436,6 +436,7 @@ function materialize(date){
 }
 
 /* layout: locked tasks and daily events keep their time, the rest flow in order with a buffer between them */
+function nowCeil(){var n=new Date();return Math.ceil((n.getHours()*60+n.getMinutes()+(n.getSeconds()?1:0))/5)*5}
 function layout(date){
   var d=day(date),set=S.data.settings,start=toMin(d?d.start:set.start),buf=set.buf,dow=pd(date).getDay();
   var pinned=[],flow=[],placed=[];
@@ -445,9 +446,10 @@ function layout(date){
   (d?d.tasks:[]).forEach(function(t){
     if(t.lock!=null)pinned.push({kind:'task',o:t,s:t.lock,e:t.lock+t.d,locked:true});else flow.push(t);
   });
-  var cur=start;
+  var cur=start,isToday=date===todayStr(),nc=nowCeil();
   flow.forEach(function(t){
     var s=cur,guard=0;
+    if(isToday&&!t.done&&s<nc)s=nc;
     for(;;){
       var hit=null;
       for(var i=0;i<pinned.length;i++){var p=pinned[i];if(s<p.e+buf&&s+t.d>p.s-(t.nobuf?0:buf)){hit=p;break}}
@@ -535,7 +537,8 @@ function dayEl(dt){
   function fill(to){
     var gap=to-cursor;if(gap<=0)return;
     if(started&&prevBuf){var bl=Math.min(set.buf,gap);if(bl>0){bufRow(cursor,bl);cursor+=bl;gap-=bl}}
-    if(gap>=5)freeRow(cursor,cursor+gap);
+    var fs=Math.max(cursor,dt===todayStr()?nowCeil():0);
+    if(cursor+gap-fs>=5)freeRow(fs,cursor+gap);
     cursor+=gap;
   }
   items.forEach(function(it){
@@ -823,7 +826,12 @@ document.addEventListener('keydown',function(e){
 document.addEventListener('visibilitychange',function(){if(!document.hidden&&S.data)sync()});
 window.addEventListener('online',function(){if(S.data)sync()});
 setInterval(function(){if(S.data&&!document.hidden)sync()},60000);
-setInterval(function(){if(S.data&&!document.hidden)placeNow()},30000);
+var lastBucket=nowCeil();
+setInterval(function(){
+  if(!S.data||document.hidden)return;
+  var b=nowCeil();
+  if(b!==lastBucket&&!document.querySelector('.modal,.ghost-blk')){lastBucket=b;render()}else placeNow();
+},30000);
 
 /* ---------- boot ---------- */
 if(!window.crypto||!crypto.subtle){document.body.textContent='This browser is unsupported.'}
