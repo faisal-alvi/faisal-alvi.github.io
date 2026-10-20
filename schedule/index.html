@@ -79,6 +79,9 @@ header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 0;pa
 .nowline{position:absolute;left:-6px;right:-6px;height:0;border-top:2px solid #ef4444;z-index:5;pointer-events:none}
 .nowline::before{content:"";position:absolute;left:-1px;top:-6px;width:10px;height:10px;border-radius:50%;background:#ef4444}
 .nowline span{position:absolute;right:0;top:-20px;font-size:11px;font-weight:600;color:#fff;background:#ef4444;border-radius:6px;padding:1px 6px}
+.blk.clash{border-color:#f59e0b;border-width:2px;box-shadow:0 0 0 3px rgba(245,158,11,.4)}
+.blk.clash .tm{color:#b45309;font-weight:600}
+[data-theme=dark] .blk.clash .tm{color:#fbbf24}
 .free{background:#ecfdf5;border:1px dashed #6ee7b7;border-radius:12px;padding:8px 12px;margin-top:0;color:#047857;font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .buf{border-radius:8px;margin-top:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--mute);overflow:hidden;background:repeating-linear-gradient(135deg,transparent 0 6px,var(--line) 6px 8px)}
 .buf span{background:var(--panel);padding:0 8px;border-radius:6px}
@@ -532,6 +535,14 @@ function dayEl(dt){
     var r=el('<div class="buf">'+(g*PX>=18?'<span>'+dur(g)+' buffer</span>':'')+'</div>');
     r.style.height=(g*PX)+'px';r.dataset.s=s0;r.dataset.e=s0+g;list.appendChild(r);
   }
+  var clash={};
+  items.forEach(function(a,i){
+    if(a.o.done)return;
+    items.forEach(function(b,j){
+      if(i===j||b.o.done)return;
+      if(a.s<b.e&&b.s<a.e)(clash[a.o.id]=clash[a.o.id]||[]).push(b.o.t);
+    });
+  });
   var prevBuf=false;
   // gap before the next point: buffer of the previous item first, then whatever is left is free time
   function fill(to){
@@ -546,7 +557,7 @@ function dayEl(dt){
     var late=!isEv&&!o.tpl&&!o.done&&it.e>wEnd;
     fill(it.s);
     started=true;prevBuf=!o.nobuf;
-    var b=el('<div class="blk c-'+colorOf(o,isEv)+(isEv?' ev':'')+(!isEv&&o.done?' done':'')+(it.locked?' locked':'')+(it.flow?' flow':'')+(late?' late':'')+'" data-id="'+o.id+'" data-flow="'+(it.flow?1:0)+'"></div>');
+    var b=el('<div class="blk c-'+colorOf(o,isEv)+(isEv?' ev':'')+(!isEv&&o.done?' done':'')+(it.locked?' locked':'')+(it.flow?' flow':'')+(late?' late':'')+(clash[o.id]?' clash':'')+'" data-id="'+o.id+'" data-flow="'+(it.flow?1:0)+'"></div>');
     b.dataset.s=it.s;b.dataset.e=it.e;var h=Math.max(MINH,o.d*PX);b.style.height=h+'px';if(h<60)b.classList.add('short');
     if(it.e>cursor)cursor=it.e;
     if(it.flow){
@@ -563,6 +574,7 @@ function dayEl(dt){
     var body=el('<div class="bd"></div>');
     var title=el('<div class="tt"></div>');title.textContent=o.t;
     var tm=el('<div class="tm">'+hm(it.s)+' – '+hm(it.e)+' · '+dur(o.d)+(late?' · past '+hm(wEnd):'')+'</div>');
+    if(clash[o.id])tm.textContent+=' · overlaps '+clash[o.id][0]+(clash[o.id].length>1?' +'+(clash[o.id].length-1):'');
     body.appendChild(title);body.appendChild(tm);b.appendChild(body);
     var bad='';if(it.locked)bad+=ic('lock');if(o.tpl||isEv)bad+=ic('repeat');
     if(bad)b.appendChild(el('<div class="badges">'+bad+'</div>'));
