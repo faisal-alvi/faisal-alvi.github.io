@@ -511,7 +511,7 @@ function render(){
   var a=pd(dates[0]),b=pd(dates[dates.length-1]);
   $('range').textContent=dates.length===1?DOW[a.getDay()]+' '+MON[a.getMonth()]+' '+a.getDate():MON[a.getMonth()]+' '+a.getDate()+' – '+(a.getMonth()!==b.getMonth()?MON[b.getMonth()]+' ':'')+b.getDate();
   dates.forEach(function(dt){materialize(dt);board.appendChild(dayEl(dt))});
-  updHist();placeNow();
+  updHist();placeNow();gReconcile();
 }
 function placeNow(){
   var old=document.querySelectorAll('.nowline');for(var i=0;i<old.length;i++)old[i].remove();
@@ -677,18 +677,49 @@ function gApi(method,path,body){
     return r.json();
   });
 }
+function gStart(date,task){
+  if(task.lock!=null)return task.lock;
+  var it=layout(date).filter(function(x){return x.o===task})[0];
+  return it?it.s:null;
+}
+function gTimes(date,start,d){
+  var dd=pd(date),st=new Date(dd.getFullYear(),dd.getMonth(),dd.getDate(),0,start);
+  return {start:{dateTime:st.toISOString()},end:{dateTime:new Date(st.getTime()+d*60000).toISOString()}};
+}
 function gPush(date,task){
   if(!task.gcal||VO)return;
-  var dd=pd(date),st=new Date(dd.getFullYear(),dd.getMonth(),dd.getDate(),0,task.lock),en=new Date(st.getTime()+task.d*60000);
-  gApi('PATCH',calPath()+'/'+encodeURIComponent(task.gid),{summary:task.t,start:{dateTime:st.toISOString()},end:{dateTime:en.toISOString()}})
-    .then(function(){setStatus('Saved to Google Calendar')}).catch(function(e){toast(e.message)});
+  var s0=gStart(date,task);if(s0==null)return;
+  var tm=gTimes(date,s0,task.d);
+  gApi('PATCH',calPath()+'/'+encodeURIComponent(task.gid),{summary:task.t,start:tm.start,end:tm.end})
+    .then(function(){task.gS=s0;task.gD=task.d;persist();setStatus('Saved to Google Calendar')}).catch(function(e){toast(e.message)});
 }
-function gCreate(date,task,quiet){
+function gCreate(date,task,quiet,startMin){
   if(VO)return Promise.resolve();
-  var dd=pd(date),st=new Date(dd.getFullYear(),dd.getMonth(),dd.getDate(),0,task.lock),en=new Date(st.getTime()+task.d*60000);
-  return gApi('POST',calPath(),{summary:task.t,start:{dateTime:st.toISOString()},end:{dateTime:en.toISOString()}})
-    .then(function(ev){task.gid=ev.id;task.gcal=true;if(!quiet){persist();render();toast('Added to Google Calendar')}return true})
+  var s0=startMin!=null?startMin:gStart(date,task);
+  if(s0==null)return Promise.resolve();
+  var tm=gTimes(date,s0,task.d);
+  return gApi('POST',calPath(),{summary:task.t,start:tm.start,end:tm.end})
+    .then(function(ev){task.gid=ev.id;task.gcal=true;task.gflow=task.lock==null;task.gS=s0;task.gD=task.d;if(!quiet){persist();render();toast('Added to Google Calendar')}return true})
     .catch(function(e){if(!quiet)toast(e.message);else throw e});
+}
+var recT=null;
+function patchTimes(dt,o,s0){
+  var tm=gTimes(dt,s0,o.d);
+  return gApi('PATCH',calPath()+'/'+encodeURIComponent(o.gid),{start:tm.start,end:tm.end}).then(function(){o.gS=s0;o.gD=o.d});
+}
+// tasks that flow keep their Google event in step with where they land
+function gReconcile(){
+  if(!S.data||VO||!G.token||Date.now()>G.exp-60000)return;
+  var t=todayStr(),jobs=[];
+  visibleDates().forEach(function(dt){
+    if(dt<t)return;
+    layout(dt).forEach(function(it){var o=it.o;if(it.kind==='task'&&o.gcal&&o.gflow&&!o.done&&(o.gS!==it.s||o.gD!==o.d))jobs.push({dt:dt,o:o,s:it.s})});
+  });
+  if(!jobs.length)return;
+  clearTimeout(recT);
+  recT=setTimeout(function(){
+    jobs.reduce(function(p,j){return p.then(function(){return patchTimes(j.dt,j.o,j.s)})},Promise.resolve()).then(function(){persist()}).catch(function(e){toast(e.message)});
+  },1500);
 }
 function gDelete(task){
   gApi('DELETE',calPath()+'/'+encodeURIComponent(task.gid)).catch(function(e){toast(e.message)});
@@ -719,7 +750,7 @@ function gSync(wide){
     Object.keys(got).forEach(function(id){
       var g=got[id],dd=day(g.date,true),ex=null;
       dd.tasks.forEach(function(x){if(x.gcal&&x.gid===id)ex=x});
-      if(ex){ex.t=g.t;ex.lock=g.lock;ex.d=g.d}else dd.tasks.push({id:'g_'+id,gid:id,gcal:true,t:g.t,d:g.d,lock:g.lock,done:false,nobuf:false});
+      if(ex){ex.t=g.t;if(ex.gflow){if(g.lock!==ex.gS){ex.lock=g.lock;ex.gflow=false;ex.gS=g.lock}if(g.d!==ex.gD){ex.d=g.d;ex.gD=g.d}}else{ex.lock=g.lock;ex.d=g.d}}else dd.tasks.push({id:'g_'+id,gid:id,gcal:true,t:g.t,d:g.d,lock:g.lock,done:false,nobuf:false});
       n++;
     });
     persist();render();toast('Synced '+n+' event'+(n===1?'':'s')+' from Google Calendar.');
@@ -733,12 +764,12 @@ function gPushAll(){
     layout(dt).forEach(function(it){
       var o=it.o;
       if(it.kind!=='task'||o.gcal||o.tpl||o.done||o.gOff)return;
-      o.lock=it.s;jobs.push({dt:dt,o:o});
+      jobs.push({dt:dt,o:o,s:it.s});
     });
   });
   if(!jobs.length)return Promise.resolve();
   var made=0,chain=Promise.resolve();
-  jobs.forEach(function(j){chain=chain.then(function(){return gCreate(j.dt,j.o,true).then(function(){made++})})});
+  jobs.forEach(function(j){chain=chain.then(function(){return gCreate(j.dt,j.o,true,j.s).then(function(){made++})})});
   return chain.then(function(){persist();render();toast('Created '+made+' event'+(made===1?'':'s')+' in Google Calendar.')},
     function(e){persist();render();toast('Created '+made+' of '+jobs.length+'. '+e.message)});
 }
@@ -780,7 +811,7 @@ function taskSheet(date,task,startMin){
   var ti=m.querySelector('#ti'),st=m.querySelector('#st'),lk=m.querySelector('#lk'),col=task.color||null;
   swatchRow(m.querySelector('#cl'),col,function(c){col=c});
   if(task.gcal){
-    m.querySelector('#rpw').style.display='none';lockOn=true;
+    m.querySelector('#rpw').style.display='none';if(!task.gflow)lockOn=true;
     m.querySelector('.sheet').insertBefore(el('<div class="note" style="margin:0 0 10px">Synced with Google Calendar. Changes here are sent to Google.</div>'),m.querySelector('.sheet').firstChild);
   }
   ti.value=task.t;st.value=toHHMM(task.lock!=null?task.lock:startMin);
@@ -812,9 +843,9 @@ function taskSheet(date,task,startMin){
     task.t=title;task.d=Math.max(5,+m.querySelector('#du').value||30);
     task.lock=lockOn&&st.value?toMin(st.value):null;task.color=col;task.nobuf=nb;
     if(gOn)delete task.gOff;else task.gOff=true;
-    if(wasG&&!gOn){gDelete(task);task.gcal=false;delete task.gid}
-    if(task.gcal)task.lock=toMin(st.value);else applyRepeat(date,task,rec);
-    if(!wasG&&gOn&&rec==='none'&&!task.tpl){task.lock=toMin(st.value);gCreate(date,task)}
+    if(wasG&&!gOn){gDelete(task);task.gcal=false;delete task.gid;delete task.gflow}
+    if(task.gcal){if(lockOn)task.lock=toMin(st.value);task.gflow=task.lock==null}else applyRepeat(date,task,rec);
+    if(!wasG&&gOn&&rec==='none'&&!task.tpl)gCreate(date,task,false,toMin(st.value))
     else if(task.gcal)gPush(date,task);
     m.remove();touch();render();
   };
