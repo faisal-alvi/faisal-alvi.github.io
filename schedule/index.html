@@ -172,7 +172,7 @@ html.vo .blk,html.vo .blk.flow{cursor:default}
       <button data-v="2">2 days</button>
       <button data-v="3">3 days</button>
       <button data-v="7">Week</button>
-    </div><span class="sp"></span><button class="ib" id="undo" aria-label="Undo"></button><button class="ib" id="redo" aria-label="Redo"></button><button class="ib" id="fit" aria-label="Auto-fit"></button></div>
+    </div><span class="sp"></span><button class="ib" id="undo" aria-label="Undo"></button><button class="ib" id="redo" aria-label="Redo"></button><button class="ib" id="fit" aria-label="Auto-fit"></button><button class="ib" id="gs" aria-label="Google Calendar sync"></button></div>
     <div id="board"></div>
   </div>
 </div>
@@ -197,6 +197,7 @@ var P={
   fit:'<path d="M4 4h16M4 20h16M12 8v8M9 11l3-3 3 3M9 13l3 3 3-3"/>',
   reload:'<path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/>',
   eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
   undo:'<path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/>',
   redo:'<path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 0 0 0 12h3"/>',
   grip:'<circle cx="9" cy="6" r="1.3"/><circle cx="15" cy="6" r="1.3"/><circle cx="9" cy="12" r="1.3"/><circle cx="15" cy="12" r="1.3"/><circle cx="9" cy="18" r="1.3"/><circle cx="15" cy="18" r="1.3"/>'
@@ -414,6 +415,7 @@ function startApp(key,salt,cfg,remember){
     norm(S.data);S.base=snap();
     wall.classList.add('hidden');app.classList.remove('hidden');
     render();setStatus('Synced');
+    if(gcfg())gLoad().catch(function(){});
     seal(key,salt,S.data).then(function(x){lsSet(K_CACHE,x)});
   });
 }
@@ -478,7 +480,7 @@ function layout(date){
 
 /* ---------- colors ---------- */
 var COLORS=['blue','teal','green','orange','red','pink','purple','gray'];
-function colorOf(o,isEv){return o.color||(isEv?'purple':(o.tpl?S.data.settings.recColor:'blue'))}
+function colorOf(o,isEv){return o.color||(isEv?'purple':(o.gcal?'orange':o.tpl?S.data.settings.recColor:'blue'))}
 function swatchRow(box,cur,cb){
   function paint(){
     box.innerHTML='';
@@ -563,7 +565,7 @@ function dayEl(dt){
   }
   items.forEach(function(it){
     var o=it.o,isEv=it.kind==='ev';
-    var late=!isEv&&!o.tpl&&!o.done&&it.e>wEnd;
+    var late=!isEv&&!o.tpl&&!o.gcal&&!o.done&&it.e>wEnd;
     fill(it.s);
     started=true;prevBuf=!o.nobuf;
     var b=el('<div class="blk c-'+colorOf(o,isEv)+(isEv?' ev':'')+(!isEv&&o.done?' done':'')+(it.locked?' locked':'')+(it.flow?' flow':'')+(late?' late':'')+(clash[o.id]?' clash':'')+'" data-id="'+o.id+'" data-flow="'+(it.flow?1:0)+'"></div>');
@@ -585,7 +587,7 @@ function dayEl(dt){
     var tm=el('<div class="tm">'+hm(it.s)+' – '+hm(it.e)+' · '+dur(o.d)+(late?' · past '+hm(wEnd):'')+'</div>');
     if(clash[o.id])tm.textContent+=' · overlaps '+clash[o.id][0]+(clash[o.id].length>1?' +'+(clash[o.id].length-1):'');
     body.appendChild(title);body.appendChild(tm);b.appendChild(body);
-    var bad='';if(it.locked)bad+=ic('lock');if(o.tpl||isEv)bad+=ic('repeat');
+    var bad='';if(it.locked)bad+=ic('lock');if(o.tpl||isEv)bad+=ic('repeat');if(o.gcal)bad+=ic('cal');
     if(bad)b.appendChild(el('<div class="badges">'+bad+'</div>'));
     if(!isEv){var rs=el('<div class="rs" title="Drag to resize"></div>');rs.onpointerdown=function(e){startResize(e,o,b,tm,it.s)};rs.onclick=function(e){e.stopPropagation()};b.appendChild(rs)}
     b.onclick=function(){if(VO||Date.now()-noClick<400)return;if(isEv)evSheet(o);else taskSheet(dt,o,it.s)};
@@ -644,6 +646,80 @@ function autoFit(){
   else toast('Nothing to move. Your tasks already use the free time.');
 }
 
+/* ---------- Google Calendar ---------- */
+var G={token:null,exp:0};
+function gcfg(){return S.data&&S.data.settings.gcal}
+function gLoad(){
+  return new Promise(function(res,rej){
+    if(window.google&&google.accounts&&google.accounts.oauth2)return res();
+    var sc=document.createElement('script');sc.src='https://accounts.google.com/gsi/client';sc.onload=function(){res()};sc.onerror=function(){rej(new Error('Could not load Google sign-in'))};document.head.appendChild(sc);
+  });
+}
+function gToken(){
+  if(G.token&&Date.now()<G.exp-60000)return Promise.resolve(G.token);
+  var cfg=gcfg();if(!cfg||!cfg.clientId)return Promise.reject(new Error('Add your Google Client ID in Settings'));
+  return gLoad().then(function(){return new Promise(function(res,rej){
+    var tc=google.accounts.oauth2.initTokenClient({client_id:cfg.clientId,scope:'https://www.googleapis.com/auth/calendar.events',
+      callback:function(r){if(r.error)return rej(new Error(r.error));G.token=r.access_token;G.exp=Date.now()+(+r.expires_in||3600)*1000;res(G.token)},
+      error_callback:function(e){rej(new Error('Google sign-in: '+((e&&e.type)||'failed')))}});
+    tc.requestAccessToken({prompt:''});
+  })});
+}
+function calPath(){return '/calendars/'+encodeURIComponent((gcfg()&&gcfg().calId)||'primary')+'/events'}
+function gApi(method,path,body){
+  return gToken().then(function(t){
+    return fetch('https://www.googleapis.com/calendar/v3'+path,{method:method,headers:{'Authorization':'Bearer '+t,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
+  }).then(function(r){
+    if(r.status===204)return null;
+    if(r.status===401)G.token=null;
+    if(!r.ok)return r.text().then(function(t){var m='';try{m=JSON.parse(t).error.message}catch(e){}throw new Error('Google '+r.status+(m?': '+m:''))});
+    return r.json();
+  });
+}
+function gPush(date,task){
+  if(!task.gcal||VO)return;
+  var dd=pd(date),st=new Date(dd.getFullYear(),dd.getMonth(),dd.getDate(),0,task.lock),en=new Date(st.getTime()+task.d*60000);
+  gApi('PATCH',calPath()+'/'+encodeURIComponent(task.gid),{summary:task.t,start:{dateTime:st.toISOString()},end:{dateTime:en.toISOString()}})
+    .then(function(){setStatus('Saved to Google Calendar')}).catch(function(e){toast(e.message)});
+}
+function gDelete(task){
+  gApi('DELETE',calPath()+'/'+encodeURIComponent(task.gid)).catch(function(e){toast(e.message)});
+}
+function gSync(){
+  var cfg=gcfg();
+  if(!cfg||!cfg.clientId){toast('Add your Google Client ID in Settings first.');settingsSheet();return}
+  var btn=$('gs');btn.disabled=true;setStatus('Syncing Google Calendar…');
+  var vis=visibleDates(),t=todayStr();
+  var min=vis[0]<addDays(t,-3)?vis[0]:addDays(t,-3),maxV=vis[vis.length-1],max=maxV>addDays(t,30)?maxV:addDays(t,30);
+  var all=[];
+  function page(tok){
+    var q='?singleEvents=true&orderBy=startTime&maxResults=250&timeMin='+encodeURIComponent(pd(min).toISOString())+'&timeMax='+encodeURIComponent(pd(addDays(max,1)).toISOString())+(tok?'&pageToken='+encodeURIComponent(tok):'');
+    return gApi('GET',calPath()+q).then(function(r){all=all.concat(r.items||[]);return r.nextPageToken?page(r.nextPageToken):null});
+  }
+  page().then(function(){
+    var got={},n=0;
+    all.forEach(function(ev){
+      if(ev.status==='cancelled'||!ev.start||!ev.start.dateTime)return;
+      var me=(ev.attendees||[]).filter(function(a){return a.self})[0];
+      if(me&&me.responseStatus==='declined')return;
+      var sd=new Date(ev.start.dateTime),ed=new Date(ev.end.dateTime),sm=sd.getHours()*60+sd.getMinutes();
+      var d=Math.max(5,Math.round((ed-sd)/60000));if(sm+d>1440)d=1440-sm;
+      got[ev.id]={date:ds(sd),t:ev.summary||'(no title)',lock:sm,d:Math.max(5,d)};
+    });
+    for(var dt in S.data.days){
+      if(dt<min||dt>max)continue;
+      S.data.days[dt].tasks=S.data.days[dt].tasks.filter(function(x){return !(x.gcal&&!(got[x.gid]&&got[x.gid].date===dt))});
+    }
+    Object.keys(got).forEach(function(id){
+      var g=got[id],dd=day(g.date,true),ex=null;
+      dd.tasks.forEach(function(x){if(x.gcal&&x.gid===id)ex=x});
+      if(ex){ex.t=g.t;ex.lock=g.lock;ex.d=g.d}else dd.tasks.push({id:'g_'+id,gid:id,gcal:true,t:g.t,d:g.d,lock:g.lock,done:false,nobuf:false});
+      n++;
+    });
+    persist();render();toast('Synced '+n+' event'+(n===1?'':'s')+' from Google Calendar.');
+  }).catch(function(e){setStatus('');toast(e.message)}).then(function(){btn.disabled=false});
+}
+
 /* ---------- sheets ---------- */
 function modal(html){
   var m=el('<div class="modal"><div class="sheet">'+html+'</div></div>');
@@ -666,11 +742,15 @@ function taskSheet(date,task,startMin){
     '<div class="note" style="margin-top:6px">Lock keeps this task at its time. Other tasks move around it.</div>'+
     stepHtml('du','Length')+
     '<label>Buffer after this task</label><div class="seg" id="bf"><button data-n="0">On</button><button data-n="1">Off</button></div>'+
-    '<label>Repeat</label><div class="seg" id="rp"><button data-r="none">Never</button><button data-r="daily">Daily</button><button data-r="weekly">Weekly</button></div>'+
+    '<div id="rpw"><label>Repeat</label><div class="seg" id="rp"><button data-r="none">Never</button><button data-r="daily">Daily</button><button data-r="weekly">Weekly</button></div></div>'+
     '<label>Color</label><div class="sws" id="cl"></div>'+
     '<div class="acts"><button class="btn ghost del" id="rm" aria-label="Delete">'+ic('trash')+'</button><button class="btn" id="sv">Save</button></div>');
   var ti=m.querySelector('#ti'),st=m.querySelector('#st'),lk=m.querySelector('#lk'),col=task.color||null;
   swatchRow(m.querySelector('#cl'),col,function(c){col=c});
+  if(task.gcal){
+    m.querySelector('#rpw').style.display='none';lockOn=true;
+    m.querySelector('.sheet').insertBefore(el('<div class="note" style="margin:0 0 10px">Synced with Google Calendar. Changes here are sent to Google.</div>'),m.querySelector('.sheet').firstChild);
+  }
   ti.value=task.t;st.value=toHHMM(task.lock!=null?task.lock:startMin);
   stepper(m,'du',task.d);
   function paintLock(){lk.className='tog'+(lockOn?' on':'');lk.innerHTML=ic(lockOn?'lock':'unlock')}
@@ -685,6 +765,7 @@ function taskSheet(date,task,startMin){
   paintRec();
   m.querySelector('#rp').onclick=function(e){if(e.target.dataset.r){rec=e.target.dataset.r;paintRec()}};
   m.querySelector('#rm').onclick=function(){
+    if(task.gcal){if(!confirm('Also delete this event from Google Calendar?'))return;gDelete(task)}
     var f=findTask(task.id);if(f)S.data.days[f.date].tasks.splice(f.i,1);
     m.remove();touch();render();
   };
@@ -692,7 +773,8 @@ function taskSheet(date,task,startMin){
     var title=ti.value.trim();if(!title){ti.focus();return}
     task.t=title;task.d=Math.max(5,+m.querySelector('#du').value||30);
     task.lock=lockOn&&st.value?toMin(st.value):null;task.color=col;task.nobuf=nb;
-    applyRepeat(date,task,rec);
+    if(task.gcal)task.lock=toMin(st.value);else applyRepeat(date,task,rec);
+    if(task.gcal)gPush(date,task);
     m.remove();touch();render();
   };
   setTimeout(function(){ti.focus()},50);
@@ -758,6 +840,8 @@ function settingsSheet(){
     '<label>Color of repeating tasks</label><div class="sws" id="rc"></div>'+
     '<label>Daily events</label><div id="evs"></div>'+
     '<button class="btn ghost" id="ae" style="width:100%;margin-top:10px">'+ic('plus')+' Add daily event</button>'+
+    '<label>Google Calendar</label><input type="text" id="gc1" placeholder="Client ID (…apps.googleusercontent.com)" autocomplete="off"><input type="text" id="gc2" placeholder="Calendar ID (blank = primary)" autocomplete="off" style="margin-top:8px">'+
+    '<div class="note">Create a Web OAuth client in Google Cloud, enable the Google Calendar API, and add this site as an authorized JavaScript origin. Then use Calendar sync.</div>'+
     '<label>Add another device</label><button class="btn ghost" id="sc" style="width:100%">Show device code</button><div id="scb"></div>'+
     '<div class="acts"><button class="btn" id="ok">Save</button></div>');
   m.querySelector('#sc').onclick=function(){
@@ -766,6 +850,7 @@ function settingsSheet(){
     box.querySelector('#cdv').textContent=code;
     box.querySelector('#cpy').onclick=function(){if(navigator.clipboard)navigator.clipboard.writeText(code);this.textContent='Copied'};
   };
+  var gcfg=s.gcal||{};m.querySelector('#gc1').value=gcfg.clientId||'';m.querySelector('#gc2').value=gcfg.calId||'';
   m.querySelector('#s1').value=s.start;m.querySelector('#s4').value=s.end;stepper(m,'s2',s.dur);
   var rcol=s.recColor;(function(){var box=m.querySelector('#rc');function paint(){box.innerHTML='';COLORS.forEach(function(c){var b=el('<button class="sw c-'+c+(rcol===c?' on':'')+'" aria-label="'+c+'"></button>');b.onclick=function(){rcol=c;paint()};box.appendChild(b)})}paint()})();
   m.querySelector('#s3').value=s.buf;
@@ -781,6 +866,7 @@ function settingsSheet(){
   m.querySelector('#ae').onclick=function(){m.remove();evSheet(null)};
   m.querySelector('#ok').onclick=function(){
     s.start=m.querySelector('#s1').value||s.start;s.end=m.querySelector('#s4').value||s.end;s.recColor=rcol;
+    var cid=m.querySelector('#gc1').value.trim();s.gcal=cid?{clientId:cid,calId:m.querySelector('#gc2').value.trim()||'primary'}:null;if(cid)gLoad().catch(function(){});
     s.dur=Math.max(5,+m.querySelector('#s2').value||30);
     s.buf=Math.max(0,+m.querySelector('#s3').value||0);
     m.remove();touch();render();
@@ -801,7 +887,7 @@ function startResize(e,task,blk,tm,startMin){
   }
   function up(){
     document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);document.removeEventListener('pointercancel',up);
-    if(moved){touch()}render();
+    if(moved){touch();if(task.gcal){var ff=findTask(task.id);if(ff)gPush(ff.date,task)}}render();
   }
   document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up);document.addEventListener('pointercancel',up);
 }
@@ -886,6 +972,7 @@ paintVO();
 $('vw').onclick=function(){VO=!VO;lsSet('sch.vo',VO?'1':'0');paintVO();toast(VO?'View only on. Editing is disabled.':'Editing enabled.')};
 $('reload').innerHTML=ic('reload');$('reload').onclick=function(){location.reload()};
 $('gear').onclick=settingsSheet;
+$('gs').innerHTML=ic('cal')+' Calendar sync';$('gs').onclick=gSync;
 $('undo').innerHTML=ic('undo')+' Undo';$('redo').innerHTML=ic('redo')+' Redo';$('fit').innerHTML=ic('fit')+' Auto-fit';$('undo').onclick=undo;$('redo').onclick=redo;$('fit').onclick=autoFit;
 document.addEventListener('keydown',function(e){
   if(VO||!(e.metaKey||e.ctrlKey)||!S.data||document.querySelector('.modal'))return;
