@@ -686,26 +686,29 @@ function gTimes(date,start,d){
   var dd=pd(date),st=new Date(dd.getFullYear(),dd.getMonth(),dd.getDate(),0,start);
   return {start:{dateTime:st.toISOString()},end:{dateTime:new Date(st.getTime()+d*60000).toISOString()}};
 }
+var GPRE='[App] ';
+function fromApp(x){return !/^g_/.test(x.id)}
+function gSum(x){return fromApp(x)?GPRE+x.t:x.t}
 function gPush(date,task){
   if(!task.gcal||VO)return;
   var s0=gStart(date,task);if(s0==null)return;
   var tm=gTimes(date,s0,task.d);
-  gApi('PATCH',calPath()+'/'+encodeURIComponent(task.gid),{summary:task.t,start:tm.start,end:tm.end})
-    .then(function(){task.gS=s0;task.gD=task.d;persist();setStatus('Saved to Google Calendar')}).catch(function(e){toast(e.message)});
+  gApi('PATCH',calPath()+'/'+encodeURIComponent(task.gid),{summary:gSum(task),start:tm.start,end:tm.end})
+    .then(function(){task.gS=s0;task.gD=task.d;task.gP=true;persist();setStatus('Saved to Google Calendar')}).catch(function(e){toast(e.message)});
 }
 function gCreate(date,task,quiet,startMin){
   if(VO)return Promise.resolve();
   var s0=startMin!=null?startMin:gStart(date,task);
   if(s0==null)return Promise.resolve();
   var tm=gTimes(date,s0,task.d);
-  return gApi('POST',calPath(),{summary:task.t,start:tm.start,end:tm.end})
-    .then(function(ev){task.gid=ev.id;task.gcal=true;task.gflow=task.lock==null;task.gS=s0;task.gD=task.d;if(!quiet){persist();render();toast('Added to Google Calendar')}return true})
+  return gApi('POST',calPath(),{summary:gSum(task),start:tm.start,end:tm.end})
+    .then(function(ev){task.gid=ev.id;task.gcal=true;task.gflow=task.lock==null;task.gS=s0;task.gD=task.d;task.gP=true;if(!quiet){persist();render();toast('Added to Google Calendar')}return true})
     .catch(function(e){if(!quiet)toast(e.message);else throw e});
 }
 var recT=null;
 function patchTimes(dt,o,s0){
   var tm=gTimes(dt,s0,o.d);
-  return gApi('PATCH',calPath()+'/'+encodeURIComponent(o.gid),{start:tm.start,end:tm.end}).then(function(){o.gS=s0;o.gD=o.d});
+  return gApi('PATCH',calPath()+'/'+encodeURIComponent(o.gid),{summary:gSum(o),start:tm.start,end:tm.end}).then(function(){o.gS=s0;o.gD=o.d;o.gP=true});
 }
 // tasks that flow keep their Google event in step with where they land
 function gReconcile(){
@@ -713,7 +716,7 @@ function gReconcile(){
   var t=todayStr(),jobs=[];
   visibleDates().forEach(function(dt){
     if(dt<t)return;
-    layout(dt).forEach(function(it){var o=it.o;if(it.kind==='task'&&o.gcal&&o.gflow&&!o.done&&(o.gS!==it.s||o.gD!==o.d))jobs.push({dt:dt,o:o,s:it.s})});
+    layout(dt).forEach(function(it){var o=it.o;if(it.kind==='task'&&o.gcal&&o.gflow&&!o.done&&(o.gS!==it.s||o.gD!==o.d||(fromApp(o)&&!o.gP)))jobs.push({dt:dt,o:o,s:it.s})});
   });
   if(!jobs.length)return;
   clearTimeout(recT);
@@ -741,7 +744,7 @@ function gSync(wide){
       if(me&&me.responseStatus==='declined')return;
       var sd=new Date(ev.start.dateTime),ed=new Date(ev.end.dateTime),sm=sd.getHours()*60+sd.getMinutes();
       var d=Math.max(5,Math.round((ed-sd)/60000));if(sm+d>1440)d=1440-sm;
-      got[ev.id]={date:ds(sd),t:ev.summary||'(no title)',lock:sm,d:Math.max(5,d)};
+      got[ev.id]={date:ds(sd),t:(ev.summary||'(no title)').replace(/^\[App\] /,''),lock:sm,d:Math.max(5,d)};
     });
     for(var dt in S.data.days){
       if(dt<min||dt>max)continue;
@@ -750,7 +753,7 @@ function gSync(wide){
     Object.keys(got).forEach(function(id){
       var g=got[id],dd=day(g.date,true),ex=null;
       dd.tasks.forEach(function(x){if(x.gcal&&x.gid===id)ex=x});
-      if(ex){ex.t=g.t;if(ex.gflow){if(g.lock!==ex.gS){ex.lock=g.lock;ex.gflow=false;ex.gS=g.lock}if(g.d!==ex.gD){ex.d=g.d;ex.gD=g.d}}else{ex.lock=g.lock;ex.d=g.d}}else dd.tasks.push({id:'g_'+id,gid:id,gcal:true,t:g.t,d:g.d,lock:g.lock,done:false,nobuf:false});
+      if(ex){ex.t=g.t;if(fromApp(ex)){if(g.d!==ex.gD){ex.d=g.d;ex.gD=g.d}}else if(ex.gflow){if(g.lock!==ex.gS){ex.lock=g.lock;ex.gflow=false;ex.gS=g.lock}if(g.d!==ex.gD){ex.d=g.d;ex.gD=g.d}}else{ex.lock=g.lock;ex.d=g.d}}else dd.tasks.push({id:'g_'+id,gid:id,gcal:true,t:g.t,d:g.d,lock:g.lock,done:false,nobuf:false});
       n++;
     });
     persist();render();toast('Synced '+n+' event'+(n===1?'':'s')+' from Google Calendar.');
