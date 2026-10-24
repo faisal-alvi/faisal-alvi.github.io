@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JH7HHRTV6"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-7JH7HHRTV6');
-    </script>
+    <!-- GA4 + consent defaults + CTA events (docs/analytics.md) -->
+    <script defer src="/assets/js/analytics.js" data-consent-banner="true"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -2154,7 +2148,7 @@
                     <text x="65" y="31" font-weight="700" letter-spacing="2" font-size="17" fill="#ffffff">FAISAL ALVI</text>
                 </svg>
             </div>
-            <p class="v2-footer-copy">&copy; <script>document.write(new Date().getFullYear())</script> Faisal Alvi. All rights reserved.</p>
+            <p class="v2-footer-copy">&copy; <script>document.write(new Date().getFullYear())</script> Faisal Alvi. All rights reserved. <a href="/privacy/">Privacy</a></p>
             <div class="v2-footer-social">
                 <a href="https://www.linkedin.com/in/alvifaisal/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ti-linkedin"></i></a>
                 <a href="https://github.com/faisal-alvi" target="_blank" rel="noopener" aria-label="GitHub"><i class="ti-github"></i></a>
@@ -2206,12 +2200,7 @@
                     body: formData
                 });
                 if (res.ok) {
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'contact_form_submitted', {
-                            'event_category': 'engagement',
-                            'event_label': 'Contact Form v2'
-                        });
-                    }
+                    if (window.faTrack) { window.faTrack('generate_lead', { form_type: 'contact_form' }); }
                     form.reset();
                     form.style.display = 'none';
                     if (thanks) { thanks.style.display = 'block'; }

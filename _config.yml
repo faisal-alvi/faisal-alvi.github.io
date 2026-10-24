@@ -66,6 +66,7 @@ plugins:
 # URL, not just noindexed. Only index.html (the live homepage) is served.
 exclude:
   - README.md
+  - docs
   - Gemfile
   - Gemfile.lock
   - node_modules
