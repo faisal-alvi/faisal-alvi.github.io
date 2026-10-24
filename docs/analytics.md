@@ -38,9 +38,12 @@ No form values, emails, names or free text are sent. `cta_text` is the link labe
 
 ### GA4 Admin steps (Faisal)
 1. Admin > Events: mark **`generate_lead`** as key event. Nothing else yet (booking clicks are intent, not conversions; a Calendly click is not a booking).
-2. Admin > Custom definitions > event-scoped dimensions: `cta_location`, `service_name`, `page_type`, `content_slug`, `cta_destination`. Skip `cta_text` (high cardinality) unless needed.
+2. Admin > Custom definitions > event-scoped dimensions: `cta_location`, `service_name`, `page_type`, `content_slug`, `cta_destination`. `cta_text` is registered too (few fixed button labels).
 3. Admin > Data retention: set 14 months.
 4. Optional: link Search Console (Admin > Product links) for organic landing-page queries.
+
+### Calendly click report (which button, which page)
+Explore > Free form. Rows: `Page path and screen class` + `CTA location` + `CTA text`. Values: `Event count`. Filter: `Event name` exactly matches `click_book_call`. Compare against `page_view` of the same page for a click rate. `cta_location` values: nav, footer, sticky, post_cta, article_body, header, body.
 
 ## 4. UTM convention
 Lowercase, hyphens, always `utm_source`, `utm_medium`, `utm_campaign`.
@@ -55,7 +58,7 @@ Never put UTMs on internal links (resets attribution). Inconsistent case/spellin
 - No fingerprinting, no user IDs, no Google Signals configuration changed.
 
 ## 6. Validation
-Done (code-level, node + jsdom): each event name/params for home click types, `view_service` on a service page, no event on self-links, no gtag.js on localhost, gtag.js on production host, consent defaults precede `config`. Not done: Jekyll build (Jekyll not installed locally), live GA4/DebugView/Tag Assistant, mobile nav, consent banner UI, real form submit. The browser pane refused localhost.
+Live check (production, Chrome): `page_view` (with `page_type`), `view_service` and `click_book_call` fire once each and reach GA4 collect; banner renders. Done (code-level, node + jsdom): each event name/params for home click types, `view_service` on a service page, no event on self-links, no gtag.js on localhost, gtag.js on production host, consent defaults precede `config`. Not done: Jekyll build (Jekyll not installed locally), live GA4/DebugView/Tag Assistant, mobile nav, consent banner UI, real form submit. The browser pane refused localhost.
 
 ### Verify yourself
 1. Push, then open the site with GA4 DebugView (Chrome "Google Analytics Debugger" extension).
