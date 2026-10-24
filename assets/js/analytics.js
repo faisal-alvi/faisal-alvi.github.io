@@ -14,7 +14,7 @@
     var PROD_HOSTS = ['faisalalvi.com', 'www.faisalalvi.com'];
     var IS_PROD = PROD_HOSTS.indexOf(location.hostname) !== -1;
     var BOOKING_HOST = 'calendly.com';
-    // Consent banner is off until Faisal decides to enable it (docs/analytics.md).
+    // Banner is switched on via data-consent-banner="true" on the script tag.
     var SCRIPT = document.currentScript;
     var BANNER_ON = !!(SCRIPT && SCRIPT.getAttribute('data-consent-banner') === 'true');
     var CONSENT_KEY = 'fa_analytics_consent';
@@ -122,8 +122,14 @@
         }
     }, true);
 
-    // ---- Optional consent banner (off by default) -------------------------
-    if (BANNER_ON && !stored) {
+    // ---- Consent banner: only where consent is required -------------------
+    // Browser timezone is a coarse, network-free hint for Europe (EEA, UK, CH).
+    // It over-includes a few non-EEA zones on purpose. Google's IP-based region
+    // defaults above stay the authority for what is actually stored.
+    var tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    var IN_EUROPE = /^Europe\//.test(tz) || ['Atlantic/Reykjavik', 'Atlantic/Canary', 'Atlantic/Madeira', 'Atlantic/Azores'].indexOf(tz) !== -1;
+    if (BANNER_ON && IN_EUROPE && !stored) {
         document.addEventListener('DOMContentLoaded', function () {
             var box = document.createElement('div');
             box.setAttribute('role', 'dialog');

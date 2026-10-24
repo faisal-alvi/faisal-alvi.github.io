@@ -54,7 +54,7 @@ Never put UTMs on internal links (resets attribution). Inconsistent case/spellin
 
 ## 5. Consent and privacy
 - Consent Mode v2 defaults in `analytics.js`: EEA, UK, CH start `analytics_storage=denied` (cookieless pings only, no cookies); elsewhere `granted`. `ad_*` always denied (no ads).
-- **Banner enabled** (`data-consent-banner="true"` on the script tag in `_layouts/default.html` and `index.html`). Accept/Decline have equal weight; choice stored in localStorage; in EEA/UK/CH nothing is stored before Accept. The banner shows to all visitors until answered. Consent Mode is not a substitute for consent. Remove the attribute to turn it off, or swap in a CMP. Privacy policy lives at `/privacy/` (`privacy/index.html`), linked from footers.
+- **Banner enabled** (`data-consent-banner="true"` on the script tag in both templates). Shown only when the browser timezone is European (`Europe/*`, Reykjavik, Canary, Madeira, Azores): a network-free hint that deliberately over-includes. Everyone else: analytics on, no banner. Google's IP-based region defaults (EEA/UK/CH denied) control what is actually stored, so a European visitor with a non-European timezone is simply treated as denied. Accept/Decline equal weight, choice in localStorage. Consent Mode is not a substitute for consent. Privacy policy at `/privacy/`.
 - No fingerprinting, no user IDs, no Google Signals configuration changed.
 
 ## 6. Validation
