@@ -45,6 +45,9 @@ No form values, emails, names or free text are sent. `cta_text` is the link labe
 ### Calendly click report (which button, which page)
 Explore > Free form. Rows: `Page path and screen class` + `CTA location` + `CTA text`. Values: `Event count`. Filter: `Event name` exactly matches `click_book_call`. Compare against `page_view` of the same page for a click rate. `cta_location` values: nav, footer, sticky, post_cta, article_body, header, body.
 
+### Visitor-to-lead funnel (saved Exploration "Visitor to lead funnel")
+GA4 > Explore > "Visitor to lead funnel". Steps: Visited site (`session_start`) > Viewed a service page (`view_service`) > Clicked Book a Call (`click_book_call`) > Sent inquiry (`generate_lead`). Shows users and % at each step, broken down by device. The care plan and audit pages are the "plans" pages (no price list exists). Caveats: Calendly booking completion is unmeasurable; `generate_lead` only fires for the homepage form, so the last step is a different path from the Calendly step, read the two as parallel outcomes. Built by a scheduled task once the events appeared in GA4 (they take up to ~24h). To rebuild by hand: Explore > Funnel exploration template > edit steps as above.
+
 ## 4. UTM convention
 Lowercase, hyphens, always `utm_source`, `utm_medium`, `utm_campaign`.
 - LinkedIn post: `?utm_source=linkedin&utm_medium=social&utm_campaign=<post-slug>`
