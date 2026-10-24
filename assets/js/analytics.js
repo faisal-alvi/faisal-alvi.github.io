@@ -129,7 +129,9 @@
     var tz = '';
     try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
     var IN_EUROPE = /^Europe\//.test(tz) || ['Atlantic/Reykjavik', 'Atlantic/Canary', 'Atlantic/Madeira', 'Atlantic/Azores'].indexOf(tz) !== -1;
-    if (BANNER_ON && IN_EUROPE && !stored) {
+    // ?consent=show forces the banner on any visitor (preview and re-choosing).
+    var FORCE = /[?&]consent=show(&|$)/.test(location.search);
+    if (BANNER_ON && (FORCE || (IN_EUROPE && !stored))) {
         document.addEventListener('DOMContentLoaded', function () {
             var box = document.createElement('div');
             box.setAttribute('role', 'dialog');
