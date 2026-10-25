@@ -1286,6 +1286,26 @@
         }
 
         /* ── Footer ── */
+        /* ── Culpritly section ── */
+        .v2-culp-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: center; }
+        .v2-culp-brand { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; color: #111827; font-weight: 800; font-size: 1.25rem; }
+        .v2-culp-brand em { font-style: normal; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #d9480f; border: 1px solid rgba(217,72,15,0.45); border-radius: 999px; padding: 0.15rem 0.6rem; }
+        .v2-culp-lead { color: #555; line-height: 1.7; margin: 1rem 0; }
+        .v2-culp-list { list-style: none; padding: 0; margin: 0 0 1.5rem; color: #333; }
+        .v2-culp-list li { padding-left: 1.4rem; position: relative; margin-bottom: 0.5rem; }
+        .v2-culp-list li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 8px; height: 8px; border-radius: 50%; background: #FF5A1F; }
+        .v2-culp-btn { display: inline-block; width: auto; }
+        .v2-culp-art { display: flex; justify-content: center; }
+        .v2-culp-art img { width: 160px; height: 160px; border-radius: 36px; box-shadow: 0 20px 60px rgba(255,90,31,0.25); }
+        .v2-tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        .v2-tools-grid .v2-care-teaser { text-align: center; }
+        .v2-tools-grid p { color: #555; font-size: 0.95rem; line-height: 1.6; margin: 0 auto 1.25rem; }
+        .v2-tool-name { font-size: 1.15rem; font-weight: 700; margin: 0 0 0.6rem; }
+        .v2-nav-culp { display: inline-flex; align-items: center; gap: 0.35rem; }
+        .v2-nav-culp img { width: 20px; height: 20px; border-radius: 5px; }
+        @media (max-width: 991px) { .v2-tools-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 767px) { .v2-culp-grid { grid-template-columns: 1fr; } .v2-culp-art { display: none; } }
+
         .v2-footer {
             background: #111827;
             color: #aaa;
@@ -1630,10 +1650,9 @@
                 <a href="#services">Services</a>
                 <a href="#care">Pricing</a>
                 <a href="#work">Work</a>
-                <a href="/case-studies/">Case Studies</a>
+                <a href="#culpritly" class="v2-nav-culp"><img src="/assets/imgs/culpritly-mark.svg" alt="" width="20" height="20">Culpritly</a>
                 <a href="#about">About</a>
                 <a href="/blog/">Blog</a>
-                <a href="#contact">Contact</a>
                 <a href="/woocommerce-ga4-audit/" class="v2-nav-free">Free Audit</a>
                 <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="v2-nav-btn">Book a Call</a>
             </div>
@@ -2067,6 +2086,61 @@
     </section>
 
     <!-- ── CTA ── -->
+    <!-- ── Culpritly (product) ── -->
+    <section class="v2-section-offwhite v2-culp" id="culpritly">
+        <div class="container">
+            <div class="v2-culp-grid">
+                <div>
+                    <div class="v2-culp-brand">
+                        <img src="/assets/imgs/culpritly-mark.svg" width="44" height="44" alt="" loading="lazy">
+                        <span>Culpritly</span>
+                        <em>Early access</em>
+                    </div>
+                    <h2 class="v2-section-title" style="text-align:left;">When checkout quietly breaks, know what did it.</h2>
+                    <p class="v2-culp-lead">Culpritly is a product I'm building for WooCommerce and membership sites that take payments. It records every change on your site, notices when checkout or signups stop working, and explains in plain English what broke, what it cost, and what to try first.</p>
+                    <ul class="v2-culp-list">
+                        <li>Links each failure to the plugin or theme update behind it</li>
+                        <li>Estimates the revenue lost while it was broken</li>
+                        <li>Never auto-fixes anything. You stay in control</li>
+                    </ul>
+                    <a href="/culpritly/" class="v2-btn-primary v2-culp-btn">See Culpritly</a>
+                </div>
+                <div class="v2-culp-art" aria-hidden="true">
+                    <img src="/assets/imgs/culpritly-mark.svg" width="160" height="160" alt="" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Free tools ── -->
+    <section class="v2-section" id="tools">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="v2-section-label">Free Tools</span>
+                <h2 class="v2-section-title">Tools I Built for My Own Workflow</h2>
+                <p class="v2-section-intro" style="margin: 0 auto;">Small browser tools I made to scratch my own itch. Free to use, no sign-up, your data stays in your browser.</p>
+            </div>
+            <div class="v2-tools-grid">
+                <div class="v2-care-teaser">
+                    <h3 class="v2-tool-name">Teamwork Time Logger</h3>
+                    <p>Log and review hours on Teamwork without opening it. Weekly view, quick tasks, ticket estimates.</p>
+                    <a href="/teamwork-timelogger/" class="v2-btn-outline">Open</a>
+                </div>
+                <div class="v2-care-teaser">
+                    <h3 class="v2-tool-name">Personal Schedule</h3>
+                    <p>A drag-and-drop day planner where tasks flow around prayer times and meals. Try the demo.</p>
+                    <a href="/schedule-demo/" class="v2-btn-outline">Try demo</a>
+                </div>
+                <div class="v2-care-teaser">
+                    <h3 class="v2-tool-name">Dev Dashboard</h3>
+                    <p>My GitHub pull requests and review queue on one screen. Tokens never leave your browser.</p>
+                    <a href="/dev-dashboard/" class="v2-btn-outline">Open</a>
+                </div>
+            </div>
+            <p style="text-align:center; margin:1.75rem 0 0;"><a href="/tools/">How to use each tool &rarr;</a></p>
+        </div>
+    </section>
+
     <section class="v2-cta-section">
         <div class="container">
             <span style="display:inline-block; background: rgba(255,255,255,0.18); color:#fff; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; padding:5px 14px; border-radius:20px; margin-bottom:1.25rem;">Free · No obligation</span>

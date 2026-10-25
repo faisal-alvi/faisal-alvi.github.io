@@ -1,0 +1,59 @@
+---
+layout: default
+title: "Tools I Built"
+description: "Small free tools I built for my own work: a Teamwork time logger, a private day planner, and a PR dashboard. What each one does and how to use it."
+permalink: /tools/
+---
+
+<header class="blog-header">
+    <div class="blog-container">
+        <span class="care-eyebrow">Built for my own workflow</span>
+        <h1>Tools I Built</h1>
+        <p>I log a lot of hours and juggle a lot of tickets, so I built small tools to stop doing that by hand. They run entirely in your browser, with no server and no sign-up. Use them if they help.</p>
+    </div>
+</header>
+
+<section class="care-body">
+    <div class="blog-container care-wide">
+
+        <h2 class="care-h2" id="tool-teamwork">Teamwork Time Logger</h2>
+        <p>Log and review hours on Teamwork without opening Teamwork. A week-at-a-glance view, one-click quick tasks, and ticket estimates that show hours logged against a t-shirt size (XS to XXL). Everything is a single HTML file, and your API key never leaves your browser except to talk to Teamwork.</p>
+        <p class="care-hero-actions"><a href="/teamwork-timelogger/" class="care-cta">Open the Time Logger</a></p>
+        <h3 class="tools-h3">How to use it</h3>
+        <ol class="care-steps">
+            <li><strong>Get your API key.</strong> In Teamwork, open your profile, then Edit my details, then the API &amp; Mobile tab, and copy your token.</li>
+            <li><strong>First run.</strong> Enter your Teamwork site (for example <code>yourcompany.teamwork.com</code>) and the key. They are stored in your browser's <code>localStorage</code> only.</li>
+            <li><strong>Log time.</strong> Pick a project and task, tap a quick-time button, set the date, and save. Edit, duplicate or delete any entry inline.</li>
+            <li><strong>Save your repeat tasks</strong> as Quick Tasks, then log them with one click.</li>
+            <li><strong>Paste a ticket URL or ID</strong> into Ticket Lookup to see every entry logged against it, then use the Month Report to copy a project breakdown.</li>
+        </ol>
+
+        <h2 class="care-h2" id="tool-schedule">Personal Schedule</h2>
+        <p>A day planner where tasks have a length and flow around fixed events like prayer times and meals. Drag to move, drag the bottom edge to resize, undo and redo freely. My real copy is password-locked and encrypted in my browser, so the live version is a demo with sample data.</p>
+        <p class="care-hero-actions"><a href="/schedule-demo/" class="care-cta">Try the live demo</a></p>
+        <h3 class="tools-h3">How to use it</h3>
+        <ol class="care-steps">
+            <li><strong>Open the demo.</strong> It runs in memory with sample tasks, so nothing is saved and nothing can break.</li>
+            <li><strong>Add a task</strong> with the Add task box. Give it a duration and it lands in the next free slot.</li>
+            <li><strong>Move and resize.</strong> Drag the grip to reorder, drag the bottom edge to change length. Tasks reflow around your daily events.</li>
+            <li><strong>Set your day.</strong> Tap the working hours button to change start and end for just that day, and use Daily event to block time you never want scheduled over.</li>
+            <li><strong>Mistakes happen.</strong> Undo and redo are in the header.</li>
+        </ol>
+
+        <h2 class="care-h2" id="tool-dashboard">Dev Dashboard</h2>
+        <p>One screen for my GitHub pull requests and review queue, built as a static page. Tokens stay in <code>localStorage</code> and calls go from your browser straight to the API.</p>
+        <p class="care-hero-actions"><a href="/dev-dashboard/" class="care-cta">Open the Dev Dashboard</a></p>
+        <h3 class="tools-h3">How to use it</h3>
+        <ol class="care-steps">
+            <li><strong>Create a GitHub personal access token</strong> that can read your pull requests.</li>
+            <li><strong>Paste it into Settings.</strong> It is kept in your browser only.</li>
+            <li><strong>My PRs</strong> shows what you have open, <strong>Review Queue</strong> shows what is waiting on you.</li>
+        </ol>
+
+        <h2 class="care-h2" id="product">And one I am turning into a product</h2>
+        <p>Culpritly is not a personal tool. It is a paid service that watches WooCommerce and membership-site checkouts and explains, in plain English, what broke and what it cost.</p>
+        <p class="care-hero-actions"><a href="/culpritly/" class="care-cta">See Culpritly</a></p>
+
+        <p class="care-footer-note">Found a bug or want a tool like this built for your team? <a href="mailto:hello@faisalalvi.com">Email me</a>.</p>
+    </div>
+</section>

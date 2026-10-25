@@ -694,3 +694,6 @@ h3.care-tier-name { margin-top: 0; }
 
 .post-cta .post-cta-alt { margin: 1.25rem 0 0; font-size: 0.92rem; }
 .post-cta-alt a { color: #fff; font-weight: 600; }
+
+/* ── Tools page ── */
+.tools-h3 { font-size: 1.05rem; font-weight: 700; margin: 1.25rem 0 0.25rem; color: #0d1117; }
