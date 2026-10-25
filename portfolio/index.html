@@ -1,0 +1,108 @@
+---
+layout: default
+title: "Portfolio: WooCommerce and WordPress Work"
+description: "Official WooCommerce extensions, WordPress.org plugins, core contributions and anonymised client fixes by Faisal Alvi, senior WooCommerce engineer."
+permalink: /portfolio/
+image:
+  path: /assets/imgs/og-portfolio.png
+  width: 1200
+  height: 630
+  alt: "Faisal Alvi portfolio: official WooCommerce extensions, WordPress.org plugins and client fixes"
+extra_css:
+  - /assets/css/portfolio.css
+---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Portfolio: WooCommerce and WordPress Work",
+  "url": "{{ page.url | absolute_url }}",
+  "author": { "@id": "https://faisalalvi.com/#person" },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {% for p in site.data.portfolio %}{
+        "@type": "ListItem",
+        "position": {{ forloop.index }},
+        "item": {
+          "@type": "CreativeWork",
+          "name": {{ p.title | jsonify }},
+          "description": {{ p.summary | jsonify }},
+          "image": "{{ '/assets/imgs/portfolio/' | append: p.slug | append: '.webp' | absolute_url }}"{% if p.link %},
+          "url": "{% if p.internal %}{{ p.link | absolute_url }}{% else %}{{ p.link }}{% endif %}"{% endif %}
+        }
+      }{% unless forloop.last %},{% endunless %}{% endfor %}
+    ]
+  }
+}
+</script>
+
+<header class="blog-header">
+    <div class="blog-container">
+        <h1>Portfolio</h1>
+        <p>Official WooCommerce extensions, WordPress.org plugins and core contributions you can check in public, plus anonymised client fixes.</p>
+    </div>
+</header>
+
+<section class="folio-page">
+    <div class="folio-wrap">
+        <ul class="folio-proof" aria-label="At a glance">
+            <li><strong>13</strong> WordPress releases credited</li>
+            <li><strong>300+</strong> merged PRs across WooCommerce core and 15+ official extensions</li>
+            <li><strong>100,000+</strong> active installs on Simple Local Avatars</li>
+        </ul>
+
+        <div class="folio-filters" role="group" aria-label="Filter projects">
+            <button type="button" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-filter="woo" aria-pressed="false">WooCommerce</button>
+            <button type="button" data-filter="client" aria-pressed="false">Client work</button>
+            <button type="button" data-filter="oss" aria-pressed="false">Open source</button>
+            <button type="button" data-filter="product" aria-pressed="false">Products</button>
+        </div>
+
+        <div class="folio-grid">
+            {% for item in site.data.portfolio %}
+                {% include portfolio-card.html item=item %}
+            {% endfor %}
+            <div class="folio-more" data-cat="all">
+                <div>
+                    <h3>And a lot more that can't be shown.</h3>
+                    <p>12+ years of client work, much of it white-label for agencies or under NDA. These are the pieces with a public record.</p>
+                    <div class="folio-more-stats">
+                        <span><strong>300+</strong> merged WooCommerce PRs</span>
+                        <span><strong>15+</strong> official WooCommerce extensions</span>
+                        <span><strong>13</strong> WordPress releases</span>
+                    </div>
+                    <a class="folio-more-link" href="https://github.com/faisal-alvi" target="_blank" rel="noopener">Check the code on GitHub <span aria-hidden="true">&#8599;</span></a>
+                </div>
+                <div class="folio-more-btns">
+                    <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="folio-btn">Discuss your project</a>
+                    <a href="/case-studies/" class="folio-btn folio-btn-ghost">Read client case studies</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .folio-page { padding: 40px 0 80px; background: #f7f8fc; }
+    .folio-wrap { max-width: 1140px; margin: 0 auto; padding: 0 1.25rem; }
+    .folio-proof { list-style: none; margin: 0 0 2rem; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+    .folio-proof li { background: #fff; border: 1px solid #e6e8f5; border-radius: 10px; padding: 0.7rem 1rem; font-size: 0.9rem; color: #555; }
+    .folio-proof strong { font-family: 'Sora', sans-serif; color: #161a2e; margin-right: 0.3rem; }
+</style>
+
+<script>
+(function () {
+    var buttons = document.querySelectorAll('.folio-filters button');
+    var cards = document.querySelectorAll('.folio-card');
+    buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var f = btn.getAttribute('data-filter');
+            buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+            cards.forEach(function (c) { c.hidden = f !== 'all' && c.getAttribute('data-cat') !== f; });
+        });
+    });
+})();
+</script>

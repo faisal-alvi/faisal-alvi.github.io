@@ -1,0 +1,2297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- GA4 + consent defaults + CTA events (docs/analytics.md) -->
+    <script defer src="/assets/js/analytics.js" data-consent-banner="true"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="description" content="WordPress &amp; WooCommerce developer, Core Contributor, 12+ years. Custom builds, fixes, speed and security for stores, agencies and product teams.">
+    <meta name="author" content="Faisal Alvi">
+    <title>WordPress &amp; WooCommerce Developer | Faisal Alvi</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/imgs/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/imgs/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/imgs/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/imgs/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/imgs/favicon/site.webmanifest">
+    <meta name="theme-color" content="#4338ca">
+
+    <link rel="canonical" href="https://faisalalvi.com/">
+    <link rel="sitemap" type="application/xml" href="https://faisalalvi.com/sitemap.xml">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Preload LCP hero image -->
+    <link rel="preload" as="image" href="assets/imgs/me-amsterdam-800.webp" type="image/webp" fetchpriority="high">
+
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Meyawo main styles -->
+    <link rel="stylesheet" href="assets/css/meyawo.purged.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="assets/css/custom.css?v=5">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="WordPress &amp; WooCommerce Developer | Faisal Alvi">
+    <meta property="og:description" content="WordPress &amp; WooCommerce developer, Core Contributor, 12+ years. Custom builds, fixes, speed and security for stores, agencies and product teams.">
+    <meta property="og:url" content="https://faisalalvi.com/">
+    <meta property="og:image" content="https://faisalalvi.com/assets/imgs/me-amsterdam.jpg">
+    <meta property="og:image:width" content="1553">
+    <meta property="og:image:height" content="1553">
+    <meta property="og:image:alt" content="Faisal Alvi, WordPress and WooCommerce developer">
+    <meta property="og:site_name" content="Faisal Alvi">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WordPress &amp; WooCommerce Developer | Faisal Alvi">
+    <meta name="twitter:description" content="WordPress and WooCommerce developer, Core Contributor, 12+ years. Custom builds, fixes, speed and security. Book a free 20-minute call.">
+    <meta name="twitter:image" content="https://faisalalvi.com/assets/imgs/me-amsterdam.jpg">
+    <meta name="twitter:site" content="@_the_faisal">
+    <meta name="twitter:creator" content="@_the_faisal">
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://faisalalvi.com/#person",
+        "name": "Faisal Alvi",
+        "givenName": "Faisal",
+        "familyName": "Alvi",
+        "jobTitle": "Senior WordPress & WooCommerce Developer",
+        "description": "WordPress Core Contributor and Codeable Certified Expert with 12+ years building custom plugins, WooCommerce extensions, and high-performance WordPress architectures for agencies and enterprise clients.",
+        "url": "https://faisalalvi.com/",
+        "image": "https://faisalalvi.com/assets/imgs/me-amsterdam.jpg",
+        "email": "hello@faisalalvi.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/alvifaisal/",
+          "https://github.com/faisal-alvi",
+          "https://profiles.wordpress.org/faisal03/",
+          "https://twitter.com/_the_faisal",
+          "https://www.codeable.io/developers/faisal-alvi/"
+        ],
+        "knowsAbout": [
+          "WordPress", "WooCommerce", "PHP", "JavaScript", "Custom Plugin Development",
+          "WooCommerce Extensions", "Payment Gateway Integration", "WordPress Performance Optimization",
+          "Gutenberg Block Development", "REST API", "MySQL Query Optimization", "WordPress Multisite"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelance / Independent Consulting"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "IN",
+          "addressLocality": "Ahmedabad",
+          "addressRegion": "Gujarat"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://faisalalvi.com/#service",
+        "name": "Faisal Alvi – WordPress & WooCommerce Development",
+        "url": "https://faisalalvi.com/",
+        "image": "https://faisalalvi.com/assets/imgs/me-amsterdam.jpg",
+        "description": "Senior WordPress and WooCommerce development services: custom plugins, WooCommerce extensions, payment gateway integration, performance optimization, and full-site builds.",
+        "founder": { "@id": "https://faisalalvi.com/#person" },
+        "priceRange": "$$",
+        "areaServed": "Worldwide",
+        "availableLanguage": "English",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "WordPress Development Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Custom WordPress Plugin Development",
+                "description": "Bespoke plugins built to specification using WordPress Coding Standards, with full documentation and handoff."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "WooCommerce Extension Development",
+                "description": "Custom WooCommerce extensions, payment gateways, subscription flows, and multi-vendor solutions."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "WordPress Performance Optimization",
+                "description": "Query optimization, caching strategy, load time reduction, and architecture review for WordPress sites."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "WordPress Site Debugging & Code Review",
+                "description": "Diagnosing plugin conflicts, slow queries, security issues, and legacy code in existing WordPress codebases."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": "https://faisalalvi.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do you build custom plugins from scratch, or only modify existing ones?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Both. I build bespoke WordPress and WooCommerce plugins from the ground up when nothing off-the-shelf fits, and I extend or fix existing plugins when that's the faster, cheaper path. I'll tell you honestly which one your case needs before you commit."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you charge — hourly or fixed price?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Both, depending on the work. Well-defined builds get a fixed quote after I audit the requirements. Open-ended debugging or ongoing work is hourly. Either way you get a written scope first — no vague estimates, no surprise invoices."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will the code be maintainable by my own team later?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Everything ships WordPress-Coding-Standards compliant, documented inline, and with handoff notes. Your next developer won't spend three months reverse-engineering it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you work with agencies as a white-label developer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Regularly. Much of my work is subcontracted through agencies under their brand. You get a senior engineer on your team without the headcount, and I stay invisible to your client if that's what you need."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What makes you different from a cheaper developer on Upwork or Fiverr?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "I'm a WordPress Core Contributor (5.1–7.0+) and a vetted Codeable expert. I've seen the failure patterns that break WordPress and WooCommerce at scale, and I scope from evidence — I read your codebase before I quote."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where are you based, and how does time zone work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "I'm in India (UTC+5:30) and work with clients worldwide, including US and European teams. I overlap with most time zones for at least part of the day and respond within 24 hours."
+            }
+          }
+        ]
+      }
+    ]
+    </script>
+
+    <style>
+        /* ── Reset / Base ── */
+        *, *::before, *::after { box-sizing: border-box; }
+
+        /* Override legacy custom.css rule that adds 240px margin-top to #about on mobile */
+        #about { margin-top: 0 !important; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #333;
+            background: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6,
+        .v2-hero-title,
+        .v2-section-title,
+        .v2-section-title-white,
+        .v2-why-title,
+        .v2-service-title,
+        .v2-problem-title,
+        .v2-approach-body strong,
+        .v2-credential-title,
+        .v2-cta-title,
+        .v2-nav-brand {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        }
+
+        /* ── Nav ── */
+        .v2-nav {
+            background: #fff;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .v2-nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .v2-logo-mark { font-family: 'Sora', -apple-system, sans-serif; }
+
+        .v2-nav-logo svg {
+            height: 46px;
+            width: auto;
+            display: block;
+        }
+
+        .v2-nav-logo img {
+            height: 40px;
+        }
+
+        .v2-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .v2-nav-links a {
+            white-space: nowrap;
+            color: #333;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .v2-nav-links a:hover {
+            color: #4338ca;
+        }
+
+        .v2-nav-btn {
+            background: #4338ca;
+            color: #fff !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            font-weight: 600 !important;
+        }
+
+        .v2-nav-btn:hover {
+            background: #3730a3;
+            color: #fff !important;
+        }
+
+        .v2-nav-links .v2-nav-free {
+            color: #4338ca;
+            font-weight: 600;
+            border: 1px solid #c7d2fe;
+            border-radius: 999px;
+            padding: 0.3rem 0.8rem;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .v2-nav-links .v2-nav-free:hover {
+            background: #eef0ff;
+            border-color: #4338ca;
+        }
+
+        /* Small "Free" badge used on the GA4 audit offer */
+        .free-tag {
+            display: inline-block;
+            background: #eef0ff;
+            color: #4338ca;
+            border: 1px solid #c7d2fe;
+            border-radius: 999px;
+            padding: 0.05em 0.6em;
+            font-size: 0.78em;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            line-height: 1.5;
+            vertical-align: 0.08em;
+        }
+
+        .v2-section-label .free-tag {
+            font-size: 0.95em;
+            margin-right: 0.15em;
+        }
+
+        .v2-promo-strip {
+            background: #fff;
+            border-top: 1px solid #e8eaf6;
+            border-bottom: 1px solid #e8eaf6;
+            padding: 0.85rem 0;
+            text-align: center;
+        }
+
+        .v2-promo-strip p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .v2-promo-strip a {
+            color: #4338ca;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .v2-promo-strip a:hover,
+        .v2-promo-strip a:focus-visible {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .v2-promo-strip p { font-size: 0.88rem; }
+            .v2-promo-strip a { white-space: normal; }
+        }
+
+
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .v2-nav-links a { margin-left: 1.15rem; font-size: 0.9rem; }
+            .v2-nav-links .v2-nav-btn { padding-left: 1rem; padding-right: 1rem; }
+        }
+
+        .v2-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .v2-nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #333;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* Tighter spacing so all nav items stay on one line at small desktop widths */
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .v2-nav-links a { margin-left: 0.9rem; }
+            .v2-nav-links .v2-nav-free { padding: 0.25rem 0.65rem; }
+        }
+
+        /* Tablet: the full link row does not fit, so use the same toggle menu as mobile */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .v2-nav .container { position: relative; flex-wrap: wrap; }
+            .v2-nav-toggle { display: block; }
+            .v2-nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #fff;
+                border-bottom: 1px solid #f0f0f0;
+                padding: 1rem 1.5rem;
+                gap: 0.75rem;
+                z-index: 999;
+            }
+            .v2-nav-links.open { display: flex; }
+            .v2-nav-links a { margin-left: 0; }
+        }
+
+        /* ── Sections ── */
+        .v2-hero {
+            background: linear-gradient(160deg, #eef0ff 0%, #ffffff 55%, #f4f6ff 100%);
+            padding: 100px 0 80px;
+        }
+
+        .v2-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .v2-section-gray {
+            padding: 80px 0;
+            background: #f7f8fc;
+        }
+
+        .v2-section-offwhite {
+            padding: 80px 0;
+            background: #eceef8;
+        }
+
+        .v2-section-dark {
+            padding: 40px 0 80px;
+            background: #253050;
+            color: #fff;
+        }
+
+        /* ── Hero ── */
+        .v2-badge {
+            border: 1px solid #4338ca;
+            color: #4338ca;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .v2-hero-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: #0d1117;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .v2-hero-sub {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .v2-hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 0;
+        }
+
+        .v2-hero-reassure {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.82rem;
+            color: #6b7280;
+            margin: 1rem 0 0;
+        }
+
+        .v2-hero-reassure i {
+            color: #22c55e;
+            font-size: 0.9rem;
+        }
+
+        /* Sticky mobile CTA — hidden on desktop, shown on mobile */
+        .v2-sticky-cta {
+            display: none;
+        }
+
+        .v2-btn-primary {
+            background: #4338ca;
+            color: #fff;
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 2px solid #4338ca;
+            transition: background 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .v2-btn-primary:hover {
+            background: #3730a3;
+            border-color: #3730a3;
+            color: #fff;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        .v2-btn-outline {
+            background: transparent;
+            color: #4338ca;
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 2px solid #4338ca;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .v2-btn-outline:hover {
+            background: #4338ca;
+            color: #fff;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        .v2-stat-row {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .v2-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .v2-stat strong {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4338ca;
+        }
+
+        .v2-stat span {
+            font-size: 0.8rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .v2-photo {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 24px 60px rgba(67, 56, 202, 0.15);
+            display: block;
+        }
+
+        .v2-hero-img-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .v2-hero-img-frame {
+            position: relative;
+            display: inline-block;
+        }
+
+        .v2-float-chip {
+            position: absolute;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            padding: 0.5rem 0.9rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+            color: #0d1117;
+            z-index: 2;
+        }
+
+        .v2-float-chip .chip-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4338ca;
+            flex-shrink: 0;
+        }
+
+        .v2-float-chip-wp {
+            top: 24px;
+            right: -24px;
+        }
+
+        .v2-float-chip-codeable {
+            bottom: 80px;
+            left: -24px;
+        }
+
+        .v2-float-chip-projects {
+            bottom: 28px;
+            right: -16px;
+        }
+
+        /* ── "What You Get" cards ── */
+        .v2-why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .v2-why-card {
+            background: #fff;
+            border: 1px solid #e8eaf6;
+            border-radius: 14px;
+            padding: 1.75rem 1.75rem 1.75rem 1.75rem;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .v2-why-card:hover {
+            box-shadow: 0 8px 28px rgba(67,56,202,0.1);
+            transform: translateY(-2px);
+        }
+
+        .v2-why-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: #f0eeff;
+            color: #4338ca;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .v2-why-title {
+            font-weight: 700;
+            color: #0d1117;
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .v2-why-desc {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ── Approach section ── */
+        .v2-approach-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e0e3ec;
+        }
+
+        .v2-approach-item:last-child {
+            border-bottom: none;
+        }
+
+        .v2-approach-num {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #4338ca;
+            line-height: 1;
+            flex-shrink: 0;
+            width: 40px;
+            padding-top: 3px;
+        }
+
+        .v2-approach-body strong {
+            display: block;
+            font-size: 1.05rem;
+            color: #0d1117;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .v2-approach-body p {
+            font-size: 0.9rem;
+            color: #555;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .v2-approach-section {
+            background: #f7f8fc;
+            padding: 80px 0 50px;
+            border-bottom: 1px solid #e0e3ec;
+        }
+
+        /* ── Clients ── */
+        .v2-clients-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 1.5rem 2rem;
+            width: 100%;
+        }
+
+        .v2-client-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            flex: 0 0 auto;
+        }
+
+        .v2-client-logo {
+            height: 64px;
+            width: auto;
+            max-width: 160px;
+            object-fit: contain;
+            filter: none;
+            transition: opacity 0.2s;
+        }
+
+        .v2-client-logo:hover {
+            opacity: 0.8;
+        }
+
+        .v2-trusted-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
+
+        .v2-codeable-wrap {
+            margin-top: 2.5rem;
+            text-align: center;
+        }
+
+        /* ── Problem cards ── */
+        .v2-problem-card {
+            background: #243050;
+            border-left: 3px solid #4338ca;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .v2-problem-title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .v2-problem-desc {
+            color: #aab8c2;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .v2-risk {
+            background: rgba(67, 56, 202, 0.15);
+            border-left: 2px solid #4338ca;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.85rem;
+            color: #c8b6ff;
+            border-radius: 4px;
+        }
+
+        .v2-risk strong {
+            color: #c8b6ff;
+        }
+
+        /* ── Service cards ── */
+        .v2-service-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 2rem;
+            height: 100%;
+            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+        }
+
+        .v2-service-card:hover {
+            border-color: #4338ca;
+            box-shadow: 0 8px 25px rgba(67, 56, 202, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .v2-service-icon {
+            font-size: 2.5rem;
+            color: #4338ca;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .v2-service-title {
+            font-weight: 600;
+            color: #0d1117;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .v2-service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .v2-service-list li {
+            padding: 0.3rem 0 0.3rem 1.5rem;
+            font-size: 0.9rem;
+            color: #555;
+            position: relative;
+        }
+
+        .v2-service-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #4338ca;
+        }
+
+        /* ── Care Plan teaser ── */
+        .v2-offers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .v2-offers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .v2-care-teaser {
+            background: #f7f8fc;
+            border: 1px solid #e8eaf6;
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .v2-care-teaser-plain {
+            background: transparent;
+            border: 1px dashed #d6d9e8;
+        }
+
+        .v2-care-teaser-plain .v2-btn-outline {
+            margin-top: auto;
+        }
+
+        .v2-care-teaser-wide {
+            grid-column: 1 / -1;
+        }
+
+        .v2-care-teaser-wide p {
+            max-width: 620px;
+        }
+
+        .v2-care-teaser-wide .v2-btn-outline {
+            align-self: center;
+        }
+
+        .v2-care-teaser-price {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #4338ca;
+            margin-top: auto;
+            margin-bottom: 1.25rem;
+        }
+
+        /* ── Open Source ── */
+        .v2-credential-box {
+            background: #f7f8fc;
+            border-radius: 12px;
+            padding: 2rem;
+            height: 100%;
+        }
+
+        .v2-wp-badge {
+            width: 60px;
+            height: 60px;
+            background: #21759b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .v2-wp-badge i {
+            color: #fff;
+            font-size: 1.8rem;
+        }
+
+        .v2-credential-title {
+            font-weight: 700;
+            color: #0d1117;
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .v2-credential-desc {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .v2-os-stat-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 2.5rem;
+        }
+
+        .v2-os-stat {
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+            padding: 1.25rem 1rem;
+            border-right: 1px solid #e8e8e8;
+        }
+
+        .v2-os-stat:last-child {
+            border-right: none;
+        }
+
+        .v2-os-stat strong {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #4338ca;
+            margin-bottom: 0.25rem;
+        }
+
+        .v2-os-stat span {
+            font-size: 0.78rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        /* ── Testimonials ── */
+        .v2-testimonial-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: 100%;
+        }
+
+        .v2-stars {
+            color: #f59e0b;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .v2-quote {
+            color: #444;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .v2-author-name {
+            font-weight: 600;
+            color: #0d1117;
+            font-size: 0.95rem;
+        }
+
+        .v2-author-role {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .v2-author-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .v2-author-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .v2-verified-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.78rem;
+            color: #4338ca;
+            text-decoration: none;
+            margin-top: 0.9rem;
+            font-weight: 600;
+        }
+
+        .v2-verified-link:hover {
+            color: #3730a3;
+            text-decoration: underline;
+        }
+
+        /* ── FAQ ── */
+        .v2-faq-item {
+            border-bottom: 1px solid #e0e3ec;
+            padding: 1.25rem 0;
+        }
+
+        .v2-faq-item:first-child {
+            border-top: 1px solid #e0e3ec;
+        }
+
+        .v2-faq-q {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: #0d1117;
+            margin: 0 0 0.5rem;
+        }
+
+        .v2-faq-a {
+            font-size: 0.92rem;
+            color: #555;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .v2-faq-wrap {
+            max-width: 760px;
+            margin: 2.5rem auto 0;
+        }
+
+        /* ── Case Studies ── */
+        .v2-case-card {
+            background: #fff;
+            border: 1px solid #e8eaf6;
+            border-radius: 14px;
+            padding: 1.75rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .v2-case-card:hover {
+            box-shadow: 0 8px 28px rgba(67,56,202,0.1);
+            transform: translateY(-2px);
+        }
+
+        .v2-case-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #4338ca;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 0.75rem;
+        }
+
+        .v2-case-title {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0d1117;
+            line-height: 1.3;
+            margin: 0 0 1rem;
+        }
+
+        .v2-case-block {
+            margin-bottom: 0.85rem;
+        }
+
+        .v2-case-block strong {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.2rem;
+        }
+
+        .v2-case-block p {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .v2-case-result {
+            background: #f0eeff;
+            color: #3730a3;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            padding: 0.6rem 0.85rem;
+            margin: 0.5rem 0 0.85rem;
+        }
+
+        .v2-case-client {
+            font-size: 0.82rem;
+            color: #999;
+            margin-top: auto;
+        }
+
+        .v2-case-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #4338ca;
+            text-decoration: none;
+            margin-top: 0.85rem;
+        }
+
+        .v2-case-link:hover {
+            color: #3730a3;
+            text-decoration: underline;
+        }
+
+        /* ── CTA ── */
+        .v2-cta-section {
+            background: linear-gradient(135deg, #4338ca, #3730a3);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .v2-btn-white {
+            background: #fff;
+            color: #4338ca;
+            padding: 0.9rem 2rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 2px solid #fff;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .v2-btn-white:hover {
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        /* ── Contact ── */
+        .v2-contact-form .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .v2-contact-form label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 0.4rem;
+        }
+
+        .v2-contact-form input,
+        .v2-contact-form textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .v2-contact-form input:focus,
+        .v2-contact-form textarea:focus {
+            border-color: #4338ca;
+        }
+
+        .v2-contact-form textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .v2-contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .v2-contact-info-icon {
+            font-size: 1.25rem;
+            color: #4338ca;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .v2-contact-info-text strong {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0d1117;
+            margin-bottom: 0.2rem;
+        }
+
+        .v2-contact-info-text a,
+        .v2-contact-info-text span {
+            font-size: 0.9rem;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .v2-contact-info-text a:hover {
+            color: #4338ca;
+        }
+
+        .v2-social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .v2-social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid #e8e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .v2-social-link:hover {
+            border-color: #4338ca;
+            color: #4338ca;
+            text-decoration: none;
+        }
+
+        .v2-contact-thanks {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 1.25rem;
+            color: #166534;
+            font-size: 0.95rem;
+            margin-top: 1rem;
+        }
+
+        /* ── Footer ── */
+        /* ── Culpritly section ── */
+        .v2-culp-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: center; }
+        .v2-culp-brand { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; color: #111827; font-weight: 800; font-size: 1.25rem; }
+        .v2-culp-brand em { font-style: normal; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #d9480f; border: 1px solid rgba(217,72,15,0.45); border-radius: 999px; padding: 0.15rem 0.6rem; }
+        .v2-culp-lead { color: #555; line-height: 1.7; margin: 1rem 0; }
+        .v2-culp-list { list-style: none; padding: 0; margin: 0 0 1.5rem; color: #333; }
+        .v2-culp-list li { padding-left: 1.4rem; position: relative; margin-bottom: 0.5rem; }
+        .v2-culp-list li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 8px; height: 8px; border-radius: 50%; background: #FF5A1F; }
+        .v2-culp-btn { display: inline-block; width: auto; }
+        .v2-culp-art { display: flex; justify-content: center; }
+        .v2-culp-art img { width: 160px; height: 160px; border-radius: 36px; box-shadow: 0 20px 60px rgba(255,90,31,0.25); }
+        .v2-tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        .v2-tools-grid .v2-care-teaser { text-align: center; }
+        .v2-tools-grid p { color: #555; font-size: 0.95rem; line-height: 1.6; margin: 0 auto 1.25rem; }
+        .v2-tool-name { font-size: 1.15rem; font-weight: 700; margin: 0 0 0.6rem; }
+        .v2-nav-culp { display: inline-flex; align-items: center; gap: 0.35rem; }
+        .v2-nav-culp img { width: 20px; height: 20px; border-radius: 5px; }
+        @media (max-width: 991px) { .v2-tools-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 767px) { .v2-culp-grid { grid-template-columns: 1fr; } .v2-culp-art { display: none; } }
+
+        .v2-footer {
+            background: #111827;
+            color: #aaa;
+            padding: 2rem 0;
+        }
+
+        .v2-footer .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .v2-footer-logo img {
+            height: 32px;
+            opacity: 0.7;
+        }
+
+        .v2-footer-logo svg {
+            height: 38px;
+            width: auto;
+            opacity: 0.7;
+            display: block;
+        }
+
+        .v2-footer-copy {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .v2-footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .v2-footer-social a {
+            color: #666;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .v2-footer-social a:hover {
+            color: #4338ca;
+        }
+
+        /* ── Section headings ── */
+        .v2-section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #4338ca;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        .v2-section-title {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700;
+            color: #0d1117;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+
+        .v2-section-title-white {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+
+        .v2-section-intro {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 991px) {
+            .v2-clients-grid {
+                gap: 1rem 1.5rem;
+            }
+
+            .v2-why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .v2-float-chip {
+                display: none;
+            }
+        }
+
+        @media (max-width: 767px) {
+            /* ── Nav ── */
+            .v2-nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #fff;
+                border-bottom: 1px solid #f0f0f0;
+                padding: 1rem 1.5rem;
+                gap: 0.75rem;
+                z-index: 999;
+            }
+
+            .v2-nav-links.open {
+                display: flex;
+            }
+
+            .v2-nav-links a {
+                margin-left: 0;
+            }
+
+            .v2-nav .container {
+                position: relative;
+                flex-wrap: wrap;
+            }
+
+            .v2-nav-toggle {
+                display: block;
+            }
+
+            /* ── Section padding reduction ── */
+            .v2-section,
+            .v2-section-gray,
+            .v2-section-offwhite {
+                padding: 28px 0;
+            }
+
+            .v2-section-dark {
+                padding: 28px 0;
+            }
+
+            .v2-approach-section {
+                padding: 28px 0;
+            }
+
+            /* Kill trailing card margin so it doesn't stack on section padding */
+            .row > [class*="col-"]:last-child {
+                margin-bottom: 0 !important;
+            }
+
+            /* ── Hero ── */
+            .v2-hero {
+                padding: 60px 0 40px;
+            }
+
+            .v2-hero-title {
+                font-size: 1.8rem;
+            }
+
+            .v2-hero-sub {
+                font-size: 1rem;
+            }
+
+            .v2-hero-btns {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            /* ── Sticky mobile CTA bar ── */
+            .v2-sticky-cta {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 1050;
+                background: #4338ca;
+                color: #fff;
+                text-decoration: none;
+                font-weight: 700;
+                font-size: 1rem;
+                padding: 0.95rem 1rem;
+                box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+            }
+
+            .v2-sticky-cta:hover,
+            .v2-sticky-cta:focus {
+                background: #3730a3;
+                color: #fff;
+                text-decoration: none;
+            }
+
+            /* Keep the sticky bar from covering the footer's last line */
+            .v2-footer {
+                padding-bottom: 5rem;
+            }
+
+            /* ── All buttons full width ── */
+            .v2-btn-primary,
+            .v2-btn-outline,
+            .v2-btn-white {
+                display: block;
+                text-align: center;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* Contact form submit full width */
+            #v2ContactForm button[type="submit"] {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* Reduce Bootstrap spacing on mobile */
+            .mb-5 {
+                margin-bottom: 1.25rem !important;
+            }
+            .mb-4 {
+                margin-bottom: 0.75rem !important;
+            }
+
+            .v2-stat-row {
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            .v2-stat {
+                width: 100%;
+                flex-direction: row;
+                align-items: baseline;
+                gap: 0.5rem;
+                padding-bottom: 0.85rem;
+                border-bottom: 1px solid #e8eaf6;
+            }
+
+            .v2-stat:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            .v2-hero-img-wrap {
+                margin-top: 2rem;
+            }
+
+            /* ── Logos ── */
+            .v2-clients-grid {
+                gap: 0.75rem 1rem;
+            }
+
+            .v2-client-logo {
+                height: 40px;
+                max-width: 110px;
+            }
+
+            /* ── Why cards ── */
+            .v2-why-card {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 1.25rem;
+            }
+
+            /* ── Approach items ── */
+            .v2-approach-item {
+                gap: 1rem;
+                padding: 1.25rem 0;
+            }
+
+            /* ── Section titles ── */
+            .v2-section-title,
+            .v2-section-title-white {
+                font-size: 1.5rem;
+            }
+
+            /* ── CTA ── */
+            .v2-cta-section {
+                padding: 50px 0;
+            }
+
+            /* ── Credentials stats ── */
+            .v2-os-stat {
+                min-width: 50%;
+                border-right: none;
+                border-bottom: 1px solid #e8e8e8;
+            }
+
+            /* ── Contact social ── */
+            .v2-social-links {
+                flex-wrap: wrap;
+            }
+
+            /* ── Footer ── */
+            .v2-footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .v2-footer-social {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .v2-clients-grid {
+                gap: 0.5rem 0.75rem;
+            }
+
+            .v2-stat-row {
+                gap: 1rem;
+            }
+
+            .v2-stat strong {
+                font-size: 1.25rem;
+            }
+
+            .v2-os-stat-row {
+                flex-direction: column;
+            }
+
+            .v2-os-stat {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body id="home">
+
+    <!-- ── Navigation ── -->
+    <nav class="v2-nav" id="v2-nav">
+        <div class="container">
+            <a class="v2-nav-logo" href="#home" aria-label="Faisal Alvi">
+                <svg viewBox="0 0 235 48" class="v2-logo-mark" role="img" aria-label="Faisal Alvi">
+                    <text x="0" y="38" font-weight="800" letter-spacing="-1.5" font-size="38" fill="#0d1117">fa</text>
+                    <rect x="48" y="11" width="3" height="26" rx="1.5" fill="#4338ca"/>
+                    <text x="65" y="31" font-weight="700" letter-spacing="2" font-size="17" fill="#0d1117">FAISAL ALVI</text>
+                </svg>
+            </a>
+            <div class="v2-nav-links" id="v2-nav-links">
+                <a href="#services">Services</a>
+                <a href="#care">Pricing</a>
+                <a href="#work">Work</a>
+                <a href="#culpritly" class="v2-nav-culp"><img src="/assets/imgs/culpritly-mark.svg" alt="" width="20" height="20">Culpritly</a>
+                <a href="#about">About</a>
+                <a href="/blog/">Blog</a>
+                <a href="/woocommerce-ga4-audit/" class="v2-nav-free">Free Audit</a>
+                <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="v2-nav-btn">Book a Call</a>
+            </div>
+            <button class="v2-nav-toggle" id="v2-nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ── Hero ── -->
+    <section class="v2-hero" id="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <span class="v2-badge">WordPress Core Contributor &middot; 5.1 &ndash; 7.0+</span>
+                    <h1 class="v2-hero-title">WordPress &amp; WooCommerce Engineering, Built to Last</h1>
+                    <p class="v2-hero-sub">Custom plugins and features, performance and security fixes, ongoing care, and new builds for WordPress and WooCommerce stores, agencies and product teams. Standards-compliant, documented, and built by a WordPress Core Contributor.</p>
+                    <div class="v2-hero-btns">
+                        <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="v2-btn-primary">Book a Free Call</a>
+                        <a href="#services" class="v2-btn-outline">View Services</a>
+                    </div>
+                    <p class="v2-hero-reassure"><i class="ti-check"></i> Free 20-min code audit &nbsp;·&nbsp; No obligation &nbsp;·&nbsp; Reply within 24 hours</p>
+                    <div class="v2-stat-row">
+                        <div class="v2-stat">
+                            <strong>12+</strong>
+                            <span>Years Experience</span>
+                        </div>
+                        <div class="v2-stat">
+                            <strong>300+</strong>
+                            <span>WordPress Projects</span>
+                        </div>
+                        <div class="v2-stat">
+                            <strong>WP 5.1&ndash;7.0+</strong>
+                            <span>Core Contributor</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="v2-hero-img-wrap">
+                        <div class="v2-hero-img-frame">
+                            <picture>
+                                <source srcset="assets/imgs/me-amsterdam-800.webp" type="image/webp">
+                                <img src="assets/imgs/me-amsterdam-800.jpg" alt="Faisal Alvi, senior WordPress and WooCommerce developer and Core Contributor" class="v2-photo" width="400" height="400" fetchpriority="high" decoding="async">
+                            </picture>
+                            <div class="v2-float-chip v2-float-chip-wp">
+                                <span class="chip-dot"></span>
+                                WP Core · 5.1–7.0+
+                            </div>
+                            <div class="v2-float-chip v2-float-chip-codeable">
+                                <span class="chip-dot"></span>
+                                Codeable Expert
+                            </div>
+                            <div class="v2-float-chip v2-float-chip-projects">
+                                <span class="chip-dot"></span>
+                                300+ Projects
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── GA4 audit highlight strip ── -->
+    <aside class="v2-promo-strip" aria-label="Free GA4 tracking audit">
+        <div class="container">
+            <p>Running ads on WooCommerce? <a href="/woocommerce-ga4-audit/">Get a <span class="free-tag">Free</span> GA4 tracking audit <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
+    </aside>
+
+    <!-- ── Clients / Worked With (moved above fold) ── -->
+    <section class="v2-section" id="clients">
+        <div class="container text-center">
+            <p class="v2-trusted-label">Companies I've Worked With</p>
+            <div class="v2-clients-grid">
+                <a href="https://10up.com" class="v2-client-item" target="_blank" rel="noopener">
+                    <img src="assets/imgs/logos/10up.png" alt="10up" class="v2-client-logo" loading="lazy" decoding="async">
+                </a>
+                <a href="https://fueled.com" class="v2-client-item" target="_blank" rel="noopener">
+                    <img src="assets/imgs/logos/fueled.webp" alt="Fueled" class="v2-client-logo" loading="lazy" decoding="async">
+                </a>
+                <a href="https://www.multidots.com" class="v2-client-item" target="_blank" rel="noopener">
+                    <img src="assets/imgs/logos/multidots.svg" alt="Multidots" class="v2-client-logo" loading="lazy" decoding="async">
+                </a>
+                <a href="https://newscorp.com" class="v2-client-item" target="_blank" rel="noopener">
+                    <img src="assets/imgs/logos/newscorp.png" alt="News Corp" class="v2-client-logo" loading="lazy" decoding="async">
+                </a>
+                <a href="https://awesomemotive.com" class="v2-client-item" target="_blank" rel="noopener">
+                    <img src="assets/imgs/logos/awesomemotive.png" alt="AwesomeMotive" class="v2-client-logo" loading="lazy" decoding="async">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── What You Actually Get ── -->
+    <section class="v2-section-offwhite">
+        <div class="container">
+            <div class="text-center mb-2">
+                <span class="v2-section-label">Why it matters</span>
+                <h2 class="v2-section-title">What Working With Me Looks Like</h2>
+                <p class="v2-section-intro" style="margin: 0 auto;">Senior-level isn't just a title. Here's what it means in practice.</p>
+            </div>
+            <div class="v2-why-grid">
+                <div class="v2-why-card">
+                    <div class="v2-why-icon"><i class="ti-user"></i></div>
+                    <div>
+                        <div class="v2-why-title">You talk directly to the engineer</div>
+                        <p class="v2-why-desc">No account managers, no handoffs. I scope, build, and deliver. You get direct access to me throughout the project.</p>
+                    </div>
+                </div>
+                <div class="v2-why-card">
+                    <div class="v2-why-icon"><i class="ti-shield"></i></div>
+                    <div>
+                        <div class="v2-why-title">12 years of seeing what breaks WordPress</div>
+                        <p class="v2-why-desc">I've built and fixed hundreds of WP and WooCommerce sites. I know the failure patterns before they happen.</p>
+                    </div>
+                </div>
+                <div class="v2-why-card">
+                    <div class="v2-why-icon"><i class="ti-write"></i></div>
+                    <div>
+                        <div class="v2-why-title">Code your team can maintain</div>
+                        <p class="v2-why-desc">Standards-compliant, documented, and tested. Your next developer won't need three months to understand it.</p>
+                    </div>
+                </div>
+                <div class="v2-why-card">
+                    <div class="v2-why-icon"><i class="ti-check-box"></i></div>
+                    <div>
+                        <div class="v2-why-title">Scopes based on evidence, not guesses</div>
+                        <p class="v2-why-desc">I audit your codebase before estimating. What I quote is grounded in what I actually see — not assumptions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── My Approach ── -->
+    <section class="v2-approach-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <span class="v2-section-label">How I work</span>
+                    <h2 class="v2-section-title" style="margin-bottom: 1rem;">No vague estimates.<br>No surprises.</h2>
+                    <p style="color: #555; font-size: 0.95rem; line-height: 1.7;">Every project starts with reading your codebase — not just your brief. I scope from evidence, not assumptions.</p>
+                </div>
+                <div class="col-lg-8">
+                    <div class="v2-approach-item">
+                        <span class="v2-approach-num">01</span>
+                        <div class="v2-approach-body">
+                            <strong>I audit before I estimate</strong>
+                            <p>Before quoting timelines or costs, I review your existing code, hosting setup, and plugin stack. That's the only way to give a scope that holds.</p>
+                        </div>
+                    </div>
+                    <div class="v2-approach-item">
+                        <span class="v2-approach-num">02</span>
+                        <div class="v2-approach-body">
+                            <strong>You get a written scope</strong>
+                            <p>A clear proposal: what I'll build, what I'll fix, what I won't touch — and why. No ambiguous delivery.</p>
+                        </div>
+                    </div>
+                    <div class="v2-approach-item">
+                        <span class="v2-approach-num">03</span>
+                        <div class="v2-approach-body">
+                            <strong>Tested, documented, handed off clean</strong>
+                            <p>Code with inline documentation and handoff notes so your next developer isn't starting from zero.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Problems I Solve ── -->
+    <section class="v2-section-dark" id="services">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="v2-section-label" style="color: #a78bfa;">What I fix &amp; build</span>
+                <h2 class="v2-section-title-white">Work I Do on WordPress Sites</h2>
+                <p class="v2-section-intro" style="color: #aab8c2; margin: 0 auto;">From quick fixes to ground-up builds — here's where I spend my time.</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="v2-problem-card">
+                        <div class="v2-problem-title">Fixing Broken or Misbehaving Sites</div>
+                        <p class="v2-problem-desc">Plugin conflicts, theme breakage, layout issues, broken functionality after updates — I diagnose and fix existing sites without blowing up what's already working.</p>
+                        <div class="v2-risk"><strong>Covers:</strong> Plugin &amp; theme conflicts, JS errors, WooCommerce bugs, layout fixes.</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="v2-problem-card">
+                        <div class="v2-problem-title">Custom Functionality Development</div>
+                        <p class="v2-problem-desc">When plugins don't exist or don't do exactly what you need — I build custom WordPress plugins, WooCommerce extensions, REST API integrations, and Gutenberg blocks.</p>
+                        <div class="v2-risk"><strong>Covers:</strong> Custom plugins, WooCommerce extensions, third-party API integrations.</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="v2-problem-card" style="margin-bottom: 0;">
+                        <div class="v2-problem-title">Performance &amp; Site Optimization</div>
+                        <p class="v2-problem-desc">Slow load times, bad Core Web Vitals, database bloat, or a store that chokes under traffic — I find the actual bottleneck and fix it, not just install a caching plugin.</p>
+                        <div class="v2-risk"><strong>Covers:</strong> Query optimization, caching strategy, CDN, image optimization, WooCommerce scaling.</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="v2-problem-card" style="margin-bottom: 0;">
+                        <div class="v2-problem-title">Full Site Builds from Scratch</div>
+                        <p class="v2-problem-desc">End-to-end WordPress or WooCommerce builds — architecture, theme, plugins, integrations, and launch-readiness. Built clean from day one so it scales.</p>
+                        <div class="v2-risk"><strong>Covers:</strong> Custom themes, WooCommerce stores, membership sites, enterprise WordPress.</div>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; color: #aab8c2; font-size: 0.95rem; margin: 2.5rem 0 0;">Want ongoing care, a one-time diagnosis, or your site's hacked right now? <a href="#care" style="color: #a78bfa; font-weight: 600;">See all options below &darr;</a></p>
+        </div>
+    </section>
+
+    <!-- ── Care Plan + Audit teasers ── -->
+    <section class="v2-section" id="care">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="v2-section-label">Pricing</span>
+                <h2 class="v2-section-title">Pick What Fits</h2>
+                <p class="v2-section-intro" style="margin: 0 auto;">Ongoing care, a one-time diagnosis, an active hack, broken GA4 tracking, or something that doesn't fit a neat box. Here's where to start.</p>
+            </div>
+            <div class="v2-offers-grid">
+                <div class="v2-care-teaser">
+                    <span class="v2-section-label">Ongoing Support</span>
+                    <h2 class="v2-section-title" style="font-size: 1.5rem;">Managed WordPress &amp; WooCommerce Care</h2>
+                    <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">For sites that can't afford to break. Weekly updates, tested on staging first, with a transparent log every cycle.</p>
+                    <div class="v2-care-teaser-price">Plans from $240/month</div>
+                    <a href="/care-plan/" class="v2-btn-primary">See Care Plan Details</a>
+                </div>
+                <div class="v2-care-teaser" id="audit">
+                    <span class="v2-section-label">One-Time Audit</span>
+                    <h2 class="v2-section-title" style="font-size: 1.5rem;">WooCommerce Store Audit</h2>
+                    <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">A full written diagnosis before you spend a dollar fixing anything. Security, performance, checkout, shipping, and tax, all checked.</p>
+                    <div class="v2-care-teaser-price">$249 flat &middot; 2-3 business days</div>
+                    <a href="/woocommerce-audit/" class="v2-btn-outline">See Audit Details</a>
+                </div>
+                <div class="v2-care-teaser" id="hack-recovery">
+                    <span class="v2-section-label">Security</span>
+                    <h2 class="v2-section-title" style="font-size: 1.5rem;">WordPress Hack Recovery</h2>
+                    <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">Site hacked, flagged by Google, or suspended by your host? A bounded diagnostic finds the actual entry point first.</p>
+                    <div class="v2-care-teaser-price">$199 flat &middot; 24-48 hour report</div>
+                    <a href="/hack-recovery/" class="v2-btn-outline">See Recovery Details</a>
+                </div>
+                <div class="v2-care-teaser v2-care-teaser-plain">
+                    <span class="v2-section-label">Not Sure?</span>
+                    <h2 class="v2-section-title" style="font-size: 1.5rem;">Something Else</h2>
+                    <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">A new site built from scratch, a custom project, or none of the above quite fits. These don't get an honest flat price upfront, so tell me what's going on and I'll scope it properly, or point you the right direction if that's somewhere else.</p>
+                    <a href="#contact" class="v2-btn-outline">Get in Touch</a>
+                </div>
+                <div class="v2-care-teaser v2-care-teaser-wide" id="ga4-audit">
+                    <span class="v2-section-label"><span class="free-tag">Free</span> Tracking Audit</span>
+                    <h2 class="v2-section-title" style="font-size: 1.5rem;">Is Your Store Losing Sales in GA4?</h2>
+                    <p style="color: #555; font-size: 0.95rem; line-height: 1.7; margin: 0 auto 1.25rem;">Running Google or Meta ads on WooCommerce? I match your real orders against GA4 purchases by transaction ID, find the missing and duplicated sales, and tell you why. Optional monthly monitoring keeps it accurate after that.</p>
+                    <div class="v2-care-teaser-price">Free audit &middot; monitoring from $149/month</div>
+                    <a href="/woocommerce-ga4-audit/" class="v2-btn-outline">See Tracking Audit Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── Case Studies ── -->
+    <!-- Real engagements, anonymized: no client names, business names, or domains per client confidentiality. -->
+    <section class="v2-section-offwhite" id="work">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="v2-section-label">Selected Work</span>
+                <h2 class="v2-section-title">Case Studies</h2>
+                <p class="v2-section-intro" style="margin: 0 auto;">Real problems, real fixes, measurable results. A few representative engagements.</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="v2-case-card">
+                        <span class="v2-case-tag">WooCommerce &middot; Payments</span>
+                        <h3 class="v2-case-title">Fixed a silent payment-form failure on a membership site</h3>
+                        <div class="v2-case-block"><strong>Problem</strong><p>Customers updating their card on file intermittently hit a dead error page, a timing race between the membership plugin and an external payment script that had no fallback when the script loaded late.</p></div>
+                        <div class="v2-case-block"><strong>What I did</strong><p>Reproduced the race on demand by forcing the script delay, then built a custom guard plugin that detects the failure and shows a clear retry instead of a dead page.</p></div>
+                        <div class="v2-case-result">Zero recurring failures since launch &middot; converted to an ongoing retainer</div>
+                        <div class="v2-case-client">Membership site owner</div>
+                        <a href="/case-studies/membership-site-payment-form-dead-error-race-condition/" class="v2-case-link">Read the full write-up &rarr;</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="v2-case-card">
+                        <span class="v2-case-tag">WooCommerce &middot; Shipping &amp; Tax</span>
+                        <h3 class="v2-case-title">Diagnosed a store showing no shipping options and $0 tax</h3>
+                        <div class="v2-case-block"><strong>Problem</strong><p>Three conflicting shipping plugins, a tax-automation plugin with no API key silently zeroing every order, and products missing weight data blocking live carrier rates.</p></div>
+                        <div class="v2-case-block"><strong>What I did</strong><p>Removed the conflicting plugin, reconfigured tax calculation natively, built proper domestic and international shipping zones, and backfilled product weights.</p></div>
+                        <div class="v2-case-result">Store now serves international customers with accurate rates and tax on every order</div>
+                        <div class="v2-case-client">E-commerce store owner</div>
+                        <a href="/case-studies/woocommerce-no-shipping-options-zero-tax-bug/" class="v2-case-link">Read the full write-up &rarr;</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="v2-case-card">
+                        <span class="v2-case-tag">WordPress &middot; Front-End</span>
+                        <h3 class="v2-case-title">Fixed an invisible navigation menu hiding on hover</h3>
+                        <div class="v2-case-block"><strong>Problem</strong><p>Header menu items and an account link were disappearing on hover, a color collision hiding in years of unscoped Customizer CSS with no error to point to.</p></div>
+                        <div class="v2-case-block"><strong>What I did</strong><p>Forced the hover state in DevTools to find the winning rule, then scoped the selector down instead of deleting it, preserving the original fix's intent elsewhere on the site.</p></div>
+                        <div class="v2-case-result">Full navigation visibility restored, verified live same day</div>
+                        <div class="v2-case-client">Site owner, non-technical</div>
+                        <a href="/case-studies/wordpress-customizer-css-invisible-menu-bug/" class="v2-case-link">Read the full write-up &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Open Source & Credentials ── -->
+    <section class="v2-section" id="about">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="v2-section-label">Open Source</span>
+                <h2 class="v2-section-title">Credentials &amp; Contributions</h2>
+            </div>
+            <div class="row align-items-center mb-0">
+                <div class="col-md-6 mb-4">
+                    <div class="v2-credential-box">
+                        <div class="v2-wp-badge">
+                            <i class="ti-wordpress"></i>
+                        </div>
+                        <div class="v2-credential-title">WordPress Core Contributor</div>
+                        <p class="v2-credential-desc">Recognized in WordPress release credits from 5.1 through 7.0+. Sustained contributions across Core, WooCommerce extensions (Square, Bookings, Box Office, Xero), and ecosystem projects.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="v2-credential-box text-center">
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Vetted and certified on Codeable — the curated platform for trusted WordPress experts.</p>
+                        <img src="assets/imgs/logos/codeable-expert.png" alt="Codeable Certified Expert" loading="lazy" decoding="async" style="height: 140px; object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+            <div class="v2-os-stat-row">
+                <div class="v2-os-stat">
+                    <strong>WP 5.1 &ndash; 7.0+</strong>
+                    <span>Core Contributor</span>
+                </div>
+                <div class="v2-os-stat">
+                    <strong>WooCommerce</strong>
+                    <span>Core Contributor</span>
+                </div>
+                <div class="v2-os-stat">
+                    <strong>12+ Years</strong>
+                    <span>In WordPress</span>
+                </div>
+                <div class="v2-os-stat">
+                    <strong>300+</strong>
+                    <span>Projects</span>
+                </div>
+                <div class="v2-os-stat">
+                    <strong>Codeable</strong>
+                    <span>Certified Expert</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Testimonials ── -->
+    <section class="v2-section-gray">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="v2-section-label">Social Proof</span>
+                <h2 class="v2-section-title">What Clients Say</h2>
+            </div>
+            <!-- Real client reviews (Megan H., Elizabeth M.); third is illustrative pending a matching real review. Source platform intentionally not named. -->
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="v2-testimonial-card">
+                        <div class="v2-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="v2-quote">"Faisal has been great to work with. He responds quickly and professionally. He goes above and beyond to help us understand and feel comfortable with the work that he is doing."</p>
+                        <div class="v2-author-name">Megan H.</div>
+                        <div class="v2-author-role">Site Owner &middot; Ongoing Maintenance &amp; Payment-Flow Fix</div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="v2-testimonial-card">
+                        <div class="v2-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="v2-quote">"Faisal fixed the issue quickly and was easy to communicate with."</p>
+                        <div class="v2-author-name">Elizabeth M.</div>
+                        <div class="v2-author-role">Site Owner &middot; Front-End Visibility Bug Fix</div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="v2-testimonial-card">
+                        <div class="v2-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="v2-quote">"The WordPress homepage he designed is clean, professional, and exactly what my brand needed. He even went beyond what I originally asked for, and he didn't nickel-and-dime me for extra features, he just did them because he knew they'd make the final product better."</p>
+                        <div class="v2-author-name">Antonio F.</div>
+                        <div class="v2-author-role">Business Owner &middot; Personal Brand Website</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="v2-section" id="faq">
+        <div class="container">
+            <div class="text-center mb-2">
+                <span class="v2-section-label">FAQ</span>
+                <h2 class="v2-section-title">Questions Clients Ask</h2>
+            </div>
+            <div class="v2-faq-wrap">
+                <div class="v2-faq-item">
+                    <h3 class="v2-faq-q">Do you build custom plugins from scratch, or only modify existing ones?</h3>
+                    <p class="v2-faq-a">Both. I build bespoke WordPress and WooCommerce plugins from the ground up when nothing off-the-shelf fits, and I extend or fix existing plugins when that's the faster, cheaper path. I'll tell you honestly which one your case needs before you commit.</p>
+                </div>
+                <div class="v2-faq-item">
+                    <h3 class="v2-faq-q">How do you charge — hourly or fixed price?</h3>
+                    <p class="v2-faq-a">Both, depending on the work. Well-defined builds get a fixed quote after I audit the requirements. Open-ended debugging or ongoing work is hourly. Either way you get a written scope first — no vague estimates, no surprise invoices.</p>
+                </div>
+                <div class="v2-faq-item">
+                    <h3 class="v2-faq-q">Will the code be maintainable by my own team later?</h3>
+                    <p class="v2-faq-a">Yes. Everything ships WordPress-Coding-Standards compliant, documented inline, and with handoff notes. Your next developer won't spend three months reverse-engineering it. That's a core reason agencies keep bringing me back.</p>
+                </div>
+                <div class="v2-faq-item">
+                    <h3 class="v2-faq-q">Do you work with agencies as a white-label developer?</h3>
+                    <p class="v2-faq-a">Regularly. Much of my work is subcontracted through agencies under their brand. You get a senior engineer on your team without the headcount, and I stay invisible to your client if that's what you need.</p>
+                </div>
+                <div class="v2-faq-item">
+                    <h3 class="v2-faq-q">What makes you different from a cheaper developer on Upwork or Fiverr?</h3>
+                    <p class="v2-faq-a">I'm a WordPress Core Contributor (5.1–7.0+) and a vetted Codeable expert. I've seen the failure patterns that break WordPress and WooCommerce at scale, and I scope from evidence — I read your codebase before I quote. You're paying for work that holds up, not work you have to fix twice.</p>
+                </div>
+                <div class="v2-faq-item">
+                    <h3 class="v2-faq-q">Where are you based, and how does time zone work?</h3>
+                    <p class="v2-faq-a">I'm in India (UTC+5:30) and work with clients worldwide, including US and European teams. I overlap with most time zones for at least part of the day and respond within 24 hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <!-- ── Culpritly (product) ── -->
+    <section class="v2-section-offwhite v2-culp" id="culpritly">
+        <div class="container">
+            <div class="v2-culp-grid">
+                <div>
+                    <div class="v2-culp-brand">
+                        <img src="/assets/imgs/culpritly-mark.svg" width="44" height="44" alt="" loading="lazy">
+                        <span>Culpritly</span>
+                        <em>Early access</em>
+                    </div>
+                    <h2 class="v2-section-title" style="text-align:left;">When checkout quietly breaks, know what did it.</h2>
+                    <p class="v2-culp-lead">Culpritly is a product I'm building for WooCommerce and membership sites that take payments. It records every change on your site, notices when checkout or signups stop working, and explains in plain English what broke, what it cost, and what to try first.</p>
+                    <ul class="v2-culp-list">
+                        <li>Links each failure to the plugin or theme update behind it</li>
+                        <li>Estimates the revenue lost while it was broken</li>
+                        <li>Never auto-fixes anything. You stay in control</li>
+                    </ul>
+                    <a href="/culpritly/" class="v2-btn-primary v2-culp-btn">See Culpritly</a>
+                </div>
+                <div class="v2-culp-art" aria-hidden="true">
+                    <img src="/assets/imgs/culpritly-mark.svg" width="160" height="160" alt="" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Free tools ── -->
+    <section class="v2-section" id="tools">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="v2-section-label">Free Tools</span>
+                <h2 class="v2-section-title">Tools I Built for My Own Workflow</h2>
+                <p class="v2-section-intro" style="margin: 0 auto;">Small browser tools I made to scratch my own itch. Free to use, no sign-up, your data stays in your browser.</p>
+            </div>
+            <div class="v2-tools-grid">
+                <div class="v2-care-teaser">
+                    <h3 class="v2-tool-name">Teamwork Time Logger</h3>
+                    <p>Log and review hours on Teamwork without opening it. Weekly view, quick tasks, ticket estimates.</p>
+                    <a href="/teamwork-timelogger/" class="v2-btn-outline">Open</a>
+                </div>
+                <div class="v2-care-teaser">
+                    <h3 class="v2-tool-name">Personal Schedule</h3>
+                    <p>A drag-and-drop day planner where tasks flow around prayer times and meals. Try the demo.</p>
+                    <a href="/schedule-demo/" class="v2-btn-outline">Try demo</a>
+                </div>
+                <div class="v2-care-teaser">
+                    <h3 class="v2-tool-name">Dev Dashboard</h3>
+                    <p>My GitHub pull requests and review queue on one screen. Tokens never leave your browser.</p>
+                    <a href="/dev-dashboard/" class="v2-btn-outline">Open</a>
+                </div>
+            </div>
+            <p style="text-align:center; margin:1.75rem 0 0;"><a href="/tools/">How to use each tool &rarr;</a></p>
+        </div>
+    </section>
+
+    <section class="v2-cta-section">
+        <div class="container">
+            <span style="display:inline-block; background: rgba(255,255,255,0.18); color:#fff; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; padding:5px 14px; border-radius:20px; margin-bottom:1.25rem;">Free · No obligation</span>
+            <h2 style="color: #fff; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700; margin-bottom: 1rem;">Get a Free 20-Minute Plugin &amp; Code Audit</h2>
+            <p style="color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 580px; margin: 0 auto 2rem; line-height: 1.7;">Send me your plugin, feature spec, or the bug that's been eating your week. I'll review it and tell you &mdash; straight &mdash; what's wrong, what it'll take to fix, and whether you even need me. No sales pitch.</p>
+            <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="v2-btn-white">Claim Your Free Audit</a>
+        </div>
+    </section>
+
+    <!-- ── Contact ── -->
+    <section class="v2-section" id="contact">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="v2-section-label">Get in Touch</span>
+                <h2 class="v2-section-title">Let's Work Together</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                    <form id="v2ContactForm" class="v2-contact-form" action="https://formspree.io/f/meorlpqb" method="POST">
+                        <div class="form-group">
+                            <label for="v2Email">Your email</label>
+                            <input id="v2Email" type="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="v2Message">Your message</label>
+                            <textarea id="v2Message" name="message" rows="5" placeholder="What's on your mind?" required></textarea>
+                        </div>
+                        <div class="g-recaptcha mb-3" data-sitekey="6LfXIeMrAAAAAOgJ8FfzFM3dvfAQOLYh7pIzZkRh"></div>
+                        <button id="v2ContactSubmit" type="submit" class="v2-btn-primary" style="border: none; cursor: pointer;">
+                            <i class="ti-email" style="margin-right: 0.5rem;"></i>Send Message
+                        </button>
+                    </form>
+                    <div id="v2ContactThanks" class="v2-contact-thanks" aria-live="polite">
+                        Thanks! Your message has been sent. I'll get back to you within 24 hours.
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div style="padding-left: 1rem;">
+                        <div class="v2-contact-info-item">
+                            <i class="ti-email v2-contact-info-icon"></i>
+                            <div class="v2-contact-info-text">
+                                <strong>Email</strong>
+                                <a href="mailto:hello@faisalalvi.com">hello@faisalalvi.com</a>
+                            </div>
+                        </div>
+                        <div class="v2-contact-info-item">
+                            <i class="ti-time v2-contact-info-icon"></i>
+                            <div class="v2-contact-info-text">
+                                <strong>Response Time</strong>
+                                <span>Within 24 hours</span>
+                            </div>
+                        </div>
+                        <div class="v2-contact-info-item">
+                            <i class="ti-world v2-contact-info-icon"></i>
+                            <div class="v2-contact-info-text">
+                                <strong>Location</strong>
+                                <span>India (UTC+5:30) &middot; Remote Worldwide</span>
+                            </div>
+                        </div>
+                        <div class="v2-social-links">
+                            <a href="https://www.linkedin.com/in/alvifaisal/" target="_blank" rel="noopener" class="v2-social-link" aria-label="LinkedIn"><i class="ti-linkedin"></i></a>
+                            <a href="https://github.com/faisal-alvi" target="_blank" rel="noopener" class="v2-social-link" aria-label="GitHub"><i class="ti-github"></i></a>
+                            <a href="https://profiles.wordpress.org/faisal03/" target="_blank" rel="noopener" class="v2-social-link" aria-label="WordPress.org"><i class="ti-wordpress"></i></a>
+                            <a href="https://twitter.com/_the_faisal" target="_blank" rel="noopener" class="v2-social-link" aria-label="Twitter"><i class="ti-twitter-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer class="v2-footer">
+        <div class="container">
+            <div class="v2-footer-logo">
+                <svg viewBox="0 0 235 48" class="v2-logo-mark" role="img" aria-label="Faisal Alvi">
+                    <text x="0" y="38" font-weight="800" letter-spacing="-1.5" font-size="38" fill="#ffffff">fa</text>
+                    <rect x="48" y="11" width="3" height="26" rx="1.5" fill="#4338ca"/>
+                    <text x="65" y="31" font-weight="700" letter-spacing="2" font-size="17" fill="#ffffff">FAISAL ALVI</text>
+                </svg>
+            </div>
+            <p class="v2-footer-copy">&copy; <script>document.write(new Date().getFullYear())</script> Faisal Alvi. All rights reserved. <a href="/privacy/">Privacy</a></p>
+            <div class="v2-footer-social">
+                <a href="https://www.linkedin.com/in/alvifaisal/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ti-linkedin"></i></a>
+                <a href="https://github.com/faisal-alvi" target="_blank" rel="noopener" aria-label="GitHub"><i class="ti-github"></i></a>
+                <a href="https://profiles.wordpress.org/faisal03/" target="_blank" rel="noopener" aria-label="WordPress.org"><i class="ti-wordpress"></i></a>
+                <a href="https://twitter.com/_the_faisal" target="_blank" rel="noopener" aria-label="Twitter"><i class="ti-twitter-alt"></i></a>
+                <a href="mailto:hello@faisalalvi.com" aria-label="Email"><i class="ti-email"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky mobile CTA (mobile only) -->
+    <a href="https://calendly.com/faisalalvi33/new-meeting" target="_blank" rel="noopener" class="v2-sticky-cta">
+        <i class="ti-calendar"></i> Book a Free Call
+    </a>
+
+    <!-- Mobile nav toggle -->
+    <script>
+    (function () {
+        var toggle = document.getElementById('v2-nav-toggle');
+        var links = document.getElementById('v2-nav-links');
+        if (!toggle || !links) return;
+        toggle.addEventListener('click', function () {
+            links.classList.toggle('open');
+        });
+        links.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', function () {
+                links.classList.remove('open');
+            });
+        });
+    })();
+    </script>
+
+    <!-- Contact AJAX handler -->
+    <script>
+    (function () {
+        var form = document.getElementById('v2ContactForm');
+        if (!form) return;
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            var submitBtn = document.getElementById('v2ContactSubmit');
+            var thanks = document.getElementById('v2ContactThanks');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            try {
+                var formData = new FormData(form);
+                var res = await fetch(form.action, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: formData
+                });
+                if (res.ok) {
+                    if (window.faTrack) { window.faTrack('generate_lead', { form_type: 'contact_form' }); }
+                    form.reset();
+                    form.style.display = 'none';
+                    if (thanks) { thanks.style.display = 'block'; }
+                } else {
+                    console.warn('Form submit failed', await res.text());
+                    alert('Sorry, something went wrong. Please try again.');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Network error. Please try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
+        });
+    })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+# Portfolio items, shared by the homepage (home: true) and /portfolio/.
+# Every claim here is sourced from the career facts bank. Client work stays anonymised.
+# cat: woo | oss | client | product (drives the filter on /portfolio/)
+
+- slug: woocommerce-square
+  title: WooCommerce Square
+  tag: Official WooCommerce extension
+  cat: woo
+  home: true
+  summary: Built two-way order sync between Square and WooCommerce, added multi-variation support, rebuilt merchant onboarding in React/Redux, and brought the extension to PHP 8.2+.
+  result: Order sync went to an official WooCommerce Call for Testing
+  link: https://woocommerce.com/products/square/
+  link_label: View extension
+
+- slug: woocommerce-extensions
+  title: WooCommerce Bookings and official extensions
+  tag: Official WooCommerce extensions
+  cat: woo
+  home: true
+  summary: 123 merged pull requests on WooCommerce Bookings, plus Accommodation Bookings, Bookings Availability, Box Office, Xero, Deposits, Product Vendors and more, working with the WooCommerce team.
+  result: Booking product AJAX load cut from 3.8s to 1.1s
+  link: https://woocommerce.com/products/woocommerce-bookings/
+  link_label: View Bookings
+
+- slug: payment-form-case-study
+  title: Membership site payment form
+  tag: Case study &middot; Payments
+  cat: client
+  summary: Card updates intermittently hit a dead error page. I traced it to a timing race with a late-loading payment script and shipped a guard plugin with a clear retry path.
+  result: Zero recurring failures since launch
+  link: /case-studies/membership-site-payment-form-dead-error-race-condition/
+  link_label: Read the case study
+  internal: true
+
+- slug: vulnerability-cleanup-case-study
+  title: 22 security warnings on a 2019 WordPress site
+  tag: Case study &middot; Security &amp; updates
+  cat: client
+  summary: A host scan flagged WordPress core, 19 plugins and 2 themes. I cleaned up and updated on staging in a safe order, replaced a withdrawn plugin with a small custom one, then moved the site to PHP 8.3.
+  result: 22 warnings to 0 &middot; all 54 pages unchanged
+  link: /case-studies/wordpress-vulnerability-alert-outdated-site-update/
+  link_label: Read the case study
+  internal: true
+
+- slug: multicollab
+  title: Multicollab
+  tag: Block editor product
+  cat: product
+  home: true
+  summary: Core developer of Multicollab, which brings Google Docs-style inline comments and suggestions to the WordPress block editor for publishing teams.
+  link: https://www.multicollab.com/
+  link_label: Visit Multicollab
+
+- slug: simple-local-avatars
+  title: Simple Local Avatars
+  tag: WordPress.org plugin
+  cat: oss
+  home: true
+  summary: Lead contributor on the 10up plugin that lets sites store user avatars locally instead of relying on Gravatar.
+  result: 100,000+ active installs &middot; 44 merged PRs
+  link: https://wordpress.org/plugins/simple-local-avatars/
+  link_label: View plugin
+
+- slug: wordpress-core
+  title: WordPress core
+  tag: Open source
+  cat: oss
+  home: true
+  summary: Contributions across WordPress core, meta and plugins, credited in 13 WordPress releases from 5.1 to 7.0.
+  result: 13 release credits
+  link: https://profiles.wordpress.org/faisal03/
+  link_label: WordPress.org profile
+
+- slug: shipping-tax-case-study
+  title: Store with no shipping options and zero tax
+  tag: Case study &middot; Shipping &amp; tax
+  cat: client
+  summary: Three conflicting shipping plugins and a tax plugin with no API key were zeroing every order. I removed the conflicts, configured tax natively, built shipping zones and backfilled product weights.
+  result: Accurate rates and tax on every order
+  link: /case-studies/woocommerce-no-shipping-options-zero-tax-bug/
+  link_label: Read the case study
+  internal: true
+
+- slug: woocommerce-core
+  title: WooCommerce core
+  tag: Open source &middot; WooCommerce
+  cat: woo
+  home: true
+  summary: 10 merged pull requests to WooCommerce core, including cart and product accessibility fixes.
+  result: WooCommerce 7.8 contributor credit
+
+- slug: woocommerce-accessibility
+  title: Accessible WooCommerce extensions
+  tag: Accessibility &middot; WooCommerce
+  cat: woo
+  summary: WCAG fixes and code reviews across AutomateWoo, Pinterest for WooCommerce, Bookings, Accommodation Bookings and Box Office, including keyboard access and accessible booking datepickers.
+
+- slug: publisher-media-kit
+  title: Publisher Media Kit
+  tag: WordPress.org plugin
+  cat: oss
+  summary: Lead contributor on the 10up plugin that gives publishers a ready-made media kit page built from block patterns.
+  result: 35 merged PRs
+  link: https://wordpress.org/plugins/publisher-media-kit/
+  link_label: View plugin
+
+- slug: jobber-wordpress
+  title: Jobber for WordPress
+  tag: Integration &middot; Jobber
+  cat: product
+  summary: The WordPress side of Jobber's plugin, with request and booking forms as a block, REST endpoints through middleware, caching and Cypress tests.
+  result: 18 merged PRs
+  link: https://wordpress.org/plugins/jobber/
+  link_label: View plugin
+
+- slug: culpritly
+  title: Culpritly
+  tag: My product
+  cat: product
+  summary: An AI incident analyst for WooCommerce and membership sites that links a broken checkout to the plugin or theme change behind it.
+  link: https://faisalalvi.com/culpritly/
+  link_label: See Culpritly

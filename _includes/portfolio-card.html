@@ -1,0 +1,14 @@
+{% assign p = include.item %}
+{% if p.internal %}{% assign target = '' %}{% else %}{% assign target = ' target="_blank" rel="noopener"' %}{% endif %}
+<article class="folio-card" data-cat="{{ p.cat }}">
+    {% if p.link %}<a class="folio-img" href="{{ p.link }}"{{ target }} tabindex="-1" aria-hidden="true">{% else %}<div class="folio-img">{% endif %}
+        <img src="/assets/imgs/portfolio/{{ p.slug }}.webp" width="800" height="600" alt="{{ p.title | strip_html | escape }}" loading="lazy" decoding="async">
+    {% if p.link %}</a>{% else %}</div>{% endif %}
+    <div class="folio-body">
+        <span class="folio-tag">{{ p.tag }}</span>
+        <h3 class="folio-title">{{ p.title }}</h3>
+        <p class="folio-desc">{{ p.summary }}</p>
+        {% if p.result %}<div class="folio-result">{{ p.result }}</div>{% endif %}
+        {% if p.link %}<a class="folio-link" href="{{ p.link }}"{{ target }}>{{ p.link_label }} {% if p.internal %}&rarr;{% else %}<span aria-hidden="true">&#8599;</span>{% endif %}</a>{% endif %}
+    </div>
+</article>

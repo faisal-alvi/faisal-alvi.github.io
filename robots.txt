@@ -1,6 +1,5 @@
 User-agent: *
-Disallow: /index-v1.html
-Disallow: /index-v2.html
+Disallow: /old-versions/
 Disallow: /components.html
 
 Sitemap: https://faisalalvi.com/sitemap.xml

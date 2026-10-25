@@ -1,6 +1,6 @@
 # Site settings
 title: "Faisal Alvi"
-description: "Building high-performing WordPress & WooCommerce solutions | Open-source contributor | 12+ years shaping enterprise-grade digital experiences"
+description: "Senior WooCommerce developer for agencies and stores. Checkout and payment fixes, API integrations and custom plugins. Credited in 13 WordPress releases."
 author: "Faisal Alvi"
 email: "hello@faisalalvi.com"
 url: "https://faisalalvi.com"
@@ -50,6 +50,10 @@ defaults:
     values:
       image: "/assets/imgs/me-amsterdam.jpg"
   - scope:
+      path: "schedule-demo"
+    values:
+      sitemap: false
+  - scope:
       path: "case-studies/index.html"
     values:
       image: "/assets/imgs/me-amsterdam.jpg"
@@ -61,7 +65,7 @@ plugins:
   - jekyll-seo-tag
 
 # Exclude from processing
-# index-v1.html, index-v2.html, components.html are archived drafts:
+# old-versions/ (index-v1 to v3) and components.html are archived drafts:
 # excluded from the build entirely so they are not reachable at any
 # URL, not just noindexed. Only index.html (the live homepage) is served.
 exclude:
@@ -71,6 +75,5 @@ exclude:
   - Gemfile.lock
   - node_modules
   - vendor
-  - index-v1.html
-  - index-v2.html
+  - old-versions
   - components.html
