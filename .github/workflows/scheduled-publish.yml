@@ -3,7 +3,9 @@ name: Scheduled publish
 on:
   schedule:
     # 14:30 to 16:30 UTC = 20:00 to 22:00 IST, every 10 minutes, plus a final pass
-    - cron: '*/10 14-16 * * *'
+    - cron: '*/5 14-17 * * *'
+    # hourly catch-up all day, because GitHub often delays or skips scheduled runs
+    - cron: '17 * * * *'
   workflow_dispatch:
 
 permissions:
