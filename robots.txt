@@ -3,3 +3,4 @@ Disallow: /old-versions/
 Disallow: /components.html
 
 Sitemap: https://faisalalvi.com/sitemap.xml
+Sitemap: https://faisalalvi.com/culpritly/sitemap.xml
