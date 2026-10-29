@@ -3,7 +3,7 @@ title: "PHP Security Update for WooCommerce: What to Check Now"
 description: "PHP security update for WooCommerce: two critical flaws were fixed on 21 October 2026. How to check your PHP version, what to ask your host and what to test."
 read_time: "7 min read"
 excerpt_text: "The PHP project fixed two critical remote code execution flaws on 21 October 2026. No WordPress or WooCommerce update is needed, but your PHP version and your host's patch status are."
-date: 2026-10-29 20:50:12 +0530
+date: 2026-10-29 20:41:12 +0530
 tags: [woocommerce, security, maintenance, wordpress]
 cta_title: "Want the PHP update handled without risking checkout?"
 cta_text: "The Care Plan covers updates tested on staging first, a full regression pass and a written update each cycle, which is the workflow a PHP patch needs."
