@@ -29,16 +29,29 @@ Automatic / enhanced measurement (leave ON in GA4 Admin > Data streams): `page_v
 | `click_contact` | custom | `#contact` anchor on homepage | `cta_location`, `cta_text` | no | DebugView |
 | `click_email` | custom | `mailto:` link | `cta_location` | no | DebugView |
 | `click_phone` | custom | `tel:` link (none exist yet) | `cta_location` | no | n/a |
+| `click_product` | custom | link to /culpritly/, /teamwork-timelogger/, /dev-dashboard/, /schedule-demo/, /tools/ | `product_name`, `cta_location`, `cta_text` | no | DebugView |
+| `click_portfolio` | custom | link inside a portfolio card (`folio-*`) | `cta_text`, `link_domain` | no | DebugView |
+| `click_social` | custom | LinkedIn, GitHub, WordPress.org, X profile links | `network`, `cta_location` | no | DebugView |
+| `view_section` | custom | homepage section 35% visible, once per page load | `section_name` (clients, services, portfolio, work, care, about, faq, culpritly, contact) | no | DebugView |
+| `form_start` | custom | first focus inside a form | `form_type` | no | DebugView |
+| `blog_read` | custom | blog post scrolled 75% through the article, once | `content_slug`, `read_seconds` | no | DebugView |
+| `ai_referral` | custom | referrer or `utm_source` is ChatGPT, Perplexity, Claude, Gemini, Copilot, You, Phind, Kagi; once per session | `ai_source`, `landing_type` | no | DebugView |
 | `generate_lead` | GA4 recommended | Formspree returned HTTP OK on homepage form | `form_type=contact_form`, `page_type` | **yes** | submit real form, DebugView |
 | `view_pricing` | not implemented | no pricing page exists | | | |
 
-`page_type` is also set on `config` (values: home, service, blog_index, blog_post, case_study_index, case_study, other). `contact_form_submitted` is replaced by `generate_lead`; old history stays in reports, no new data.
+`page_type` is also set on `config` (values: home, service, blog_index, blog_post, case_study_index, case_study, portfolio, tools, privacy, other). `contact_form_submitted` is replaced by `generate_lead`; old history stays in reports, no new data.
 
 No form values, emails, names or free text are sent. `cta_text` is the link label only (max 40 chars). Failed/validation-failed submits send nothing.
 
-### GA4 Admin steps (Faisal)
+### GA4 Admin state (done 2026-10-29)
+- Custom dimensions registered: product_name, section_name, network, ai_source, form_type, link_domain (plus the earlier ones).
+- Channel group "Channels with AI" created: custom channel "AI Assistants" (Source partially matches regex `chatgpt|openai|perplexity|claude\.ai|gemini\.google|copilot\.microsoft|you\.com|phind|kagi`), ranked above Organic Shopping. Not primary: use it by picking it as the channel group in reports/explorations, or set it primary under Channel groups.
+- `generate_lead` is already a key event. Data retention already 14 months.
+- Search Console property https://faisalalvi.com/ linked to the web stream. The Search Console reports need adding to the left nav: Reports > Library > Search Console collection > Publish.
+
+### GA4 Admin steps (original checklist)
 1. Admin > Events: mark **`generate_lead`** as key event. Nothing else yet (booking clicks are intent, not conversions; a Calendly click is not a booking).
-2. Admin > Custom definitions > event-scoped dimensions: `cta_location`, `service_name`, `page_type`, `content_slug`, `cta_destination`. `cta_text` is registered too (few fixed button labels).
+2. Admin > Custom definitions > event-scoped dimensions: `cta_location`, `service_name`, `page_type`, `content_slug`, `cta_destination`, `product_name`, `section_name`, `network`, `ai_source`, `form_type`, `link_domain`. Metric: `read_seconds` (standard). `cta_text` is registered too (few fixed button labels).
 3. Admin > Data retention: set 14 months.
 4. Optional: link Search Console (Admin > Product links) for organic landing-page queries.
 
