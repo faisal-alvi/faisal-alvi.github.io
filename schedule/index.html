@@ -856,9 +856,25 @@ function taskSheet(date,task,startMin){
   paintRec();
   m.querySelector('#rp').onclick=function(e){if(e.target.dataset.r){rec=e.target.dataset.r;paintRec()}};
   m.querySelector('#rm').onclick=function(){
-    if(task.gcal){if(!confirm('Also delete this event from Google Calendar?'))return;gDelete(task)}
-    var f=findTask(task.id);if(f)S.data.days[f.date].tasks.splice(f.i,1);
-    m.remove();touch();render();
+    function one(){
+      if(task.gcal){if(!confirm('Also delete this event from Google Calendar?'))return;gDelete(task)}
+      var f=findTask(task.id);if(f)S.data.days[f.date].tasks.splice(f.i,1);
+      m.remove();touch();render();
+    }
+    var tp=task.tpl?findTpl(task.tpl):null;
+    if(!tp)return one();
+    var q=modal('<h2>Delete repeating task</h2><div class="note" style="margin:0">This task repeats. Delete only this one, or this and all upcoming repeats?</div>'+
+      '<div class="acts" style="flex-wrap:wrap"><button class="btn ghost" id="q0">Cancel</button><button class="btn ghost" id="q1">Only this</button><button class="btn" id="q2">All repeats</button></div>');
+    q.querySelector('#q0').onclick=function(){q.remove()};
+    q.querySelector('#q1').onclick=function(){q.remove();one()};
+    q.querySelector('#q2').onclick=function(){
+      var D=S.data;
+      D.recurring.splice(D.recurring.indexOf(tp),1);
+      for(var dt in D.days){if(dt>date){var dd=D.days[dt];dd.tasks=dd.tasks.filter(function(x){if(x.tpl===tp.id&&!x.done){if(x.gcal)gDelete(x);return false}return true})}}
+      var f=findTask(task.id);if(f)D.days[f.date].tasks.splice(f.i,1);
+      if(task.gcal)gDelete(task);
+      q.remove();m.remove();touch();render();
+    };
   };
   m.querySelector('#sv').onclick=function(){
     var title=ti.value.trim();if(!title){ti.focus();return}
