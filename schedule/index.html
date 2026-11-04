@@ -502,7 +502,7 @@ function layout(date){
 
 /* ---------- colors ---------- */
 var COLORS=['blue','teal','green','orange','red','pink','purple','gray'];
-function colorOf(o,isEv){return o.color||(isEv?'purple':(o.gcal?'orange':o.tpl?S.data.settings.recColor:'blue'))}
+function colorOf(o,isEv){return o.color||(isEv?'purple':(o.gcal&&!fromApp(o)?'gray':o.gcal?'orange':o.tpl?S.data.settings.recColor:'blue'))}
 function swatchRow(box,cur,cb){
   function paint(){
     box.innerHTML='';
