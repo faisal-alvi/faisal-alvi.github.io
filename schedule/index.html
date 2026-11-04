@@ -884,7 +884,7 @@ function taskSheet(date,task,startMin){
     task.lock=lockOn&&st.value?toMin(st.value):null;task.color=col;task.nobuf=nb;
     if(gOn)delete task.gOff;else task.gOff=true;
     if(wasG&&!gOn){gDelete(task);task.gcal=false;delete task.gid;delete task.gflow}
-    if(task.gcal){if(lockOn)task.lock=toMin(st.value);task.gflow=task.lock==null}else applyRepeat(date,task,rec);
+    if(task.gcal){if(lockOn)task.lock=toMin(st.value);task.gflow=task.lock==null}if(!task.gcal||task.tpl)applyRepeat(date,task,rec);
     if(!wasG&&gOn&&rec==='none'&&!task.tpl)gCreate(date,task,false,toMin(st.value))
     else if(task.gcal)gPush(date,task);
     m.remove();touch();render();
@@ -919,6 +919,7 @@ function applyRepeat(date,task,rec){
   }
   tpl.t=task.t;tpl.d=task.d;tpl.rec=rec;tpl.lock=task.lock==null?null:task.lock;tpl.color=task.color||null;tpl.nobuf=!!task.nobuf;
   if(rec==='weekly')tpl.dow=pd(date).getDay();
+  for(var d1 in D.days)D.days[d1].tasks.forEach(function(x){if(x.tpl===tpl.id)x.color=tpl.color});
   for(var d2 in D.days){if(d2>date){D.days[d2].tasks.forEach(function(x){if(x.tpl===tpl.id&&!x.done){x.t=tpl.t;x.d=tpl.d;x.lock=tpl.lock;x.color=tpl.color;x.nobuf=tpl.nobuf}})}}
 }
 function evSheet(ev){
