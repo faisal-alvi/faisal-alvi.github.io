@@ -42,6 +42,16 @@
   link_label: Read the case study
   internal: true
 
+- slug: membership-dashboard-speed-case-study
+  title: Slow membership dashboard
+  tag: Case study &middot; Speed
+  cat: client
+  summary: Members waited about 11 seconds for their dashboard. I traced it to 4.78 MB of copied page data pasted into one menu link, fixed it with the design proven identical, then added a narrow cache for logged-in members.
+  result: Page 10 MB to 1.2 MB &middot; about 11s to about 3s fully loaded
+  link: /case-studies/slow-membership-dashboard-elementor-menu-link/
+  link_label: Read the case study
+  internal: true
+
 - slug: multicollab
   title: Multicollab
   tag: Block editor product
