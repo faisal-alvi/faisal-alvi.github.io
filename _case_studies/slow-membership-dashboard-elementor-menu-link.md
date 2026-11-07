@@ -14,6 +14,12 @@ cta_title: "Members waiting on a slow dashboard?"
 cta_text: "The Care Plan covers weekly updates tested on staging first, monitoring, and fixes like this one when something slows down."
 cta_url: /care-plan/
 cta_label: "See the Care Plan"
+home_tag: "WordPress &middot; Speed"
+home_title: "Took a members dashboard from 11 seconds to about 3"
+home_problem: "Logged-in members waited about 11 seconds for their dashboard. Plugins and hosting looked guilty, but one menu link held 4.78 MB of pasted page data."
+home_did: "Fixed that one field with the design proven identical, then built a narrow cache for logged-in members with an off switch."
+home_result: "Page 10 MB to 1.2 MB &middot; about 11s to about 3s fully loaded"
+home_client: "Membership site owner"
 ---
 
 A slow membership dashboard is easy to blame on the usual suspects: too many plugins, a cheap hosting plan, a caching plugin set up wrong. On this site, a members area built with Elementor and Restrict Content Pro, the dashboard took **about 11 seconds** to fully load for a logged-in member. The real cause was one menu link.

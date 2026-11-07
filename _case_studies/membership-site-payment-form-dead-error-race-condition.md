@@ -10,6 +10,12 @@ image:
   width: 1200
   height: 630
   alt: "The Silent Card-Update Bug Hiding in Membership Sites"
+home_tag: "WooCommerce &middot; Payments"
+home_title: "Fixed a silent payment-form failure on a membership site"
+home_problem: "Customers updating their card on file intermittently hit a dead error page, a timing race between the membership plugin and an external payment script that had no fallback when the script loaded late."
+home_did: "Reproduced the race on demand by forcing the script delay, then built a custom guard plugin that detects the failure and shows a clear retry instead of a dead page."
+home_result: "Zero recurring failures since launch &middot; converted to an ongoing retainer"
+home_client: "Membership site owner"
 ---
 
 A membership site running on Restrict Content Pro started getting sporadic complaints: customers trying to update the card on file for their subscription would occasionally land on a dead error page instead of a working form. Not every time. Not for every customer. No obvious pattern connecting the reports.

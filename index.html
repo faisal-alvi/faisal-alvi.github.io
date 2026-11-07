@@ -1948,39 +1948,27 @@
                 <p class="v2-section-intro" style="margin: 0 auto;">Real problems, real fixes. Anonymised, but every one is a delivered outcome.</p>
             </div>
             <div class="row">
+                {%- comment -%} Newest 3 case studies by date. Card text comes from each case study's home_* front matter (fallback: title and description). {%- endcomment -%}
+                {%- assign home_cases = site.case_studies | sort: "date" | reverse -%}
+                {%- for cs in home_cases limit: 3 %}
                 <div class="col-md-4 mb-4">
                     <div class="v2-case-card">
-                        <span class="v2-case-tag">WordPress &middot; Security &amp; Updates</span>
-                        <h3 class="v2-case-title">Cleared 22 security warnings on a site frozen since 2019</h3>
-                        <div class="v2-case-block"><strong>Problem</strong><p>The host's scanner flagged WordPress core, 19 plugins and 2 themes. Updating the old theme and page builder straight on live would have broken the layout.</p></div>
-                        <div class="v2-case-block"><strong>What I did</strong><p>Cleaned up and updated on staging in a safe order, checked all 54 pages after every step, replaced a withdrawn plugin with a small custom one, then moved the site to PHP 8.3.</p></div>
-                        <div class="v2-case-result">22 warnings to 0 &middot; all 54 pages unchanged</div>
-                        <div class="v2-case-client">Company website owner</div>
-                        <a href="/case-studies/wordpress-vulnerability-alert-outdated-site-update/" class="v2-case-link">Read the full write-up &rarr;</a>
+                        <span class="v2-case-tag">{{ cs.home_tag | default: "Case study" }}</span>
+                        <h3 class="v2-case-title">{{ cs.home_title | default: cs.title }}</h3>
+                        <div class="v2-case-block"><strong>Problem</strong><p>{{ cs.home_problem | default: cs.description }}</p></div>
+                        {%- if cs.home_did %}
+                        <div class="v2-case-block"><strong>What I did</strong><p>{{ cs.home_did }}</p></div>
+                        {%- endif %}
+                        {%- if cs.home_result %}
+                        <div class="v2-case-result">{{ cs.home_result }}</div>
+                        {%- endif %}
+                        {%- if cs.home_client %}
+                        <div class="v2-case-client">{{ cs.home_client }}</div>
+                        {%- endif %}
+                        <a href="{{ cs.url | relative_url }}" class="v2-case-link">Read the full write-up &rarr;</a>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="v2-case-card">
-                        <span class="v2-case-tag">WooCommerce &middot; Payments</span>
-                        <h3 class="v2-case-title">Fixed a silent payment-form failure on a membership site</h3>
-                        <div class="v2-case-block"><strong>Problem</strong><p>Customers updating their card on file intermittently hit a dead error page, a timing race between the membership plugin and an external payment script that had no fallback when the script loaded late.</p></div>
-                        <div class="v2-case-block"><strong>What I did</strong><p>Reproduced the race on demand by forcing the script delay, then built a custom guard plugin that detects the failure and shows a clear retry instead of a dead page.</p></div>
-                        <div class="v2-case-result">Zero recurring failures since launch &middot; converted to an ongoing retainer</div>
-                        <div class="v2-case-client">Membership site owner</div>
-                        <a href="/case-studies/membership-site-payment-form-dead-error-race-condition/" class="v2-case-link">Read the full write-up &rarr;</a>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="v2-case-card">
-                        <span class="v2-case-tag">WooCommerce &middot; Shipping &amp; Tax</span>
-                        <h3 class="v2-case-title">Diagnosed a store showing no shipping options and $0 tax</h3>
-                        <div class="v2-case-block"><strong>Problem</strong><p>Three conflicting shipping plugins, a tax-automation plugin with no API key silently zeroing every order, and products missing weight data blocking live carrier rates.</p></div>
-                        <div class="v2-case-block"><strong>What I did</strong><p>Removed the conflicting plugin, reconfigured tax calculation natively, built proper domestic and international shipping zones, and backfilled product weights.</p></div>
-                        <div class="v2-case-result">Store now serves international customers with accurate rates and tax on every order</div>
-                        <div class="v2-case-client">E-commerce store owner</div>
-                        <a href="/case-studies/woocommerce-no-shipping-options-zero-tax-bug/" class="v2-case-link">Read the full write-up &rarr;</a>
-                    </div>
-                </div>
+                {%- endfor %}
             </div>
             <div class="text-center mt-2">
                 <a href="/case-studies/" class="v2-btn-outline">See All Case Studies</a>

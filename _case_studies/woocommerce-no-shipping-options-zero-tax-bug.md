@@ -10,6 +10,12 @@ image:
   width: 1200
   height: 630
   alt: "Why WooCommerce Shows 'No Shipping Options' (and $0 Tax on Every Order)"
+home_tag: "WooCommerce &middot; Shipping &amp; Tax"
+home_title: "Diagnosed a store showing no shipping options and $0 tax"
+home_problem: "Three conflicting shipping plugins, a tax-automation plugin with no API key silently zeroing every order, and products missing weight data blocking live carrier rates."
+home_did: "Removed the conflicting plugin, reconfigured tax calculation natively, built proper domestic and international shipping zones, and backfilled product weights."
+home_result: "Store now serves international customers with accurate rates and tax on every order"
+home_client: "E-commerce store owner"
 ---
 
 Two symptoms, one store: every order was being taxed at exactly $0, and international customers hit a checkout page with no shipping method available at all, just an empty space where rates should be. Neither one looked related to the other. Both were.
