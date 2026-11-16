@@ -36,7 +36,8 @@ Automatic / enhanced measurement (leave ON in GA4 Admin > Data streams): `page_v
 | `form_start` | custom | first focus inside a form | `form_type` | no | DebugView |
 | `blog_read` | custom | blog post scrolled 75% through the article, once | `content_slug`, `read_seconds` | no | DebugView |
 | `ai_referral` | custom | referrer or `utm_source` is ChatGPT, Perplexity, Claude, Gemini, Copilot, You, Phind, Kagi; once per session | `ai_source`, `landing_type` | no | DebugView |
-| `generate_lead` | GA4 recommended | Formspree returned HTTP OK on homepage form | `form_type=contact_form`, `page_type` | **yes** | submit real form, DebugView |
+| `copy_email` | custom | visitor copies text containing @faisalalvi.com | `cta_location` | no | DebugView |
+| `generate_lead` | GA4 recommended | Formspree returned HTTP OK on homepage form | `form_type=contact_form`, `found_via` (form dropdown value or `not_answered`), `page_type` | **yes** | submit real form, DebugView |
 | `view_pricing` | not implemented | no pricing page exists | | | |
 
 `page_type` is also set on `config` (values: home, service, blog_index, blog_post, case_study_index, case_study, portfolio, tools, privacy, other). `contact_form_submitted` is replaced by `generate_lead`; old history stays in reports, no new data.
@@ -86,3 +87,13 @@ Live check (production, Chrome): `page_view` (with `page_type`), `view_service` 
 
 ## 7. Reports (small set)
 Reports > Acquisition > Traffic acquisition (source/medium); Landing page report; Explore > path exploration from blog_post pages to `view_service`; event counts by `cta_location`; `generate_lead` by source/medium and device. Lead counts are small, so read trends over months, not days. Unmeasurable: Calendly booking completion (needs a Calendly+GA integration or a redirect-back confirmation page), lead quality, and which article "caused" a lead (only paths, not causation).
+
+## Lead source capture (added 2026-11-16)
+Why: first direct website lead (2026-11-15) could not be traced. GA4 showed no referral and no `click_email`, likely blocked or address copied by hand.
+
+- `analytics.js` keeps `fa_touch` in localStorage (90 days): first source (utm_source/medium/campaign, else external referrer host, search engines tagged `organic`, else `(direct)`), latest outside source, landing page, first-visit date, last 10 pages. Skipped in Europe until consent. Independent of GA4 loading, so ad blockers do not stop it.
+- `window.faSource()` returns one readable line. The homepage form puts it in hidden field `visit_source`, plus optional `found_via` dropdown. Both arrive in the Formspree email.
+- `mailto:hello@faisalalvi.com` links get a per-page `?subject=` at load (audit page: "WooCommerce Store Audit question", blog posts: "Question about your article: <slug>"). The subject on an incoming email shows the page it came from.
+- `copy_email` event covers visitors who copy the address instead of clicking.
+- GA4 Admin to do: register event-scoped custom dimension `found_via`.
+- Tag every link you share with UTMs, see dev-context `faisalalvi.com/UTM-LINKS.md`. The LinkedIn app and Gmail strip the referrer, so untagged clicks land as `(direct)`.

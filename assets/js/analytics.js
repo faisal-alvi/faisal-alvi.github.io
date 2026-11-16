@@ -70,6 +70,73 @@
     else if (path === '/tools/' || path === '/schedule-demo/') pageType = 'tools';
     else if (path === '/privacy/') pageType = 'privacy';
 
+    // Browser timezone is a coarse, network-free hint for Europe (EEA, UK, CH).
+    // It over-includes a few non-EEA zones on purpose. Google's IP-based region
+    // defaults above stay the authority for what GA4 actually stores.
+    var tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    var IN_EUROPE = /^Europe\//.test(tz) || ['Atlantic/Reykjavik', 'Atlantic/Canary', 'Atlantic/Madeira', 'Atlantic/Azores'].indexOf(tz) !== -1;
+
+    // ---- Lead source memory (stays in this browser) -----------------------
+    // Remembers where a visitor first came from, their latest outside source
+    // and which pages they read, so a contact form submission can carry
+    // "found via". Nothing leaves the browser unless the visitor submits the
+    // form. Works even when GA4 is blocked. In Europe it waits for consent.
+    var TOUCH_KEY = 'fa_touch';
+    var TOUCH_TTL = 90 * 24 * 3600 * 1000;
+    var SEARCH = /(^|\.)(google\.[a-z.]+|bing\.com|duckduckgo\.com|search\.yahoo\.com|ecosia\.org|search\.brave\.com|yandex\.[a-z.]+|baidu\.com)$/;
+    var OWN_HOST = location.hostname.replace(/^www\./, '');
+
+    function sourceOfThisVisit() {
+        var q = null;
+        try { q = new URLSearchParams(location.search); } catch (e) {}
+        var utmS = q && q.get('utm_source');
+        if (utmS) {
+            return {
+                source: utmS.slice(0, 40),
+                medium: (q.get('utm_medium') || '').slice(0, 40),
+                campaign: (q.get('utm_campaign') || '').slice(0, 60)
+            };
+        }
+        var ref = '';
+        try { ref = new URL(document.referrer).hostname.replace(/^www\./, ''); } catch (e) {}
+        if (ref && ref !== OWN_HOST) return { source: ref, medium: SEARCH.test(ref) ? 'organic' : 'referral', campaign: '' };
+        return null; // typed URL, app link, bookmark, or a click inside this site
+    }
+
+    function readTouch() {
+        try {
+            var t = JSON.parse(localStorage.getItem(TOUCH_KEY) || 'null');
+            if (t && t.first && Date.now() - t.ts < TOUCH_TTL) return t;
+        } catch (e) {}
+        return null;
+    }
+
+    var visitSource = sourceOfThisVisit();
+    if (!IN_EUROPE || stored === 'granted') {
+        try {
+            var touch = readTouch() || { first: visitSource || { source: '(direct)', medium: '', campaign: '' }, landing: path, ts: Date.now(), pages: [] };
+            if (visitSource) touch.last = visitSource;
+            if (touch.pages.indexOf(path) === -1) touch.pages = touch.pages.concat(path).slice(-10);
+            localStorage.setItem(TOUCH_KEY, JSON.stringify(touch));
+        } catch (e) {}
+    }
+
+    function fmtSource(s) {
+        if (!s) return '(direct)';
+        return s.source + (s.medium ? ' / ' + s.medium : '') + (s.campaign ? ' (' + s.campaign + ')' : '');
+    }
+
+    // One readable line for the contact form, e.g.
+    // "first: google.com / organic, landed /woocommerce-audit/ on 2026-11-15 | pages: /woocommerce-audit/, /"
+    window.faSource = function () {
+        var t = readTouch();
+        if (!t) return 'not stored | this visit: ' + fmtSource(visitSource) + ' | page: ' + path;
+        var out = 'first: ' + fmtSource(t.first) + ', landed ' + t.landing + ' on ' + new Date(t.ts).toISOString().slice(0, 10);
+        if (t.last && fmtSource(t.last) !== fmtSource(t.first)) out += ' | latest: ' + fmtSource(t.last);
+        return out + ' | pages: ' + t.pages.join(', ');
+    };
+
     // ---- Load GA4 ---------------------------------------------------------
     gtag('js', new Date());
     gtag('config', GA_ID, { page_type: pageType });
@@ -150,6 +217,42 @@
         }
     }, true);
 
+    // ---- Email address copied instead of clicked --------------------------
+    // Many visitors select and copy the address, which fires no click event.
+    document.addEventListener('copy', function () {
+        var sel = null, text = '';
+        try { sel = window.getSelection(); text = String(sel); } catch (e) {}
+        if (!/@faisalalvi\.com/i.test(text)) return;
+        var node = sel && sel.anchorNode;
+        var el = node && (node.nodeType === 1 ? node : node.parentElement);
+        track('copy_email', { cta_location: el ? location_of(el) : 'body' });
+    });
+
+    // ---- Per-page email subject -------------------------------------------
+    // mailto links get a subject naming the page, so an email that arrives
+    // shows which page it was sent from even when GA4 was blocked.
+    var SUBJECTS = {
+        woocommerce_audit: 'WooCommerce Store Audit question',
+        care_plan: 'Care Plan question',
+        hack_recovery: 'Hacked site help',
+        ga4_audit: 'GA4 tracking audit question'
+    };
+    function mailSubject() {
+        if (SERVICES[path]) return SUBJECTS[SERVICES[path]];
+        if (pageType === 'blog_post') return 'Question about your article: ' + path.split('/').filter(Boolean).pop();
+        if (pageType === 'case_study') return 'Question about your case study: ' + path.split('/').filter(Boolean).pop();
+        if (pageType === 'privacy') return 'Privacy request';
+        if (pageType === 'tools') return 'About your tools';
+        return 'Hello from faisalalvi.com';
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        var links = document.querySelectorAll('a[href^="mailto:hello@faisalalvi.com"]');
+        for (var i = 0; i < links.length; i++) {
+            var href = links[i].getAttribute('href');
+            if (href.indexOf('?') === -1) links[i].setAttribute('href', href + '?subject=' + encodeURIComponent(mailSubject()));
+        }
+    });
+
     // ---- Section views (homepage only): which parts of the pitch get seen ---
     var SECTIONS = ['clients', 'services', 'portfolio', 'work', 'care', 'about', 'faq', 'culpritly', 'contact'];
     if (path === '/' && 'IntersectionObserver' in window) {
@@ -215,12 +318,6 @@
     })();
 
     // ---- Consent banner: only where consent is required -------------------
-    // Browser timezone is a coarse, network-free hint for Europe (EEA, UK, CH).
-    // It over-includes a few non-EEA zones on purpose. Google's IP-based region
-    // defaults above stay the authority for what is actually stored.
-    var tz = '';
-    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
-    var IN_EUROPE = /^Europe\//.test(tz) || ['Atlantic/Reykjavik', 'Atlantic/Canary', 'Atlantic/Madeira', 'Atlantic/Azores'].indexOf(tz) !== -1;
     // ?consent=show forces the banner on any visitor (preview and re-choosing).
     var FORCE = /[?&]consent=show(&|$)/.test(location.search);
     if (BANNER_ON && (FORCE || (IN_EUROPE && !stored))) {

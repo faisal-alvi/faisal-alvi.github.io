@@ -1226,8 +1226,11 @@
         }
 
         .v2-contact-form input,
+        .v2-contact-form select,
         .v2-contact-form textarea {
             width: 100%;
+            background-color: #fff;
+            color: inherit;
             padding: 0.75rem 1rem;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -1238,8 +1241,14 @@
         }
 
         .v2-contact-form input:focus,
+        .v2-contact-form select:focus,
         .v2-contact-form textarea:focus {
             border-color: #4338ca;
+        }
+
+        .v2-contact-form .v2-optional {
+            font-weight: 400;
+            color: #888;
         }
 
         .v2-contact-form textarea {
@@ -2265,6 +2274,22 @@
                             <label for="v2Message">Your message</label>
                             <textarea id="v2Message" name="message" rows="5" placeholder="What's on your mind?" required></textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="v2FoundVia">How did you find me? <span class="v2-optional">(optional)</span></label>
+                            <select id="v2FoundVia" name="found_via">
+                                <option value="">Choose one</option>
+                                <option value="google">Google or another search engine</option>
+                                <option value="ai_assistant">ChatGPT or another AI assistant</option>
+                                <option value="linkedin">LinkedIn</option>
+                                <option value="x">X (Twitter)</option>
+                                <option value="youtube">YouTube</option>
+                                <option value="codeable">Codeable</option>
+                                <option value="wordpress_org">WordPress.org or GitHub</option>
+                                <option value="referral">A friend or colleague</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="visit_source" id="v2VisitSource" value="">
                         <div class="g-recaptcha mb-3" data-sitekey="6LfXIeMrAAAAAOgJ8FfzFM3dvfAQOLYh7pIzZkRh"></div>
                         <button id="v2ContactSubmit" type="submit" class="v2-btn-primary" style="border: none; cursor: pointer;">
                             <i class="ti-email" style="margin-right: 0.5rem;"></i>Send Message
@@ -2370,6 +2395,9 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
             try {
+                var visit = document.getElementById('v2VisitSource');
+                if (visit && window.faSource) { visit.value = window.faSource(); }
+                var foundVia = (document.getElementById('v2FoundVia') || {}).value || 'not_answered';
                 var formData = new FormData(form);
                 var res = await fetch(form.action, {
                     method: 'POST',
@@ -2377,7 +2405,7 @@
                     body: formData
                 });
                 if (res.ok) {
-                    if (window.faTrack) { window.faTrack('generate_lead', { form_type: 'contact_form' }); }
+                    if (window.faTrack) { window.faTrack('generate_lead', { form_type: 'contact_form', found_via: foundVia }); }
                     form.reset();
                     form.style.display = 'none';
                     if (thanks) { thanks.style.display = 'block'; }
